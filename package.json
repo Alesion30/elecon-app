@@ -1,0 +1,12 @@
+{
+    "name": "elecon",
+    "private": true,
+    "husky": {
+        "hooks": {
+            "pre-push": "make format-analyze"
+        }
+    },
+    "devDependencies": {
+        "husky": "^2.7.0"
+    }
+}
