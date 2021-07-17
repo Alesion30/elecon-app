@@ -10,6 +10,10 @@ dependencies:
   flutter:
     sdk: flutter
 
+  # For Firebase
+  firebase_core: ^1.4.0
+  cloud_firestore: ^2.4.0
+
   # For Lint
   pedantic: ^1.11.1
 
