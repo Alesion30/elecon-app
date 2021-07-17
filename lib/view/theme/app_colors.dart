@@ -12,6 +12,11 @@ class AppColors {
     required this.active, // 活性色
     required this.inactive, // 非活性色
     required this.error, // エラー色
+
+    // カスタム
+    required this.stateHigh, // 混んでいる
+    required this.stateMiddle, // やや混んでいる
+    required this.stateSmall, // 空いている
   });
 
   factory AppColors.light() {
@@ -26,22 +31,16 @@ class AppColors {
       active: Color(0xff6496D1),
       inactive: Color(0xffC6C6C6),
       error: Color(0xffEB7258),
+
+      // カスタム
+      stateHigh: Color(0xffFFCDD2),
+      stateMiddle: Color(0xffFFF9C4),
+      stateSmall: Color(0xffC8E6C9),
     );
   }
 
   factory AppColors.dark() {
-    return const AppColors(
-      font: Color(0xffFFFFFF),
-      background: Color(0xffECECEC),
-      header: Color(0xffffffff),
-      accent: Color(0xffF9881F),
-      success: Color(0xff7dc579),
-      danger: Color(0xffEB7258),
-      info: Color(0xff79BCC5),
-      active: Color(0xff6496D1),
-      inactive: Color(0xffC6C6C6),
-      error: Color(0xffEB7258),
-    );
+    return AppColors.light();
   }
 
   final Color font;
@@ -54,4 +53,9 @@ class AppColors {
   final Color active;
   final Color inactive;
   final Color error;
+
+  // カスタム
+  final Color stateHigh;
+  final Color stateMiddle;
+  final Color stateSmall;
 }
