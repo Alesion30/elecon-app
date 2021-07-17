@@ -17,6 +17,10 @@ dependencies:
   # For UIs
   cupertino_icons: ^1.0.2
 
+  # For Architecture
+  hooks_riverpod: ^0.14.0+4
+  flutter_hooks: ^0.17.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
