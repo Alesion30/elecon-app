@@ -12,7 +12,7 @@ abstract class Floor with _$Floor {
     DateTime? created,
   }) = _Floor;
 
-  factory Floor.from(DocumentSnapshot doc) {
+  factory Floor.fromDocument(DocumentSnapshot doc) {
     final data = doc.data() as Map?;
     final floor = data?['floor'] as int?;
     final congestion = data?['congestion'] as int?;

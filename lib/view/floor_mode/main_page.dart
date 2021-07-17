@@ -1,8 +1,10 @@
 import 'package:elecon/view/common/button.dart';
 import 'package:elecon/view/common/elevator.dart';
+import 'package:elecon/view/floor_mode/floor_view_model.dart';
 import 'package:elecon/view/hook/use_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 class FloorModeMainPage extends HookWidget {
   @override
@@ -10,6 +12,13 @@ class FloorModeMainPage extends HookWidget {
     final theme = useTheme();
     final floor = 0;
     final cocoaCount = 0;
+
+    final viewModel = context.read(floorViewModelProvider);
+
+    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+      await viewModel.fetchData();
+      print(viewModel.floors);
+    });
 
     return Scaffold(
       body: Stack(
