@@ -22,6 +22,7 @@ class $AssetsImageGen {
       const AssetGenImage('assets/image/elevator4.png');
   AssetGenImage get elevator5 =>
       const AssetGenImage('assets/image/elevator5.png');
+  AssetGenImage get icon => const AssetGenImage('assets/image/icon.png');
 }
 
 class Assets {

@@ -29,9 +29,16 @@ dependencies:
   # For Navigation
   auto_route: ^2.2.0
 
+  # For Model
+  freezed_annotation: ^0.14.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  # For App
+  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.1.8+4
 
   # command: flutter packages pub run build_runner build
   build_runner: ^2.0.6
@@ -41,8 +48,9 @@ dev_dependencies:
 
   # For Navigation
   auto_route_generator: ^2.1.0
-  flutter_launcher_icons: ^0.9.0
-  flutter_native_splash: ^1.1.8+4
+
+  # For Model
+  freezed: ^0.14.2
 
 flutter:
   uses-material-design: true
