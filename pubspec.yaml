@@ -41,6 +41,8 @@ dev_dependencies:
 
   # For Navigation
   auto_route_generator: ^2.1.0
+  flutter_launcher_icons: ^0.9.0
+  flutter_native_splash: ^1.1.8+4
 
 flutter:
   uses-material-design: true
@@ -50,3 +52,13 @@ flutter:
 flutter_gen:
   integrations:
     flutter_svg: true
+
+flutter_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: assets/image/icon.png
+
+flutter_native_splash:
+  image: assets/image/icon.png
+  color: FFFFFF
