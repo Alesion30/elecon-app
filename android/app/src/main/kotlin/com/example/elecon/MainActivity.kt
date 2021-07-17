@@ -1,4 +1,4 @@
-package com.example.elecon
+package com.arakawalab.elecon
 
 import io.flutter.embedding.android.FlutterActivity
 

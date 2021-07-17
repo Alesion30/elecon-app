@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.elecon">
+    package="com.arakawalab.elecon">
    <application
         android:label="elecon"
         android:icon="@mipmap/ic_launcher">

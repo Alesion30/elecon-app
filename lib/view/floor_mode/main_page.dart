@@ -6,11 +6,10 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 
 class FloorModeMainPage extends HookWidget {
   @override
-  Widget build(BuildContext useContext) {
+  Widget build(BuildContext context) {
+    final theme = useTheme();
     final floor = 0;
     final cocoaCount = 0;
-
-    final theme = useTheme();
 
     return Scaffold(
       body: Stack(
@@ -164,7 +163,7 @@ class MainWrapperColumn extends HookWidget {
   final List<Widget> children;
 
   @override
-  Widget build(BuildContext useContext) {
+  Widget build(BuildContext context) {
     return Expanded(
       child: Container(
         constraints: const BoxConstraints.expand(),
