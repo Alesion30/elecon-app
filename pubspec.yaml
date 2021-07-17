@@ -20,6 +20,7 @@ dependencies:
   # For Architecture
   hooks_riverpod: ^0.14.0+4
   flutter_hooks: ^0.17.0
+  auto_route: ^2.2.0
 
 dev_dependencies:
   flutter_test:
@@ -30,6 +31,7 @@ dev_dependencies:
 
   # For Assets
   flutter_gen_runner: ^3.1.1
+  auto_route_generator: ^2.1.0
 
 flutter:
   uses-material-design: true
