@@ -16,8 +16,7 @@ class FloorModeMainPage extends HookWidget {
     final viewModel = context.read(floorViewModelProvider);
 
     WidgetsBinding.instance!.addPostFrameCallback((_) async {
-      await viewModel.fetchData();
-      print(viewModel.floors);
+      viewModel.fetchDataRealtime();
     });
 
     return Scaffold(

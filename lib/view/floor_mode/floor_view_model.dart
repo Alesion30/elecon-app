@@ -8,13 +8,10 @@ final floorViewModelProvider =
 
 class FloorViewModel extends ChangeNotifier {
   FloorViewModel(this._reader);
-
   final Reader _reader;
-
   late final FloorService _repository = _reader(floorServiceProvider);
 
   List<Floor>? _floors;
-
   List<Floor>? get floors => _floors;
 
   Future<void> fetchData() {
@@ -26,5 +23,15 @@ class FloorViewModel extends ChangeNotifier {
           ),
         )
         .whenComplete(notifyListeners);
+  }
+
+  void fetchDataRealtime() {
+    _repository.getDataRealtime().listen(
+      (data) {
+        _floors = data;
+        print(_floors);
+        notifyListeners();
+      },
+    );
   }
 }

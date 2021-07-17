@@ -26,4 +26,19 @@ class FloorDataSource {
         .toList();
     return floorList;
   }
+
+  Stream<List<Floor>> getDataRealtime() async* {
+    final snapshots = floorsCollection
+        .orderBy(
+          'floor',
+          descending: true,
+        )
+        .snapshots();
+    final floorList = snapshots.asyncMap((snapshot) {
+      final docs = snapshot.docs;
+      final floorList = docs.map((doc) => Floor.fromDocument(doc)).toList();
+      return floorList;
+    });
+    yield* floorList;
+  }
 }

@@ -16,4 +16,8 @@ class FloorService {
       () async => _dataSource.getData(),
     );
   }
+
+  Stream<List<Floor>> getDataRealtime() async* {
+    yield* _dataSource.getDataRealtime();
+  }
 }
