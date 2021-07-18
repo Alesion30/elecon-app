@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:elecon/data/model/floor.dart';
 import 'package:elecon/data/service/floor_service.dart';
 import 'package:flutter/material.dart';
