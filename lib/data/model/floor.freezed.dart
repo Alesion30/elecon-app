@@ -21,7 +21,7 @@ class _$FloorTearOff {
   const _$FloorTearOff();
 
   _Floor call(
-      {int? floor, int? congestion, @DateTimeConverter() DateTime? created}) {
+      {int? floor, int? congestion, @TimeStampConverter() DateTime? created}) {
     return _Floor(
       floor: floor,
       congestion: congestion,
@@ -41,7 +41,7 @@ const $Floor = _$FloorTearOff();
 mixin _$Floor {
   int? get floor => throw _privateConstructorUsedError;
   int? get congestion => throw _privateConstructorUsedError;
-  @DateTimeConverter()
+  @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -54,7 +54,7 @@ abstract class $FloorCopyWith<$Res> {
   factory $FloorCopyWith(Floor value, $Res Function(Floor) then) =
       _$FloorCopyWithImpl<$Res>;
   $Res call(
-      {int? floor, int? congestion, @DateTimeConverter() DateTime? created});
+      {int? floor, int? congestion, @TimeStampConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -94,7 +94,7 @@ abstract class _$FloorCopyWith<$Res> implements $FloorCopyWith<$Res> {
       __$FloorCopyWithImpl<$Res>;
   @override
   $Res call(
-      {int? floor, int? congestion, @DateTimeConverter() DateTime? created});
+      {int? floor, int? congestion, @TimeStampConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -132,7 +132,7 @@ class __$FloorCopyWithImpl<$Res> extends _$FloorCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Floor implements _Floor {
-  _$_Floor({this.floor, this.congestion, @DateTimeConverter() this.created});
+  _$_Floor({this.floor, this.congestion, @TimeStampConverter() this.created});
 
   factory _$_Floor.fromJson(Map<String, dynamic> json) =>
       _$_$_FloorFromJson(json);
@@ -142,7 +142,7 @@ class _$_Floor implements _Floor {
   @override
   final int? congestion;
   @override
-  @DateTimeConverter()
+  @TimeStampConverter()
   final DateTime? created;
 
   @override
@@ -185,7 +185,7 @@ abstract class _Floor implements Floor {
   factory _Floor(
       {int? floor,
       int? congestion,
-      @DateTimeConverter() DateTime? created}) = _$_Floor;
+      @TimeStampConverter() DateTime? created}) = _$_Floor;
 
   factory _Floor.fromJson(Map<String, dynamic> json) = _$_Floor.fromJson;
 
@@ -194,7 +194,7 @@ abstract class _Floor implements Floor {
   @override
   int? get congestion => throw _privateConstructorUsedError;
   @override
-  @DateTimeConverter()
+  @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

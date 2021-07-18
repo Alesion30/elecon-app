@@ -5,11 +5,11 @@ part 'ble.freezed.dart';
 part 'ble.g.dart';
 
 @freezed
-abstract class Ble with _$Ble {
+class Ble with _$Ble {
   factory Ble({
     String? id,
     int? rssi,
-    @DateTimeConverter() DateTime? created,
+    @TimeStampConverter() DateTime? created,
   }) = _Ble;
 
   factory Ble.fromJson(Map<String, dynamic> json) => _$BleFromJson(json);

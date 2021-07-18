@@ -23,11 +23,11 @@ class _$DeviceTearOff {
   _Device call(
       {String? id,
       String? name,
-      AppMode? mode,
-      Dir? dir,
+      @AppModeConverter() AppMode? mode,
+      @DirConverter() Dir? dir,
       int? floor,
       bool? isSave,
-      @DateTimeConverter() DateTime? created}) {
+      @TimeStampConverter() DateTime? created}) {
     return _Device(
       id: id,
       name: name,
@@ -51,11 +51,13 @@ const $Device = _$DeviceTearOff();
 mixin _$Device {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  @AppModeConverter()
   AppMode? get mode => throw _privateConstructorUsedError;
+  @DirConverter()
   Dir? get dir => throw _privateConstructorUsedError;
   int? get floor => throw _privateConstructorUsedError;
   bool? get isSave => throw _privateConstructorUsedError;
-  @DateTimeConverter()
+  @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -70,11 +72,11 @@ abstract class $DeviceCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
-      AppMode? mode,
-      Dir? dir,
+      @AppModeConverter() AppMode? mode,
+      @DirConverter() Dir? dir,
       int? floor,
       bool? isSave,
-      @DateTimeConverter() DateTime? created});
+      @TimeStampConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -136,11 +138,11 @@ abstract class _$DeviceCopyWith<$Res> implements $DeviceCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
-      AppMode? mode,
-      Dir? dir,
+      @AppModeConverter() AppMode? mode,
+      @DirConverter() Dir? dir,
       int? floor,
       bool? isSave,
-      @DateTimeConverter() DateTime? created});
+      @TimeStampConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -201,11 +203,11 @@ class _$_Device implements _Device {
   _$_Device(
       {this.id,
       this.name,
-      this.mode,
-      this.dir,
+      @AppModeConverter() this.mode,
+      @DirConverter() this.dir,
       this.floor,
       this.isSave,
-      @DateTimeConverter() this.created});
+      @TimeStampConverter() this.created});
 
   factory _$_Device.fromJson(Map<String, dynamic> json) =>
       _$_$_DeviceFromJson(json);
@@ -215,15 +217,17 @@ class _$_Device implements _Device {
   @override
   final String? name;
   @override
+  @AppModeConverter()
   final AppMode? mode;
   @override
+  @DirConverter()
   final Dir? dir;
   @override
   final int? floor;
   @override
   final bool? isSave;
   @override
-  @DateTimeConverter()
+  @TimeStampConverter()
   final DateTime? created;
 
   @override
@@ -277,11 +281,11 @@ abstract class _Device implements Device {
   factory _Device(
       {String? id,
       String? name,
-      AppMode? mode,
-      Dir? dir,
+      @AppModeConverter() AppMode? mode,
+      @DirConverter() Dir? dir,
       int? floor,
       bool? isSave,
-      @DateTimeConverter() DateTime? created}) = _$_Device;
+      @TimeStampConverter() DateTime? created}) = _$_Device;
 
   factory _Device.fromJson(Map<String, dynamic> json) = _$_Device.fromJson;
 
@@ -290,15 +294,17 @@ abstract class _Device implements Device {
   @override
   String? get name => throw _privateConstructorUsedError;
   @override
+  @AppModeConverter()
   AppMode? get mode => throw _privateConstructorUsedError;
   @override
+  @DirConverter()
   Dir? get dir => throw _privateConstructorUsedError;
   @override
   int? get floor => throw _privateConstructorUsedError;
   @override
   bool? get isSave => throw _privateConstructorUsedError;
   @override
-  @DateTimeConverter()
+  @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
@@ -313,7 +319,7 @@ DeviceBle _$DeviceBleFromJson(Map<String, dynamic> json) {
 class _$DeviceBleTearOff {
   const _$DeviceBleTearOff();
 
-  _DeviceBle call({List<Ble>? data, @DateTimeConverter() DateTime? created}) {
+  _DeviceBle call({List<Ble>? data, @TimeStampConverter() DateTime? created}) {
     return _DeviceBle(
       data: data,
       created: created,
@@ -331,7 +337,7 @@ const $DeviceBle = _$DeviceBleTearOff();
 /// @nodoc
 mixin _$DeviceBle {
   List<Ble>? get data => throw _privateConstructorUsedError;
-  @DateTimeConverter()
+  @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -344,7 +350,7 @@ mixin _$DeviceBle {
 abstract class $DeviceBleCopyWith<$Res> {
   factory $DeviceBleCopyWith(DeviceBle value, $Res Function(DeviceBle) then) =
       _$DeviceBleCopyWithImpl<$Res>;
-  $Res call({List<Ble>? data, @DateTimeConverter() DateTime? created});
+  $Res call({List<Ble>? data, @TimeStampConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -379,7 +385,7 @@ abstract class _$DeviceBleCopyWith<$Res> implements $DeviceBleCopyWith<$Res> {
           _DeviceBle value, $Res Function(_DeviceBle) then) =
       __$DeviceBleCopyWithImpl<$Res>;
   @override
-  $Res call({List<Ble>? data, @DateTimeConverter() DateTime? created});
+  $Res call({List<Ble>? data, @TimeStampConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -413,7 +419,7 @@ class __$DeviceBleCopyWithImpl<$Res> extends _$DeviceBleCopyWithImpl<$Res>
 
 @JsonSerializable(explicitToJson: true)
 class _$_DeviceBle implements _DeviceBle {
-  _$_DeviceBle({this.data, @DateTimeConverter() this.created});
+  _$_DeviceBle({this.data, @TimeStampConverter() this.created});
 
   factory _$_DeviceBle.fromJson(Map<String, dynamic> json) =>
       _$_$_DeviceBleFromJson(json);
@@ -421,7 +427,7 @@ class _$_DeviceBle implements _DeviceBle {
   @override
   final List<Ble>? data;
   @override
-  @DateTimeConverter()
+  @TimeStampConverter()
   final DateTime? created;
 
   @override
@@ -458,7 +464,8 @@ class _$_DeviceBle implements _DeviceBle {
 
 abstract class _DeviceBle implements DeviceBle {
   factory _DeviceBle(
-      {List<Ble>? data, @DateTimeConverter() DateTime? created}) = _$_DeviceBle;
+      {List<Ble>? data,
+      @TimeStampConverter() DateTime? created}) = _$_DeviceBle;
 
   factory _DeviceBle.fromJson(Map<String, dynamic> json) =
       _$_DeviceBle.fromJson;
@@ -466,7 +473,7 @@ abstract class _DeviceBle implements DeviceBle {
   @override
   List<Ble>? get data => throw _privateConstructorUsedError;
   @override
-  @DateTimeConverter()
+  @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

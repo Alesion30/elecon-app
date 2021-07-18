@@ -20,7 +20,7 @@ Ble _$BleFromJson(Map<String, dynamic> json) {
 class _$BleTearOff {
   const _$BleTearOff();
 
-  _Ble call({String? id, int? rssi, @DateTimeConverter() DateTime? created}) {
+  _Ble call({String? id, int? rssi, @TimeStampConverter() DateTime? created}) {
     return _Ble(
       id: id,
       rssi: rssi,
@@ -40,7 +40,7 @@ const $Ble = _$BleTearOff();
 mixin _$Ble {
   String? get id => throw _privateConstructorUsedError;
   int? get rssi => throw _privateConstructorUsedError;
-  @DateTimeConverter()
+  @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -52,7 +52,7 @@ mixin _$Ble {
 abstract class $BleCopyWith<$Res> {
   factory $BleCopyWith(Ble value, $Res Function(Ble) then) =
       _$BleCopyWithImpl<$Res>;
-  $Res call({String? id, int? rssi, @DateTimeConverter() DateTime? created});
+  $Res call({String? id, int? rssi, @TimeStampConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -91,7 +91,7 @@ abstract class _$BleCopyWith<$Res> implements $BleCopyWith<$Res> {
   factory _$BleCopyWith(_Ble value, $Res Function(_Ble) then) =
       __$BleCopyWithImpl<$Res>;
   @override
-  $Res call({String? id, int? rssi, @DateTimeConverter() DateTime? created});
+  $Res call({String? id, int? rssi, @TimeStampConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -129,7 +129,7 @@ class __$BleCopyWithImpl<$Res> extends _$BleCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Ble implements _Ble {
-  _$_Ble({this.id, this.rssi, @DateTimeConverter() this.created});
+  _$_Ble({this.id, this.rssi, @TimeStampConverter() this.created});
 
   factory _$_Ble.fromJson(Map<String, dynamic> json) => _$_$_BleFromJson(json);
 
@@ -138,7 +138,7 @@ class _$_Ble implements _Ble {
   @override
   final int? rssi;
   @override
-  @DateTimeConverter()
+  @TimeStampConverter()
   final DateTime? created;
 
   @override
@@ -178,7 +178,9 @@ class _$_Ble implements _Ble {
 
 abstract class _Ble implements Ble {
   factory _Ble(
-      {String? id, int? rssi, @DateTimeConverter() DateTime? created}) = _$_Ble;
+      {String? id,
+      int? rssi,
+      @TimeStampConverter() DateTime? created}) = _$_Ble;
 
   factory _Ble.fromJson(Map<String, dynamic> json) = _$_Ble.fromJson;
 
@@ -187,7 +189,7 @@ abstract class _Ble implements Ble {
   @override
   int? get rssi => throw _privateConstructorUsedError;
   @override
-  @DateTimeConverter()
+  @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

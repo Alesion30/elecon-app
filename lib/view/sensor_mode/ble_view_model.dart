@@ -48,6 +48,7 @@ class BleViewModel extends ChangeNotifier {
     _deviceSubscription = _deviceRepository.getBasicDataRealtime().listen(
       (data) {
         _device = data;
+        print(_device);
         notifyListeners();
       },
     );
