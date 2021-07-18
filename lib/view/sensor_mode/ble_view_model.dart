@@ -22,6 +22,9 @@ class BleViewModel extends ChangeNotifier {
   List<Ble>? _bles;
   List<Ble>? get bles => _bles;
 
+  // 信号数（rssiが-70以上）
+  int? get count => _bles?.where((ble) => ble.rssi! > -70).toList().length;
+
   // ストックデータ
   List<Ble> _stockBleData = [];
   String? _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();

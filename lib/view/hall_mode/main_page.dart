@@ -14,7 +14,7 @@ class HallModeMainPage extends HookWidget {
     final floor = Constants.instance.floor;
     final cocoaCount = 0;
 
-    final viewModel = context.read(floorViewModelProvider);
+    final viewModel = useProvider(floorViewModelProvider);
 
     useEffect(() {
       print('fetchDataRealtime!!');

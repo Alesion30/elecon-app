@@ -6,6 +6,7 @@ final floorDataSourceProvider = Provider((ref) => FbFloorDataSource(ref.read));
 
 class FbFloorDataSource {
   FbFloorDataSource(this._reader);
+  // ignore: unused_field
   final Reader _reader;
 
   // firebase

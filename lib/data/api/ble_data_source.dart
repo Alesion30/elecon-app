@@ -5,6 +5,7 @@ final bleDataSourceProvider = Provider((ref) => BleDataSource(ref.read));
 
 class BleDataSource {
   BleDataSource(this._reader);
+  // ignore: unused_field
   final Reader _reader;
 
   late final FlutterBlue _flutterBlue = FlutterBlue.instance;

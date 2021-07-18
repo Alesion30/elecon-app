@@ -10,6 +10,7 @@ final deviceDataSourceProvider =
 
 class FbDeviceDataSource {
   FbDeviceDataSource(this._reader);
+  // ignore: unused_field
   final Reader _reader;
 
   // constants
@@ -50,7 +51,7 @@ class FbDeviceDataSource {
     final deviceId = await getDeviceId();
     final docId = DateTime.now().formatYYYYMMddHHmm();
 
-    // TODO: ネストされた値を.toJsonを呼び出す処理をモデル側に持たせたい
+    // TODO: ネストされた値に.toJsonを呼び出す処理をモデル側に持たせたい
     final data = deviceData.data!.map((v) => v.toJson()).toList();
     final created = deviceData.created;
     await devicesCollection.doc(deviceId).collection('ble').doc(docId).set({

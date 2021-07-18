@@ -6,18 +6,39 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 class ScanModeMainPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
-    final viewModel = context.read(bleViewModelProvider);
+    final viewModel = useProvider(bleViewModelProvider);
 
     useEffect(() {
-      print('fetchDataRealtime!!');
       viewModel.fetchDataRealtime();
-
       return () => viewModel.cancel();
     }, []);
 
-    return const Scaffold(
+    return Scaffold(
       body: Center(
-        child: Text('スキャン モード'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(),
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Text('スキャン モード'),
+                Text('カウント数: ${viewModel.count}'),
+              ],
+            ),
+            Container(
+              margin: const EdgeInsets.only(
+                bottom: 30.0,
+                left: 30.0,
+                right: 10.0,
+              ),
+              child: Text(
+                'データ: ${viewModel.bles}',
+                style: const TextStyle(fontSize: 8.0),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
