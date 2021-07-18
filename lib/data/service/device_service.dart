@@ -19,6 +19,22 @@ class DeviceService {
   // constants
   final _constants = Constants.instance;
 
+  Stream<int?> getBatteryLevelStream() async* {
+    yield* _batteryDataSource.getBatteryLevelStream();
+  }
+
+  Future<Result<void>> saveBatteryLevel(int battery) async {
+    final deviceId = await getDeviceId();
+    final device = Device(
+      id: deviceId,
+      battery: battery,
+      created: DateTime.now(),
+    );
+    return Result.guardFuture(
+      () async => _dataSource.saveBasicData(device),
+    );
+  }
+
   Future<Result<Device>> getBasicData() async {
     return Result.guardFuture(
       () async => _dataSource.getBasicData(),

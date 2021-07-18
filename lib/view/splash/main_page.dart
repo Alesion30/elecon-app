@@ -11,7 +11,7 @@ class SplashPage extends HookWidget {
   Widget build(BuildContext context) {
     final router = useRouter();
     final appMode = Constants.instance.appMode;
-    final viewModel = context.read(deviceViewModelProvider);
+    final viewModel = useProvider(deviceViewModelProvider);
 
     Future<void> run() async {
       print('App Start!!');

@@ -16,4 +16,11 @@ class BatteryDataSource {
     final battery = await platform.invokeMethod('getBatteryLevel') as int?;
     return battery;
   }
+
+  Stream<int?> getBatteryLevelStream() async* {
+    yield* Stream.periodic(const Duration(seconds: 600), (_) async {
+      final battery = await getBatteryLevel();
+      return battery;
+    }).asyncMap((event) async => await event);
+  }
 }
