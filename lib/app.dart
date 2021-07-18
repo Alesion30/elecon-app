@@ -48,7 +48,7 @@ class ViewModel extends ChangeNotifier {
   void fetchBatteryLevelRealtime() {
     _subscription = _repository.getBatteryLevelStream().listen(
       (data) async {
-        await _repository.saveBatteryLevel(data!);
+        await _repository.saveBatteryLevel(data);
       },
     );
   }

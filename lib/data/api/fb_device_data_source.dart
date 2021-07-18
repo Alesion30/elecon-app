@@ -33,15 +33,24 @@ class FbDeviceDataSource {
     yield* data;
   }
 
+  Future<void> saveBatteryLevel(int? battery) async {
+    final deviceId = await getDeviceId();
+    final now = DateTime.now();
+
+    // デバイス情報を保存
+    await devicesCollection
+        .doc(deviceId)
+        .set({'battery': battery, 'created': now}, SetOptions(merge: true));
+  }
+
   // デバイスの基本情報を保存
   Future<void> saveBasicData(Device device) async {
     final deviceId = await getDeviceId();
 
     // デバイス情報を保存
-    await devicesCollection.doc(deviceId).set(
-          device.toJson(),
-          SetOptions(merge: true),
-        );
+    await devicesCollection
+        .doc(deviceId)
+        .set(device.toJson(), SetOptions(merge: true));
   }
 
   // センサから取得したBLEのデータを保存
@@ -52,6 +61,6 @@ class FbDeviceDataSource {
         .doc(deviceId)
         .collection('ble')
         .doc(docId)
-        .set(deviceData.toJson());
+        .set(deviceData.toJson(), SetOptions(merge: true));
   }
 }
