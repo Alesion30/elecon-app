@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elecon/data/model/device.dart';
-import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/function/device_info.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elecon/foundation/extension/date_time.dart';
@@ -14,9 +13,6 @@ class FbDeviceDataSource {
   // ignore: unused_field
   final Reader _reader;
 
-  // constants
-  final constants = Constants.instance;
-
   // firebase
   late final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   late final devicesCollection = _firebaseFirestore.collection('devices');
@@ -29,27 +25,17 @@ class FbDeviceDataSource {
     return data;
   }
 
-  // デバイスの基本情報を保存
-  Future<void> saveBasicData() async {
+  // デバイスの基本情報を取得（リアルタイム）
+  Stream<Device> getBasicDataStream() async* {
     final deviceId = await getDeviceId();
-    final deviceName = await getDeviceName();
-    final appMode = constants.appMode;
-    final dir = constants.dir;
-    final floor = constants.floor;
+    final snapshots = devicesCollection.doc(deviceId).snapshots();
+    final data = snapshots.asyncMap((doc) => Device.fromDocument(doc));
+    yield* data;
+  }
 
-    // FBのデータからisSaveを取得
-    // final data = await getBasicData();
-    // final isSave = data.isSave ?? false;
-
-    final device = Device(
-      id: deviceId,
-      name: deviceName,
-      mode: appMode,
-      dir: dir,
-      floor: floor,
-      isSave: false,
-      created: DateTime.now(),
-    );
+  // デバイスの基本情報を保存
+  Future<void> saveBasicData(Device device) async {
+    final deviceId = await getDeviceId();
 
     // デバイス情報を保存
     await devicesCollection.doc(deviceId).set(

@@ -9,7 +9,7 @@ class ScanModeMainPage extends HookWidget {
     final viewModel = useProvider(bleViewModelProvider);
 
     useEffect(() {
-      viewModel.fetchDataRealtime();
+      viewModel.init();
       return () => viewModel.cancel();
     }, []);
 
@@ -23,7 +23,9 @@ class ScanModeMainPage extends HookWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Text('スキャン モード'),
+                Text('デバイスID: ${viewModel.device?.id}'),
                 Text('カウント数: ${viewModel.count}'),
+                Text('${viewModel.isSave ? '保存する' : '保存しない'}'),
               ],
             ),
             Container(

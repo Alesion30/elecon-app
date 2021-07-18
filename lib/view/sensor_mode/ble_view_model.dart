@@ -17,10 +17,19 @@ class BleViewModel extends ChangeNotifier {
   late final BleService _repository = _reader(bleServiceProvider);
   late final DeviceService _deviceRepository = _reader(deviceServiceProvider);
 
-  StreamSubscription<List<Ble>>? _subscription;
+  // stream
+  StreamSubscription<Device>? _deviceSubscription;
+  StreamSubscription<List<Ble>>? _bleSubscription;
 
+  // データ
   List<Ble>? _bles;
   List<Ble>? get bles => _bles;
+  Device? _device;
+  Device? get device => _device;
+
+  // 保存するかどうか
+  bool get _isSave => _device?.isSave ?? false;
+  bool get isSave => _isSave;
 
   // 信号数（rssiが-70以上）
   int? get count => _bles?.where((ble) => ble.rssi! > -70).toList().length;
@@ -29,26 +38,46 @@ class BleViewModel extends ChangeNotifier {
   List<Ble> _stockBleData = [];
   String? _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
 
-  void fetchDataRealtime() {
-    _subscription = _repository.getDataRealtime().listen(
+  void init() {
+    fetchDeviceDataRealtime();
+    fetchBleDataRealtime();
+  }
+
+  // デバイス情報を取得
+  void fetchDeviceDataRealtime() {
+    _deviceSubscription = _deviceRepository.getBasicDataRealtime().listen(
+      (data) {
+        _device = data;
+        notifyListeners();
+      },
+    );
+  }
+
+  // BLEのデータを取得（1分に1回）
+  void fetchBleDataRealtime() {
+    _bleSubscription = _repository.getDataRealtime().listen(
       (data) {
         _bles = data;
         _stockBleData += data;
 
-        // 保存する（1分毎に）
-        final now = DateTime.now();
-        if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
-          final deviceBle = DeviceBle(
-            data: _stockBleData,
-            created: now,
-          );
-          _deviceRepository.saveBleData(deviceBle).then((result) {
-            result.ifSuccess((_) {
-              _stockBleData = [];
-              _lastSaveDate = now.formatYYYYMMddHHmm();
-            });
-          });
-        }
+        _deviceRepository.getBasicData().then((getDataResult) {
+          // 保存する（1分毎に）
+          if (_isSave) {
+            final now = DateTime.now();
+            if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
+              final deviceBle = DeviceBle(
+                data: _stockBleData,
+                created: now,
+              );
+              _deviceRepository.saveBleData(deviceBle).then((result) {
+                result.ifSuccess((_) {
+                  _stockBleData = [];
+                  _lastSaveDate = now.formatYYYYMMddHHmm();
+                });
+              });
+            }
+          }
+        });
 
         notifyListeners();
       },
@@ -56,6 +85,7 @@ class BleViewModel extends ChangeNotifier {
   }
 
   void cancel() {
-    _subscription!.cancel();
+    _deviceSubscription!.cancel();
+    _bleSubscription!.cancel();
   }
 }
