@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elecon/data/model/floor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final floorDataSourceProvider = Provider((ref) => FloorDataSource(ref.read));
+final floorDataSourceProvider = Provider((ref) => FbFloorDataSource(ref.read));
 
-class FloorDataSource {
-  FloorDataSource(this._reader);
+class FbFloorDataSource {
+  FbFloorDataSource(this._reader);
   final Reader _reader;
 
   // firebase

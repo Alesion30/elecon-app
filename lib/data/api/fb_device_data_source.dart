@@ -4,10 +4,10 @@ import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/function/device_info.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final deviceDataSourceProvider = Provider((ref) => DeviceDataSource(ref.read));
+final deviceDataSourceProvider = Provider((ref) => FbDeviceDataSource(ref.read));
 
-class DeviceDataSource {
-  DeviceDataSource(this._reader);
+class FbDeviceDataSource {
+  FbDeviceDataSource(this._reader);
   final Reader _reader;
 
   // constants

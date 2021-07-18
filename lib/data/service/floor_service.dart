@@ -1,4 +1,4 @@
-import 'package:elecon/data/api/floor_data_source.dart';
+import 'package:elecon/data/api/fb_floor_data_source.dart';
 import 'package:elecon/data/model/floor.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,7 +9,7 @@ class FloorService {
   FloorService(this._reader);
   final Reader _reader;
 
-  late final FloorDataSource _dataSource = _reader(floorDataSourceProvider);
+  late final FbFloorDataSource _dataSource = _reader(floorDataSourceProvider);
 
   Future<Result<List<Floor>>> getData() async {
     return Result.guardFuture(
