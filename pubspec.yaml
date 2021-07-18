@@ -17,6 +17,9 @@ dependencies:
   # For Bluetooth
   flutter_blue: ^0.8.0
 
+  # For Device Info
+  device_info: ^2.0.2
+
   # For Lint
   pedantic: ^1.11.1
 
