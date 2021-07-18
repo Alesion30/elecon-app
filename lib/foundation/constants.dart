@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 enum AppMode {
   hall, // エレベーターホール
-  scan, // スキャン
+  sensor, // センサ
 }
 
 enum Dir {
@@ -25,7 +25,7 @@ class Constants {
   // エレベーター 左
   factory Constants.elevatorLeft() {
     return const Constants(
-      appMode: AppMode.scan,
+      appMode: AppMode.sensor,
       dir: Dir.left,
     );
   }

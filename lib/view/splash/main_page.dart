@@ -23,7 +23,7 @@ class SplashPage extends HookWidget {
             predicate: (_) => false,
           );
         }
-        if (appMode == AppMode.scan) {
+        if (appMode == AppMode.sensor) {
           await router.pushAndPopUntil(
             const ScanModeMainRoute(),
             predicate: (_) => false,

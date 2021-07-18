@@ -67,7 +67,7 @@ K? _$enumDecodeNullable<K, V>(
 
 const _$AppModeEnumMap = {
   AppMode.hall: 'hall',
-  AppMode.scan: 'scan',
+  AppMode.sensor: 'sensor',
 };
 
 const _$DirEnumMap = {
