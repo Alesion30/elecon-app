@@ -15,10 +15,12 @@ class FloorModeMainPage extends HookWidget {
 
     final viewModel = context.read(floorViewModelProvider);
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) {
+    useEffect(() {
       print('fetchDataRealtime!!');
       viewModel.fetchDataRealtime();
-    });
+
+      return () => viewModel.cancel();
+    }, []);
 
     return Scaffold(
       body: Stack(

@@ -20,7 +20,7 @@ class BleDataSource {
       _flutterBlue.scanResults.listen((item) => results = item);
       await _flutterBlue.stopScan();
 
-      print("scannn");
+      print('scan!!!');
 
       // 信号をフィルタリング
       results = results.where((result) {

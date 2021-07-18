@@ -11,6 +11,8 @@ class ScanModeMainPage extends HookWidget {
     useEffect(() {
       print('fetchDataRealtime!!');
       viewModel.fetchDataRealtime();
+
+      return () => viewModel.cancel();
     }, []);
 
     return const Scaffold(

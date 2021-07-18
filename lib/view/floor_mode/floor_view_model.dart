@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:elecon/data/model/floor.dart';
 import 'package:elecon/data/service/floor_service.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +13,8 @@ class FloorViewModel extends ChangeNotifier {
   FloorViewModel(this._reader);
   final Reader _reader;
   late final FloorService _repository = _reader(floorServiceProvider);
+
+  StreamSubscription<List<Floor>>? _subscription;
 
   List<Floor>? _floors;
   List<Floor>? get floors => _floors;
@@ -27,12 +31,16 @@ class FloorViewModel extends ChangeNotifier {
   }
 
   void fetchDataRealtime() {
-    _repository.getDataRealtime().listen(
+    _subscription = _repository.getDataRealtime().listen(
       (data) {
         _floors = data;
         print(_floors);
         notifyListeners();
       },
     );
+  }
+
+  void cancel() {
+    _subscription!.cancel();
   }
 }
