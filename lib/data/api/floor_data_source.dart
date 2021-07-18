@@ -2,13 +2,15 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elecon/data/model/floor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final floorsCollection = FirebaseFirestore.instance.collection('floors');
-
 final floorDataSourceProvider = Provider((ref) => FloorDataSource(ref.read));
 
 class FloorDataSource {
   FloorDataSource(this._reader);
   final Reader _reader;
+
+  // firebase
+  late final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
+  late final floorsCollection = _firebaseFirestore.collection('floors');
 
   Future<List<Floor>> getData() async {
     final snapshot = await floorsCollection
@@ -27,7 +29,7 @@ class FloorDataSource {
     return floorList;
   }
 
-  Stream<List<Floor>> getDataRealtime() async* {
+  Stream<List<Floor>> getDataStream() async* {
     final snapshots = floorsCollection
         .orderBy(
           'floor',

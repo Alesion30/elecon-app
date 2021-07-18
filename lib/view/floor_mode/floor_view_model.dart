@@ -3,8 +3,9 @@ import 'package:elecon/data/service/floor_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final floorViewModelProvider =
-    ChangeNotifierProvider((ref) => FloorViewModel(ref.read));
+final floorViewModelProvider = ChangeNotifierProvider(
+  (ref) => FloorViewModel(ref.read),
+);
 
 class FloorViewModel extends ChangeNotifier {
   FloorViewModel(this._reader);
