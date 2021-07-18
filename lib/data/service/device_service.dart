@@ -1,3 +1,4 @@
+import 'package:elecon/data/api/battery_data_source.dart';
 import 'package:elecon/data/api/fb_device_data_source.dart';
 import 'package:elecon/data/model/device.dart';
 import 'package:elecon/data/model/result.dart';
@@ -12,6 +13,8 @@ class DeviceService {
   final Reader _reader;
 
   late final FbDeviceDataSource _dataSource = _reader(deviceDataSourceProvider);
+  late final BatteryDataSource _batteryDataSource =
+      _reader(batteryDataSourceProvider);
 
   // constants
   final _constants = Constants.instance;
@@ -42,6 +45,14 @@ class DeviceService {
       print(e);
     }
 
+    // バッテリ情報を取得
+    int? battery;
+    try {
+      battery = await _batteryDataSource.getBatteryLevel();
+    } catch (e) {
+      print(e);
+    }
+
     final device = Device(
       id: deviceId,
       name: deviceName,
@@ -49,6 +60,7 @@ class DeviceService {
       dir: dir,
       floor: floor,
       isSave: isSave,
+      battery: battery,
       created: DateTime.now(),
     );
 
