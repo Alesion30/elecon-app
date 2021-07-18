@@ -10,7 +10,7 @@ _$_Floor _$_$_FloorFromJson(Map<String, dynamic> json) {
   return _$_Floor(
     floor: json['floor'] as int?,
     congestion: json['congestion'] as int?,
-    created: const DateTimeConverter().fromJson(json['created'] as DateTime),
+    created: const DateTimeConverter().fromJson(json['created'] as DateTime?),
   );
 }
 

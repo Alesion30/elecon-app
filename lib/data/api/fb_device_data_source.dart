@@ -5,8 +5,9 @@ import 'package:elecon/foundation/function/device_info.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elecon/foundation/extension/date_time.dart';
 
-final deviceDataSourceProvider =
-    Provider((ref) => FbDeviceDataSource(ref.read));
+final deviceDataSourceProvider = Provider(
+  (ref) => FbDeviceDataSource(ref.read),
+);
 
 class FbDeviceDataSource {
   FbDeviceDataSource(this._reader);
@@ -55,18 +56,6 @@ class FbDeviceDataSource {
           device.toJson(),
           SetOptions(merge: true),
         );
-
-    final hoge = {
-      'created': DateTime.now(),
-    };
-    print(device.toJson());
-    print(hoge);
-    // await devicesCollection.doc(deviceId).set(
-    //   {
-    //     'created': DateTime.now(),
-    //   },
-    //   SetOptions(merge: true),
-    // );
   }
 
   // センサから取得したBLEのデータを保存

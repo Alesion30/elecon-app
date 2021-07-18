@@ -1,7 +1,9 @@
 import 'package:flutter_blue/flutter_blue.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final bleDataSourceProvider = Provider((ref) => BleDataSource(ref.read));
+final bleDataSourceProvider = Provider(
+  (ref) => BleDataSource(ref.read),
+);
 
 class BleDataSource {
   BleDataSource(this._reader);

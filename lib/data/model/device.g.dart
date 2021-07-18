@@ -14,7 +14,7 @@ _$_Device _$_$_DeviceFromJson(Map<String, dynamic> json) {
     dir: _$enumDecodeNullable(_$DirEnumMap, json['dir']),
     floor: json['floor'] as int?,
     isSave: json['isSave'] as bool?,
-    created: const DateTimeConverter().fromJson(json['created'] as DateTime),
+    created: const DateTimeConverter().fromJson(json['created'] as DateTime?),
   );
 }
 
@@ -80,7 +80,7 @@ _$_DeviceBle _$_$_DeviceBleFromJson(Map<String, dynamic> json) {
     data: (json['data'] as List<dynamic>?)
         ?.map((e) => Ble.fromJson(e as Map<String, dynamic>))
         .toList(),
-    created: const DateTimeConverter().fromJson(json['created'] as DateTime),
+    created: const DateTimeConverter().fromJson(json['created'] as DateTime?),
   );
 }
 
