@@ -26,13 +26,15 @@ class _$DeviceTearOff {
       AppMode? mode,
       Dir? dir,
       int? floor,
-      DateTime? created}) {
+      bool? isSave,
+      @DateTimeConverter() DateTime? created}) {
     return _Device(
       id: id,
       name: name,
       mode: mode,
       dir: dir,
       floor: floor,
+      isSave: isSave,
       created: created,
     );
   }
@@ -52,6 +54,8 @@ mixin _$Device {
   AppMode? get mode => throw _privateConstructorUsedError;
   Dir? get dir => throw _privateConstructorUsedError;
   int? get floor => throw _privateConstructorUsedError;
+  bool? get isSave => throw _privateConstructorUsedError;
+  @DateTimeConverter()
   DateTime? get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -69,7 +73,8 @@ abstract class $DeviceCopyWith<$Res> {
       AppMode? mode,
       Dir? dir,
       int? floor,
-      DateTime? created});
+      bool? isSave,
+      @DateTimeConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -87,6 +92,7 @@ class _$DeviceCopyWithImpl<$Res> implements $DeviceCopyWith<$Res> {
     Object? mode = freezed,
     Object? dir = freezed,
     Object? floor = freezed,
+    Object? isSave = freezed,
     Object? created = freezed,
   }) {
     return _then(_value.copyWith(
@@ -110,6 +116,10 @@ class _$DeviceCopyWithImpl<$Res> implements $DeviceCopyWith<$Res> {
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
               as int?,
+      isSave: isSave == freezed
+          ? _value.isSave
+          : isSave // ignore: cast_nullable_to_non_nullable
+              as bool?,
       created: created == freezed
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -129,7 +139,8 @@ abstract class _$DeviceCopyWith<$Res> implements $DeviceCopyWith<$Res> {
       AppMode? mode,
       Dir? dir,
       int? floor,
-      DateTime? created});
+      bool? isSave,
+      @DateTimeConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -148,6 +159,7 @@ class __$DeviceCopyWithImpl<$Res> extends _$DeviceCopyWithImpl<$Res>
     Object? mode = freezed,
     Object? dir = freezed,
     Object? floor = freezed,
+    Object? isSave = freezed,
     Object? created = freezed,
   }) {
     return _then(_Device(
@@ -171,6 +183,10 @@ class __$DeviceCopyWithImpl<$Res> extends _$DeviceCopyWithImpl<$Res>
           ? _value.floor
           : floor // ignore: cast_nullable_to_non_nullable
               as int?,
+      isSave: isSave == freezed
+          ? _value.isSave
+          : isSave // ignore: cast_nullable_to_non_nullable
+              as bool?,
       created: created == freezed
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -183,7 +199,13 @@ class __$DeviceCopyWithImpl<$Res> extends _$DeviceCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_Device implements _Device {
   _$_Device(
-      {this.id, this.name, this.mode, this.dir, this.floor, this.created});
+      {this.id,
+      this.name,
+      this.mode,
+      this.dir,
+      this.floor,
+      this.isSave,
+      @DateTimeConverter() this.created});
 
   factory _$_Device.fromJson(Map<String, dynamic> json) =>
       _$_$_DeviceFromJson(json);
@@ -199,11 +221,14 @@ class _$_Device implements _Device {
   @override
   final int? floor;
   @override
+  final bool? isSave;
+  @override
+  @DateTimeConverter()
   final DateTime? created;
 
   @override
   String toString() {
-    return 'Device(id: $id, name: $name, mode: $mode, dir: $dir, floor: $floor, created: $created)';
+    return 'Device(id: $id, name: $name, mode: $mode, dir: $dir, floor: $floor, isSave: $isSave, created: $created)';
   }
 
   @override
@@ -220,6 +245,8 @@ class _$_Device implements _Device {
                 const DeepCollectionEquality().equals(other.dir, dir)) &&
             (identical(other.floor, floor) ||
                 const DeepCollectionEquality().equals(other.floor, floor)) &&
+            (identical(other.isSave, isSave) ||
+                const DeepCollectionEquality().equals(other.isSave, isSave)) &&
             (identical(other.created, created) ||
                 const DeepCollectionEquality().equals(other.created, created)));
   }
@@ -232,6 +259,7 @@ class _$_Device implements _Device {
       const DeepCollectionEquality().hash(mode) ^
       const DeepCollectionEquality().hash(dir) ^
       const DeepCollectionEquality().hash(floor) ^
+      const DeepCollectionEquality().hash(isSave) ^
       const DeepCollectionEquality().hash(created);
 
   @JsonKey(ignore: true)
@@ -252,7 +280,8 @@ abstract class _Device implements Device {
       AppMode? mode,
       Dir? dir,
       int? floor,
-      DateTime? created}) = _$_Device;
+      bool? isSave,
+      @DateTimeConverter() DateTime? created}) = _$_Device;
 
   factory _Device.fromJson(Map<String, dynamic> json) = _$_Device.fromJson;
 
@@ -267,6 +296,9 @@ abstract class _Device implements Device {
   @override
   int? get floor => throw _privateConstructorUsedError;
   @override
+  bool? get isSave => throw _privateConstructorUsedError;
+  @override
+  @DateTimeConverter()
   DateTime? get created => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
@@ -281,7 +313,7 @@ DeviceBle _$DeviceBleFromJson(Map<String, dynamic> json) {
 class _$DeviceBleTearOff {
   const _$DeviceBleTearOff();
 
-  _DeviceBle call({List<Ble>? data, DateTime? created}) {
+  _DeviceBle call({List<Ble>? data, @DateTimeConverter() DateTime? created}) {
     return _DeviceBle(
       data: data,
       created: created,
@@ -299,6 +331,7 @@ const $DeviceBle = _$DeviceBleTearOff();
 /// @nodoc
 mixin _$DeviceBle {
   List<Ble>? get data => throw _privateConstructorUsedError;
+  @DateTimeConverter()
   DateTime? get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -311,7 +344,7 @@ mixin _$DeviceBle {
 abstract class $DeviceBleCopyWith<$Res> {
   factory $DeviceBleCopyWith(DeviceBle value, $Res Function(DeviceBle) then) =
       _$DeviceBleCopyWithImpl<$Res>;
-  $Res call({List<Ble>? data, DateTime? created});
+  $Res call({List<Ble>? data, @DateTimeConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -346,7 +379,7 @@ abstract class _$DeviceBleCopyWith<$Res> implements $DeviceBleCopyWith<$Res> {
           _DeviceBle value, $Res Function(_DeviceBle) then) =
       __$DeviceBleCopyWithImpl<$Res>;
   @override
-  $Res call({List<Ble>? data, DateTime? created});
+  $Res call({List<Ble>? data, @DateTimeConverter() DateTime? created});
 }
 
 /// @nodoc
@@ -377,9 +410,10 @@ class __$DeviceBleCopyWithImpl<$Res> extends _$DeviceBleCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_DeviceBle implements _DeviceBle {
-  _$_DeviceBle({this.data, this.created});
+  _$_DeviceBle({this.data, @DateTimeConverter() this.created});
 
   factory _$_DeviceBle.fromJson(Map<String, dynamic> json) =>
       _$_$_DeviceBleFromJson(json);
@@ -387,6 +421,7 @@ class _$_DeviceBle implements _DeviceBle {
   @override
   final List<Ble>? data;
   @override
+  @DateTimeConverter()
   final DateTime? created;
 
   @override
@@ -422,7 +457,8 @@ class _$_DeviceBle implements _DeviceBle {
 }
 
 abstract class _DeviceBle implements DeviceBle {
-  factory _DeviceBle({List<Ble>? data, DateTime? created}) = _$_DeviceBle;
+  factory _DeviceBle(
+      {List<Ble>? data, @DateTimeConverter() DateTime? created}) = _$_DeviceBle;
 
   factory _DeviceBle.fromJson(Map<String, dynamic> json) =
       _$_DeviceBle.fromJson;
@@ -430,6 +466,7 @@ abstract class _DeviceBle implements DeviceBle {
   @override
   List<Ble>? get data => throw _privateConstructorUsedError;
   @override
+  @DateTimeConverter()
   DateTime? get created => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)

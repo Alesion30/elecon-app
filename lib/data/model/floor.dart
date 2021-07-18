@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elecon/data/model/converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'floor.freezed.dart';
@@ -9,7 +10,7 @@ abstract class Floor with _$Floor {
   factory Floor({
     int? floor,
     int? congestion,
-    DateTime? created,
+    @DateTimeConverter() DateTime? created,
   }) = _Floor;
 
   factory Floor.fromDocument(DocumentSnapshot doc) {

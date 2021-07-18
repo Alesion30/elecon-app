@@ -13,9 +13,8 @@ _$_Device _$_$_DeviceFromJson(Map<String, dynamic> json) {
     mode: _$enumDecodeNullable(_$AppModeEnumMap, json['mode']),
     dir: _$enumDecodeNullable(_$DirEnumMap, json['dir']),
     floor: json['floor'] as int?,
-    created: json['created'] == null
-        ? null
-        : DateTime.parse(json['created'] as String),
+    isSave: json['isSave'] as bool?,
+    created: const DateTimeConverter().fromJson(json['created'] as DateTime),
   );
 }
 
@@ -25,7 +24,8 @@ Map<String, dynamic> _$_$_DeviceToJson(_$_Device instance) => <String, dynamic>{
       'mode': _$AppModeEnumMap[instance.mode],
       'dir': _$DirEnumMap[instance.dir],
       'floor': instance.floor,
-      'created': instance.created?.toIso8601String(),
+      'isSave': instance.isSave,
+      'created': const DateTimeConverter().toJson(instance.created),
     };
 
 K _$enumDecode<K, V>(
@@ -80,14 +80,12 @@ _$_DeviceBle _$_$_DeviceBleFromJson(Map<String, dynamic> json) {
     data: (json['data'] as List<dynamic>?)
         ?.map((e) => Ble.fromJson(e as Map<String, dynamic>))
         .toList(),
-    created: json['created'] == null
-        ? null
-        : DateTime.parse(json['created'] as String),
+    created: const DateTimeConverter().fromJson(json['created'] as DateTime),
   );
 }
 
 Map<String, dynamic> _$_$_DeviceBleToJson(_$_DeviceBle instance) =>
     <String, dynamic>{
-      'data': instance.data,
-      'created': instance.created?.toIso8601String(),
+      'data': instance.data?.map((e) => e.toJson()).toList(),
+      'created': const DateTimeConverter().toJson(instance.created),
     };

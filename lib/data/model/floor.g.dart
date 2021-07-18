@@ -10,14 +10,12 @@ _$_Floor _$_$_FloorFromJson(Map<String, dynamic> json) {
   return _$_Floor(
     floor: json['floor'] as int?,
     congestion: json['congestion'] as int?,
-    created: json['created'] == null
-        ? null
-        : DateTime.parse(json['created'] as String),
+    created: const DateTimeConverter().fromJson(json['created'] as DateTime),
   );
 }
 
 Map<String, dynamic> _$_$_FloorToJson(_$_Floor instance) => <String, dynamic>{
       'floor': instance.floor,
       'congestion': instance.congestion,
-      'created': instance.created?.toIso8601String(),
+      'created': const DateTimeConverter().toJson(instance.created),
     };

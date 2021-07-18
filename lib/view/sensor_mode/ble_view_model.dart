@@ -38,8 +38,6 @@ class BleViewModel extends ChangeNotifier {
         // 保存する（1分毎に）
         final now = DateTime.now();
         if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
-          print('_lastSaveDate: $_lastSaveDate');
-          print('_stockBleData: $_stockBleData');
           final deviceBle = DeviceBle(
             data: _stockBleData,
             created: now,
@@ -52,7 +50,6 @@ class BleViewModel extends ChangeNotifier {
           });
         }
 
-        print('_bles: $_bles');
         notifyListeners();
       },
     );

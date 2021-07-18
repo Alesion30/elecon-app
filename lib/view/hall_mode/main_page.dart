@@ -13,13 +13,10 @@ class HallModeMainPage extends HookWidget {
     final theme = useTheme();
     final floor = Constants.instance.floor;
     final cocoaCount = 0;
-
     final viewModel = useProvider(floorViewModelProvider);
 
     useEffect(() {
-      print('fetchDataRealtime!!');
       viewModel.fetchDataRealtime();
-
       return () => viewModel.cancel();
     }, []);
 
