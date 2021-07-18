@@ -41,9 +41,12 @@ class BleViewModel extends ChangeNotifier {
             data: _stockBleData,
             created: now,
           );
-          _deviceRepository.saveBleData(deviceBle);
-          _stockBleData = [];
-          _lastSaveDate = now.formatYYYYMMddHHmm();
+          _deviceRepository.saveBleData(deviceBle).then((result) {
+            result.ifSuccess((_) {
+              _stockBleData = [];
+              _lastSaveDate = now.formatYYYYMMddHHmm();
+            });
+          });
         }
 
         print('_bles: $_bles');
