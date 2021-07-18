@@ -43,4 +43,7 @@ class Constants {
   final AppMode appMode;
   final Dir? dir;
   final int? floor;
+
+  bool get isLandscape => appMode == AppMode.hall; // ホールモードの時だけ横向き
+  // double? get brightness => appMode == AppMode.sensor ? 0.1 : 1.0; // センサモードの時は暗く
 }
