@@ -23,8 +23,6 @@ class BleDataSource {
       _flutterBlue.scanResults.listen((item) => results = item);
       await _flutterBlue.stopScan();
 
-      print('scan!!! in lib/data/api/ble_data_source.dart');
-
       // 信号をフィルタリング
       results = results.where((result) {
         // 接触確認アプリ「COCOA」 ServiceUUID

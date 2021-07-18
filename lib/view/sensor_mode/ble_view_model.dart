@@ -3,6 +3,7 @@ import 'package:elecon/data/model/ble.dart';
 import 'package:elecon/data/model/device.dart';
 import 'package:elecon/data/service/ble_service.dart';
 import 'package:elecon/data/service/device_service.dart';
+import 'package:elecon/data/service/elevator_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elecon/foundation/extension/date_time.dart';
@@ -16,6 +17,8 @@ class BleViewModel extends ChangeNotifier {
   final Reader _reader;
   late final BleService _repository = _reader(bleServiceProvider);
   late final DeviceService _deviceRepository = _reader(deviceServiceProvider);
+  late final ElevatorService _elevatorRepository =
+      _reader(elevatorServiceProvider);
 
   // stream
   StreamSubscription<Device>? _deviceSubscription;
@@ -60,24 +63,27 @@ class BleViewModel extends ChangeNotifier {
         _bles = data;
         _stockBleData += data;
 
-        _deviceRepository.getBasicData().then((getDataResult) {
-          // 保存する（1分毎に）
-          if (_isSave) {
-            final now = DateTime.now();
-            if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
-              final deviceBle = DeviceBle(
-                data: _stockBleData,
-                created: now,
-              );
-              _deviceRepository.saveBleData(deviceBle).then((result) {
-                result.ifSuccess((_) {
-                  _stockBleData = [];
-                  _lastSaveDate = now.formatYYYYMMddHHmm();
-                });
-              });
-            }
+        if (_isSave) {
+          // エレベーター情報を更新する
+          if (count! >= 0) {
+            _elevatorRepository.saveData(count!);
           }
-        });
+
+          // センサの値を保存する（1分おきに）
+          final now = DateTime.now();
+          if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
+            final deviceBle = DeviceBle(
+              data: _stockBleData,
+              created: now,
+            );
+            _deviceRepository.saveBleData(deviceBle).then((result) {
+              result.ifSuccess((_) {
+                _stockBleData = [];
+                _lastSaveDate = now.formatYYYYMMddHHmm();
+              });
+            });
+          }
+        }
 
         notifyListeners();
       },
