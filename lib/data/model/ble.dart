@@ -8,6 +8,7 @@ abstract class Ble with _$Ble {
   factory Ble({
     String? id,
     int? rssi,
+    DateTime? created,
   }) = _Ble;
 
   factory Ble.fromJson(Map<String, dynamic> json) => _$BleFromJson(json);

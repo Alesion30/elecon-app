@@ -272,3 +272,167 @@ abstract class _Device implements Device {
   @JsonKey(ignore: true)
   _$DeviceCopyWith<_Device> get copyWith => throw _privateConstructorUsedError;
 }
+
+DeviceBle _$DeviceBleFromJson(Map<String, dynamic> json) {
+  return _DeviceBle.fromJson(json);
+}
+
+/// @nodoc
+class _$DeviceBleTearOff {
+  const _$DeviceBleTearOff();
+
+  _DeviceBle call({List<Ble>? data, DateTime? created}) {
+    return _DeviceBle(
+      data: data,
+      created: created,
+    );
+  }
+
+  DeviceBle fromJson(Map<String, Object> json) {
+    return DeviceBle.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $DeviceBle = _$DeviceBleTearOff();
+
+/// @nodoc
+mixin _$DeviceBle {
+  List<Ble>? get data => throw _privateConstructorUsedError;
+  DateTime? get created => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DeviceBleCopyWith<DeviceBle> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DeviceBleCopyWith<$Res> {
+  factory $DeviceBleCopyWith(DeviceBle value, $Res Function(DeviceBle) then) =
+      _$DeviceBleCopyWithImpl<$Res>;
+  $Res call({List<Ble>? data, DateTime? created});
+}
+
+/// @nodoc
+class _$DeviceBleCopyWithImpl<$Res> implements $DeviceBleCopyWith<$Res> {
+  _$DeviceBleCopyWithImpl(this._value, this._then);
+
+  final DeviceBle _value;
+  // ignore: unused_field
+  final $Res Function(DeviceBle) _then;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? created = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<Ble>?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$DeviceBleCopyWith<$Res> implements $DeviceBleCopyWith<$Res> {
+  factory _$DeviceBleCopyWith(
+          _DeviceBle value, $Res Function(_DeviceBle) then) =
+      __$DeviceBleCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Ble>? data, DateTime? created});
+}
+
+/// @nodoc
+class __$DeviceBleCopyWithImpl<$Res> extends _$DeviceBleCopyWithImpl<$Res>
+    implements _$DeviceBleCopyWith<$Res> {
+  __$DeviceBleCopyWithImpl(_DeviceBle _value, $Res Function(_DeviceBle) _then)
+      : super(_value, (v) => _then(v as _DeviceBle));
+
+  @override
+  _DeviceBle get _value => super._value as _DeviceBle;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? created = freezed,
+  }) {
+    return _then(_DeviceBle(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<Ble>?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_DeviceBle implements _DeviceBle {
+  _$_DeviceBle({this.data, this.created});
+
+  factory _$_DeviceBle.fromJson(Map<String, dynamic> json) =>
+      _$_$_DeviceBleFromJson(json);
+
+  @override
+  final List<Ble>? data;
+  @override
+  final DateTime? created;
+
+  @override
+  String toString() {
+    return 'DeviceBle(data: $data, created: $created)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DeviceBle &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality().equals(other.created, created)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(data) ^
+      const DeepCollectionEquality().hash(created);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DeviceBleCopyWith<_DeviceBle> get copyWith =>
+      __$DeviceBleCopyWithImpl<_DeviceBle>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_DeviceBleToJson(this);
+  }
+}
+
+abstract class _DeviceBle implements DeviceBle {
+  factory _DeviceBle({List<Ble>? data, DateTime? created}) = _$_DeviceBle;
+
+  factory _DeviceBle.fromJson(Map<String, dynamic> json) =
+      _$_DeviceBle.fromJson;
+
+  @override
+  List<Ble>? get data => throw _privateConstructorUsedError;
+  @override
+  DateTime? get created => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$DeviceBleCopyWith<_DeviceBle> get copyWith =>
+      throw _privateConstructorUsedError;
+}

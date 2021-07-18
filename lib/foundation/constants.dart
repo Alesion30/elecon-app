@@ -19,7 +19,7 @@ class Constants {
   });
 
   factory Constants.of() {
-    return Constants.hall9F();
+    return Constants.elevatorLeft();
   }
 
   // エレベーター 左

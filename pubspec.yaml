@@ -39,6 +39,9 @@ dependencies:
   freezed_annotation: ^0.14.2
   json_serializable: ^4.1.4
 
+  # For DateTime
+  intl: ^0.17.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

@@ -20,10 +20,11 @@ Ble _$BleFromJson(Map<String, dynamic> json) {
 class _$BleTearOff {
   const _$BleTearOff();
 
-  _Ble call({String? id, int? rssi}) {
+  _Ble call({String? id, int? rssi, DateTime? created}) {
     return _Ble(
       id: id,
       rssi: rssi,
+      created: created,
     );
   }
 
@@ -39,6 +40,7 @@ const $Ble = _$BleTearOff();
 mixin _$Ble {
   String? get id => throw _privateConstructorUsedError;
   int? get rssi => throw _privateConstructorUsedError;
+  DateTime? get created => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -49,7 +51,7 @@ mixin _$Ble {
 abstract class $BleCopyWith<$Res> {
   factory $BleCopyWith(Ble value, $Res Function(Ble) then) =
       _$BleCopyWithImpl<$Res>;
-  $Res call({String? id, int? rssi});
+  $Res call({String? id, int? rssi, DateTime? created});
 }
 
 /// @nodoc
@@ -64,6 +66,7 @@ class _$BleCopyWithImpl<$Res> implements $BleCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? rssi = freezed,
+    Object? created = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -74,6 +77,10 @@ class _$BleCopyWithImpl<$Res> implements $BleCopyWith<$Res> {
           ? _value.rssi
           : rssi // ignore: cast_nullable_to_non_nullable
               as int?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -83,7 +90,7 @@ abstract class _$BleCopyWith<$Res> implements $BleCopyWith<$Res> {
   factory _$BleCopyWith(_Ble value, $Res Function(_Ble) then) =
       __$BleCopyWithImpl<$Res>;
   @override
-  $Res call({String? id, int? rssi});
+  $Res call({String? id, int? rssi, DateTime? created});
 }
 
 /// @nodoc
@@ -99,6 +106,7 @@ class __$BleCopyWithImpl<$Res> extends _$BleCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? rssi = freezed,
+    Object? created = freezed,
   }) {
     return _then(_Ble(
       id: id == freezed
@@ -109,6 +117,10 @@ class __$BleCopyWithImpl<$Res> extends _$BleCopyWithImpl<$Res>
           ? _value.rssi
           : rssi // ignore: cast_nullable_to_non_nullable
               as int?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -116,7 +128,7 @@ class __$BleCopyWithImpl<$Res> extends _$BleCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Ble implements _Ble {
-  _$_Ble({this.id, this.rssi});
+  _$_Ble({this.id, this.rssi, this.created});
 
   factory _$_Ble.fromJson(Map<String, dynamic> json) => _$_$_BleFromJson(json);
 
@@ -124,10 +136,12 @@ class _$_Ble implements _Ble {
   final String? id;
   @override
   final int? rssi;
+  @override
+  final DateTime? created;
 
   @override
   String toString() {
-    return 'Ble(id: $id, rssi: $rssi)';
+    return 'Ble(id: $id, rssi: $rssi, created: $created)';
   }
 
   @override
@@ -137,14 +151,17 @@ class _$_Ble implements _Ble {
             (identical(other.id, id) ||
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.rssi, rssi) ||
-                const DeepCollectionEquality().equals(other.rssi, rssi)));
+                const DeepCollectionEquality().equals(other.rssi, rssi)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality().equals(other.created, created)));
   }
 
   @override
   int get hashCode =>
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
-      const DeepCollectionEquality().hash(rssi);
+      const DeepCollectionEquality().hash(rssi) ^
+      const DeepCollectionEquality().hash(created);
 
   @JsonKey(ignore: true)
   @override
@@ -158,7 +175,7 @@ class _$_Ble implements _Ble {
 }
 
 abstract class _Ble implements Ble {
-  factory _Ble({String? id, int? rssi}) = _$_Ble;
+  factory _Ble({String? id, int? rssi, DateTime? created}) = _$_Ble;
 
   factory _Ble.fromJson(Map<String, dynamic> json) = _$_Ble.fromJson;
 
@@ -166,6 +183,8 @@ abstract class _Ble implements Ble {
   String? get id => throw _privateConstructorUsedError;
   @override
   int? get rssi => throw _privateConstructorUsedError;
+  @override
+  DateTime? get created => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
   _$BleCopyWith<_Ble> get copyWith => throw _privateConstructorUsedError;

@@ -3,8 +3,10 @@ import 'package:elecon/data/model/device.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/function/device_info.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+import 'package:elecon/foundation/extension/date_time.dart';
 
-final deviceDataSourceProvider = Provider((ref) => FbDeviceDataSource(ref.read));
+final deviceDataSourceProvider =
+    Provider((ref) => FbDeviceDataSource(ref.read));
 
 class FbDeviceDataSource {
   FbDeviceDataSource(this._reader);
@@ -41,5 +43,16 @@ class FbDeviceDataSource {
             merge: true,
           ),
         );
+  }
+
+  // センサから取得したBLEのデータを保存
+  Future<void> saveBleData(DeviceBle data) async {
+    final deviceId = await getDeviceId();
+    final docId = DateTime.now().formatYYYYMMddHHmm();
+    await devicesCollection
+        .doc(deviceId)
+        .collection('ble')
+        .doc(docId)
+        .set(data.toJson());
   }
 }

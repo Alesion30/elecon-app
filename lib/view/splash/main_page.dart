@@ -11,10 +11,10 @@ class SplashPage extends HookWidget {
   Widget build(BuildContext context) {
     final router = useRouter();
     final appMode = Constants.instance.appMode;
-
     final viewModel = context.read(deviceViewModelProvider);
 
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    Future<void> run() async {
+      print('App Start!!');
       final result = await viewModel.saveBasicData();
       result.ifSuccess((_) async {
         if (appMode == AppMode.hall) {
@@ -30,8 +30,12 @@ class SplashPage extends HookWidget {
           );
         }
       });
-    });
+    }
 
-    return Container();
+    useEffect(() {
+      run();
+    }, []);
+
+    return Container(color: Colors.white);
   }
 }

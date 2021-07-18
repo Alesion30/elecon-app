@@ -74,3 +74,20 @@ const _$DirEnumMap = {
   Dir.left: 'left',
   Dir.right: 'right',
 };
+
+_$_DeviceBle _$_$_DeviceBleFromJson(Map<String, dynamic> json) {
+  return _$_DeviceBle(
+    data: (json['data'] as List<dynamic>?)
+        ?.map((e) => Ble.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    created: json['created'] == null
+        ? null
+        : DateTime.parse(json['created'] as String),
+  );
+}
+
+Map<String, dynamic> _$_$_DeviceBleToJson(_$_DeviceBle instance) =>
+    <String, dynamic>{
+      'data': instance.data,
+      'created': instance.created?.toIso8601String(),
+    };

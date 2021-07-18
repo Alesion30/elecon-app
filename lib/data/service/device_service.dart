@@ -1,4 +1,5 @@
 import 'package:elecon/data/api/fb_device_data_source.dart';
+import 'package:elecon/data/model/device.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -13,6 +14,12 @@ class DeviceService {
   Future<Result<void>> saveBasicData() async {
     return Result.guardFuture(
       () async => _dataSource.saveBasicData(),
+    );
+  }
+
+  Future<Result<void>> saveBleData(DeviceBle data) async {
+    return Result.guardFuture(
+      () async => _dataSource.saveBleData(data),
     );
   }
 }
