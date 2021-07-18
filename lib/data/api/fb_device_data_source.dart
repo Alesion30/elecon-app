@@ -46,13 +46,16 @@ class FbDeviceDataSource {
   }
 
   // センサから取得したBLEのデータを保存
-  Future<void> saveBleData(DeviceBle data) async {
+  Future<void> saveBleData(DeviceBle deviceData) async {
     final deviceId = await getDeviceId();
     final docId = DateTime.now().formatYYYYMMddHHmm();
-    await devicesCollection
-        .doc(deviceId)
-        .collection('ble')
-        .doc(docId)
-        .set(data.toJson());
+
+    // TODO: ネストされた値を.toJsonを呼び出す処理をモデル側に持たせたい
+    final data = deviceData.data!.map((v) => v.toJson()).toList();
+    final created = deviceData.created;
+    await devicesCollection.doc(deviceId).collection('ble').doc(docId).set({
+      'data': data,
+      'created': created,
+    });
   }
 }

@@ -17,7 +17,12 @@ class BleService {
         (scanResult) {
           final id = scanResult.device.id.toString();
           final rssi = scanResult.rssi;
-          return Ble(id: id, rssi: rssi);
+          final now = DateTime.now();
+          return Ble(
+            id: id,
+            rssi: rssi,
+            created: now,
+          );
         },
       ).toList();
     }).asyncMap((event) => event);
