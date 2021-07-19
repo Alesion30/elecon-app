@@ -99,6 +99,8 @@ class BleViewModel extends ChangeNotifier {
               });
             });
           }
+        } else {
+          _stockBleData = [];
         }
 
         notifyListeners();
