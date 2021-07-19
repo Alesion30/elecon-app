@@ -4,6 +4,8 @@ import 'package:elecon/data/model/device.dart';
 import 'package:elecon/data/service/ble_service.dart';
 import 'package:elecon/data/service/device_service.dart';
 import 'package:elecon/data/service/elevator_service.dart';
+import 'package:elecon/data/service/floor_service.dart';
+import 'package:elecon/foundation/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elecon/foundation/extension/date_time.dart';
@@ -19,6 +21,10 @@ class BleViewModel extends ChangeNotifier {
   late final DeviceService _deviceRepository = _reader(deviceServiceProvider);
   late final ElevatorService _elevatorRepository =
       _reader(elevatorServiceProvider);
+  late final FloorService _floorRepository = _reader(floorServiceProvider);
+
+  // constants
+  final _constants = Constants.instance;
 
   // stream
   StreamSubscription<Device>? _deviceSubscription;
@@ -67,8 +73,17 @@ class BleViewModel extends ChangeNotifier {
         _stockBleData += data;
 
         if (_isSave) {
-          // エレベーター情報を更新する
-          _elevatorRepository.saveData(count!);
+          // エレベーター情報を更新する（センサモードのみ）
+          if (_constants.appMode == AppMode.sensor) {
+            _elevatorRepository.saveData(count!);
+          }
+
+          // 混雑度情報をリセットする（ホールモードのみ）
+          if (_constants.appMode == AppMode.hall) {
+            if (count == 0) {
+              _floorRepository.setCongestion(0);
+            }
+          }
 
           // センサの値を保存する（1分おきに）
           final now = DateTime.now();
