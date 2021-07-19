@@ -19,7 +19,7 @@ class Constants {
   });
 
   factory Constants.of() {
-    return Constants.hall1F();
+    return Constants.elevatorLeft();
   }
 
   // エレベーター 左
@@ -27,6 +27,14 @@ class Constants {
     return const Constants(
       appMode: AppMode.sensor,
       dir: Dir.left,
+    );
+  }
+
+  // エレベーター 右
+  factory Constants.elevatorRight() {
+    return const Constants(
+      appMode: AppMode.sensor,
+      dir: Dir.right,
     );
   }
 

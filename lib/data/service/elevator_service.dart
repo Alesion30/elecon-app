@@ -21,7 +21,7 @@ class ElevatorService {
     yield* _dataSource.getDataStream();
   }
 
-  Future<Result<void>> saveData(int people) async {
+  Future<Result<void>> saveData(int? people) async {
     final deviceId = await getDeviceId();
     final data = Elevator(
       id: deviceId,

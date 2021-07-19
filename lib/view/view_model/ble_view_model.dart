@@ -68,9 +68,7 @@ class BleViewModel extends ChangeNotifier {
 
         if (_isSave) {
           // エレベーター情報を更新する
-          if (count! >= 0) {
-            _elevatorRepository.saveData(count!);
-          }
+          _elevatorRepository.saveData(count!);
 
           // センサの値を保存する（1分おきに）
           final now = DateTime.now();

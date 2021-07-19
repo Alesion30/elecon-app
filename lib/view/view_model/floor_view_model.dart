@@ -28,8 +28,6 @@ class FloorViewModel extends ChangeNotifier {
     _subscription = _repository.getDataRealtime().listen(
       (data) {
         _floors = data;
-        print('--------------------------------');
-        print(_floors);
         notifyListeners();
       },
     );
