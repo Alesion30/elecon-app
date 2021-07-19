@@ -19,7 +19,7 @@ class Constants {
   });
 
   factory Constants.of() {
-    return Constants.hall9F();
+    return Constants.hall1F();
   }
 
   // エレベーター 左
@@ -35,6 +35,14 @@ class Constants {
     return const Constants(
       appMode: AppMode.hall,
       floor: 9,
+    );
+  }
+
+  // ホール1F
+  factory Constants.hall1F() {
+    return const Constants(
+      appMode: AppMode.hall,
+      floor: 1,
     );
   }
 

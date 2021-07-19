@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:elecon/data/model/floor.dart';
 import 'package:elecon/data/service/floor_service.dart';
+import 'package:elecon/foundation/constants.dart';
+import 'package:elecon/foundation/extension/iterable.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -15,28 +17,26 @@ class FloorViewModel extends ChangeNotifier {
 
   StreamSubscription<List<Floor>>? _subscription;
 
+  // constants
+  final _constants = Constants.instance;
+
   List<Floor>? _floors;
   List<Floor>? get floors => _floors;
-
-  Future<void> fetchData() {
-    return _repository
-        .getData()
-        .then(
-          (value) => value.ifSuccess(
-            (data) => _floors = data,
-          ),
-        )
-        .whenComplete(notifyListeners);
-  }
+  Floor? get currentFloor => _floors?.firstWhereOrNull((v) => v.floor == _constants.floor);
 
   void fetchDataRealtime() {
     _subscription = _repository.getDataRealtime().listen(
       (data) {
         _floors = data;
+        print('--------------------------------');
         print(_floors);
         notifyListeners();
       },
     );
+  }
+
+  Future<void> setCongestion(int congestion) async {
+    await _repository.setCongestion(congestion);
   }
 
   void cancel() {

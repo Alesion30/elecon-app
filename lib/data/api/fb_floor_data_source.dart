@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:elecon/data/app_error.dart';
 import 'package:elecon/data/model/floor.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -45,5 +46,16 @@ class FbFloorDataSource {
       return floorList;
     });
     yield* floorList;
+  }
+
+  Future<void> setCongestion(Floor data) async {
+    final floor = data.floor;
+    if (floor == null) {
+      throw AppError(Exception('階数がありません'));
+    }
+
+    await floorsCollection
+        .doc('$floor')
+        .set(data.toJson(), SetOptions(merge: true));
   }
 }

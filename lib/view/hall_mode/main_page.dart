@@ -62,13 +62,15 @@ class HallModeMainPage extends HookWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
-                                    child:
-                                        Elevator(elevatorViewModel.leftPeople),
+                                    child: Elevator(
+                                      elevatorViewModel.leftPeople,
+                                    ),
                                   ),
                                   const VerticalDivider(),
                                   Expanded(
-                                    child:
-                                        Elevator(elevatorViewModel.rightPeople),
+                                    child: Elevator(
+                                      elevatorViewModel.rightPeople,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -102,8 +104,11 @@ class HallModeMainPage extends HookWidget {
                               Expanded(
                                 child: SquareButton(
                                   '混雑\n（6人以上）',
-                                  isPressed: false,
-                                  onPressed: () {},
+                                  isPressed:
+                                      floorViewModel.currentFloor?.congestion ==
+                                          3,
+                                  onPressed: () =>
+                                      floorViewModel.setCongestion(3),
                                   height: 200,
                                   color: theme.appColors.stateHigh,
                                   margin: const EdgeInsets.all(10.0),
@@ -112,20 +117,26 @@ class HallModeMainPage extends HookWidget {
                               Expanded(
                                 child: SquareButton(
                                   'やや混雑\n（3人〜5人）',
-                                  isPressed: false,
-                                  onPressed: () {},
+                                  isPressed:
+                                      floorViewModel.currentFloor?.congestion ==
+                                          2,
+                                  onPressed: () =>
+                                      floorViewModel.setCongestion(2),
                                   height: 200,
-                                  color: theme.appColors.stateHigh,
+                                  color: theme.appColors.stateMiddle,
                                   margin: const EdgeInsets.all(10.0),
                                 ),
                               ),
                               Expanded(
                                 child: SquareButton(
                                   '空いている\n（1人〜2人）',
-                                  isPressed: false,
-                                  onPressed: () {},
+                                  isPressed:
+                                      floorViewModel.currentFloor?.congestion ==
+                                          1,
+                                  onPressed: () =>
+                                      floorViewModel.setCongestion(1),
                                   height: 200,
-                                  color: theme.appColors.stateHigh,
+                                  color: theme.appColors.stateLow,
                                   margin: const EdgeInsets.all(10.0),
                                 ),
                               ),

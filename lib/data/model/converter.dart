@@ -12,7 +12,7 @@ class TimeStampConverter implements JsonConverter<DateTime?, Timestamp?> {
 
   @override
   DateTime? fromJson(Timestamp? timestamp) {
-    return timestamp!.toDate();
+    return timestamp?.toDate();
   }
 
   @override

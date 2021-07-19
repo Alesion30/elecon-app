@@ -57,6 +57,6 @@ class ViewModel extends ChangeNotifier {
   }
 
   void cancel() {
-    _subscription!.cancel();
+    _subscription?.cancel();
   }
 }

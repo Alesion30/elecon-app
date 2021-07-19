@@ -16,7 +16,7 @@ class AppColors {
     // カスタム
     required this.stateHigh, // 混んでいる
     required this.stateMiddle, // やや混んでいる
-    required this.stateSmall, // 空いている
+    required this.stateLow, // 空いている
   });
 
   factory AppColors.light() {
@@ -35,7 +35,7 @@ class AppColors {
       // カスタム
       stateHigh: Color(0xffFFCDD2),
       stateMiddle: Color(0xffFFF9C4),
-      stateSmall: Color(0xffC8E6C9),
+      stateLow: Color(0xffC8E6C9),
     );
   }
 
@@ -57,5 +57,5 @@ class AppColors {
   // カスタム
   final Color stateHigh;
   final Color stateMiddle;
-  final Color stateSmall;
+  final Color stateLow;
 }

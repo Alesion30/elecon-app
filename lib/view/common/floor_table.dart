@@ -25,11 +25,11 @@ class FloorDataTable extends HookWidget {
       switch (congestion) {
         case 1:
           congestionLabel = '1人〜2人';
-          rowColor = theme.appColors.stateHigh;
+          rowColor = theme.appColors.stateLow;
           break;
         case 2:
           congestionLabel = '3人〜5人';
-          rowColor = theme.appColors.stateHigh;
+          rowColor = theme.appColors.stateMiddle;
           break;
         case 3:
           congestionLabel = '6人以上';
@@ -67,7 +67,8 @@ class FloorDataTable extends HookWidget {
 
     final _rows = List.generate(topFloor, (i) => i + 1).reversed.map((i) {
       final data = datas.firstWhereOrNull((v) => v.floor == i);
-      return _dataRow(i, data?.floor ?? 0);
+      final congestion = data?.congestion ?? 0;
+      return _dataRow(i, congestion);
     }).toList();
 
     final _headingRowHeight = 50.0;

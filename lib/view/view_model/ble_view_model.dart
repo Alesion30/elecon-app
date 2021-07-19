@@ -35,7 +35,10 @@ class BleViewModel extends ChangeNotifier {
   bool get isSave => _isSave;
 
   // 信号数（rssiが-70以上）
-  int? get count => _bles?.where((ble) => ble.rssi! > -70).toList().length;
+  int? get count => _bles
+      ?.where((ble) => ble.rssi != null && ble.rssi! > -70)
+      .toList()
+      .length;
 
   // ストックデータ
   List<Ble> _stockBleData = [];
