@@ -1,3 +1,4 @@
+import 'package:elecon/ble_view_model.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/view/common/button.dart';
 import 'package:elecon/view/common/elevator.dart';
@@ -16,13 +17,17 @@ class HallModeMainPage extends HookWidget {
     final cocoaCount = 0;
 
     // ViewModel
+    final bleViewModel = useProvider(bleViewModelProvider);
     final floorViewModel = useProvider(floorViewModelProvider);
     final elevatorViewModel = useProvider(elevatorViewModelProvider);
 
+    // 初期化
     useEffect(() {
+      bleViewModel.init();
       floorViewModel.fetchDataRealtime();
       elevatorViewModel.fetchDataRealtime();
       return () {
+        bleViewModel.cancel();
         floorViewModel.cancel();
         elevatorViewModel.cancel();
       };
@@ -54,11 +59,13 @@ class HallModeMainPage extends HookWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
-                                    child: Elevator(elevatorViewModel.leftPeople),
+                                    child:
+                                        Elevator(elevatorViewModel.leftPeople),
                                   ),
                                   const VerticalDivider(),
                                   Expanded(
-                                    child: Elevator(elevatorViewModel.rightPeople),
+                                    child:
+                                        Elevator(elevatorViewModel.rightPeople),
                                   ),
                                 ],
                               ),
@@ -162,10 +169,12 @@ class HallModeMainPage extends HookWidget {
                   margin: const EdgeInsets.only(right: 2.0),
                   child: Icon(
                     Icons.save,
-                    color: theme.appColors.info,
+                    color: bleViewModel.isSave
+                        ? theme.appColors.info
+                        : theme.appColors.inactive,
                   ),
                 ),
-                Text('$cocoaCount'),
+                Text('${bleViewModel.count ?? '未取得'}'),
               ],
             ),
           ),
