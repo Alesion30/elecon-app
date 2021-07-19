@@ -25,9 +25,20 @@ class ElevatorViewModel extends ChangeNotifier {
   Elevator? get rightElevator =>
       _elevators?.firstWhereOrNull((v) => v.dir == Dir.right);
 
+  // データが新しいかどうかチェック（最新30秒までかどうか）
+  bool isNewDateTime(DateTime? dt) {
+    if (dt == null) {
+      return false;
+    }
+    final diff = DateTime.now().difference(dt).inSeconds;
+    return diff < 30.0;
+  }
+
   // エレベータ内 人数
-  int? get leftPeople => leftElevator?.people;
-  int? get rightPeople => rightElevator?.people;
+  int? get leftPeople =>
+      isNewDateTime(leftElevator?.created) ? leftElevator?.people : null;
+  int? get rightPeople =>
+      isNewDateTime(rightElevator?.created) ? rightElevator?.people : null;
 
   void fetchDataRealtime() {
     _subscription = _repository.getDataRealtime().listen(
