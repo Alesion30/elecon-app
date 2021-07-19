@@ -1,3 +1,4 @@
+import 'package:elecon/view/common/floor_table.dart';
 import 'package:elecon/view/view_model/ble_view_model.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/view/common/button.dart';
@@ -14,6 +15,9 @@ class HallModeMainPage extends HookWidget {
   Widget build(BuildContext context) {
     final theme = useTheme();
     final floor = Constants.instance.floor;
+
+    // 最上階
+    final topFloor = 10;
 
     // ViewModel
     final bleViewModel = useProvider(bleViewModelProvider);
@@ -136,7 +140,10 @@ class HallModeMainPage extends HookWidget {
                 // 各階の混雑度を表示
                 Container(
                   width: 200.0,
-                  child: Container(),
+                  child: FloorDataTable(
+                    topFloor: topFloor,
+                    datas: floorViewModel.floors ?? [],
+                  ),
                 ),
               ],
             ),
