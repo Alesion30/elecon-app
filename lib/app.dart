@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:elecon/data/service/device_service.dart';
 import 'package:elecon/view/hook/use_theme.dart';
 import 'package:elecon/view/routes/app_route.gr.dart';
@@ -28,6 +27,10 @@ class App extends HookWidget {
       theme: theme.data,
       darkTheme: AppTheme.dark().data,
       themeMode: themeMode,
+      supportedLocales: [
+        const Locale('en', 'US'),
+        const Locale('ja', 'JP'),
+      ],
       routeInformationParser: appRouter.defaultRouteParser(),
       routerDelegate: appRouter.delegate(),
     );

@@ -17,6 +17,10 @@ class ElevatorService {
   // constants
   final _constants = Constants.instance;
 
+  Stream<List<Elevator>> getDataRealtime() async* {
+    yield* _dataSource.getDataStream();
+  }
+
   Future<Result<void>> saveData(int people) async {
     final deviceId = await getDeviceId();
     final data = Elevator(

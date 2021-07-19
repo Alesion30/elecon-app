@@ -1,6 +1,7 @@
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/view/common/button.dart';
 import 'package:elecon/view/common/elevator.dart';
+import 'package:elecon/view/hall_mode/elevator_view_model.dart';
 import 'package:elecon/view/hall_mode/floor_view_model.dart';
 import 'package:elecon/view/hook/use_theme.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +14,18 @@ class HallModeMainPage extends HookWidget {
     final theme = useTheme();
     final floor = Constants.instance.floor;
     final cocoaCount = 0;
-    final viewModel = useProvider(floorViewModelProvider);
+
+    // ViewModel
+    final floorViewModel = useProvider(floorViewModelProvider);
+    final elevatorViewModel = useProvider(elevatorViewModelProvider);
 
     useEffect(() {
-      viewModel.fetchDataRealtime();
-      return () => viewModel.cancel();
+      floorViewModel.fetchDataRealtime();
+      elevatorViewModel.fetchDataRealtime();
+      return () {
+        floorViewModel.cancel();
+        elevatorViewModel.cancel();
+      };
     }, []);
 
     return Scaffold(
@@ -46,11 +54,11 @@ class HallModeMainPage extends HookWidget {
                                 crossAxisAlignment: CrossAxisAlignment.center,
                                 children: [
                                   Expanded(
-                                    child: Elevator(10),
+                                    child: Elevator(elevatorViewModel.leftPeople),
                                   ),
                                   const VerticalDivider(),
                                   Expanded(
-                                    child: Elevator(-1),
+                                    child: Elevator(elevatorViewModel.rightPeople),
                                   ),
                                 ],
                               ),

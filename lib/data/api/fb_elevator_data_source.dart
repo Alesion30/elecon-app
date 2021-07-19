@@ -16,6 +16,17 @@ class FbElevatorDataSource {
   late final FirebaseFirestore _firebaseFirestore = FirebaseFirestore.instance;
   late final elevatorsCollection = _firebaseFirestore.collection('elevators');
 
+  // エレベーターの状態を取得する
+  Stream<List<Elevator>> getDataStream() async* {
+    final snapshots = elevatorsCollection.snapshots();
+    final elevators = snapshots.asyncMap((snapshot) {
+      final docs = snapshot.docs;
+      final elevators = docs.map((doc) => Elevator.fromDocument(doc)).toList();
+      return elevators;
+    });
+    yield* elevators;
+  }
+
   // エレベーターの状態を保存する
   Future<void> saveData(Elevator data, {required Dir dir}) async {
     final docId = dir.toString().split('.').last;
