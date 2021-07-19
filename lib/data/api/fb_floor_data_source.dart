@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elecon/data/app_error.dart';
 import 'package:elecon/data/model/floor.dart';
+import 'package:elecon/foundation/extension/date_time.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final floorDataSourceProvider = Provider(
@@ -55,5 +56,10 @@ class FbFloorDataSource {
     }
 
     await floorsCollection.doc('$floor').set(data.toJson());
+    await floorsCollection
+        .doc('$floor')
+        .collection('log')
+        .doc(DateTime.now().formatYYYYMMddHHmmss())
+        .set(data.toJson());
   }
 }

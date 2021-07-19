@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elecon/data/model/converter.dart';
 import 'package:elecon/data/model/elevator.dart';
+import 'package:elecon/foundation/extension/date_time.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final elevatorDataSourceProvider = Provider(
@@ -31,5 +32,10 @@ class FbElevatorDataSource {
   Future<void> saveData(Elevator data, {required Dir dir}) async {
     final docId = dir.toString().split('.').last;
     await elevatorsCollection.doc(docId).set(data.toJson());
+    await elevatorsCollection
+        .doc(docId)
+        .collection('log')
+        .doc(DateTime.now().formatYYYYMMddHHmmss())
+        .set(data.toJson());
   }
 }
