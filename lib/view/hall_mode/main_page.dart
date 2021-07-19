@@ -1,9 +1,9 @@
-import 'package:elecon/ble_view_model.dart';
+import 'package:elecon/view/view_model/ble_view_model.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/view/common/button.dart';
 import 'package:elecon/view/common/elevator.dart';
-import 'package:elecon/view/hall_mode/elevator_view_model.dart';
-import 'package:elecon/view/hall_mode/floor_view_model.dart';
+import 'package:elecon/view/view_model/elevator_view_model.dart';
+import 'package:elecon/view/view_model/floor_view_model.dart';
 import 'package:elecon/view/hook/use_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
@@ -14,7 +14,6 @@ class HallModeMainPage extends HookWidget {
   Widget build(BuildContext context) {
     final theme = useTheme();
     final floor = Constants.instance.floor;
-    final cocoaCount = 0;
 
     // ViewModel
     final bleViewModel = useProvider(bleViewModelProvider);
