@@ -12,6 +12,7 @@ class Device with _$Device {
   factory Device({
     String? id,
     String? name,
+    String? appInfo,
     @AppModeConverter() AppMode? mode,
     @DirConverter() Dir? dir,
     int? floor,

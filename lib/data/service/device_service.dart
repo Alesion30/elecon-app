@@ -46,6 +46,22 @@ class DeviceService {
     final dir = _constants.dir;
     final floor = _constants.floor;
 
+    // アプリ情報
+    var appInfo = '';
+    if (appMode == AppMode.hall) {
+      appInfo += 'ホールモード';
+    } else if (appMode == AppMode.sensor) {
+      appInfo += 'センサーモード';
+    }
+    if (dir == Dir.left) {
+      appInfo += '/左';
+    } else if (dir == Dir.right) {
+      appInfo += '/右';
+    }
+    if (floor != null) {
+      appInfo += '/${floor}F';
+    }
+
     // FBのデータからisSaveを取得
     var isSave = false;
     try {
@@ -66,6 +82,7 @@ class DeviceService {
     final device = Device(
       id: deviceId,
       name: deviceName,
+      appInfo: appInfo,
       mode: appMode,
       dir: dir,
       floor: floor,

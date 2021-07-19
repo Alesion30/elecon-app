@@ -23,7 +23,7 @@ class ScanModeMainPage extends HookWidget {
             Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text('スキャン モード'),
+                Text('アプリ情報: ${bleViewModel.device?.appInfo}'),
                 Text('デバイスID: ${bleViewModel.device?.id}'),
                 Text('カウント数: ${bleViewModel.count}'),
                 Text('${bleViewModel.isSave ? '保存する' : '保存しない'}'),

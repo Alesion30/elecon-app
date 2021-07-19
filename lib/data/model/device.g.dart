@@ -10,6 +10,7 @@ _$_Device _$_$_DeviceFromJson(Map<String, dynamic> json) {
   return _$_Device(
     id: json['id'] as String?,
     name: json['name'] as String?,
+    appInfo: json['appInfo'] as String?,
     mode: const AppModeConverter().fromJson(json['mode'] as String?),
     dir: const DirConverter().fromJson(json['dir'] as String?),
     floor: json['floor'] as int?,
@@ -22,6 +23,7 @@ _$_Device _$_$_DeviceFromJson(Map<String, dynamic> json) {
 Map<String, dynamic> _$_$_DeviceToJson(_$_Device instance) => <String, dynamic>{
       'id': instance.id,
       'name': instance.name,
+      'appInfo': instance.appInfo,
       'mode': const AppModeConverter().toJson(instance.mode),
       'dir': const DirConverter().toJson(instance.dir),
       'floor': instance.floor,

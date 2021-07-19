@@ -23,6 +23,7 @@ class _$DeviceTearOff {
   _Device call(
       {String? id,
       String? name,
+      String? appInfo,
       @AppModeConverter() AppMode? mode,
       @DirConverter() Dir? dir,
       int? floor,
@@ -32,6 +33,7 @@ class _$DeviceTearOff {
     return _Device(
       id: id,
       name: name,
+      appInfo: appInfo,
       mode: mode,
       dir: dir,
       floor: floor,
@@ -53,6 +55,7 @@ const $Device = _$DeviceTearOff();
 mixin _$Device {
   String? get id => throw _privateConstructorUsedError;
   String? get name => throw _privateConstructorUsedError;
+  String? get appInfo => throw _privateConstructorUsedError;
   @AppModeConverter()
   AppMode? get mode => throw _privateConstructorUsedError;
   @DirConverter()
@@ -75,6 +78,7 @@ abstract class $DeviceCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
+      String? appInfo,
       @AppModeConverter() AppMode? mode,
       @DirConverter() Dir? dir,
       int? floor,
@@ -95,6 +99,7 @@ class _$DeviceCopyWithImpl<$Res> implements $DeviceCopyWith<$Res> {
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? appInfo = freezed,
     Object? mode = freezed,
     Object? dir = freezed,
     Object? floor = freezed,
@@ -110,6 +115,10 @@ class _$DeviceCopyWithImpl<$Res> implements $DeviceCopyWith<$Res> {
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appInfo: appInfo == freezed
+          ? _value.appInfo
+          : appInfo // ignore: cast_nullable_to_non_nullable
               as String?,
       mode: mode == freezed
           ? _value.mode
@@ -147,6 +156,7 @@ abstract class _$DeviceCopyWith<$Res> implements $DeviceCopyWith<$Res> {
   $Res call(
       {String? id,
       String? name,
+      String? appInfo,
       @AppModeConverter() AppMode? mode,
       @DirConverter() Dir? dir,
       int? floor,
@@ -168,6 +178,7 @@ class __$DeviceCopyWithImpl<$Res> extends _$DeviceCopyWithImpl<$Res>
   $Res call({
     Object? id = freezed,
     Object? name = freezed,
+    Object? appInfo = freezed,
     Object? mode = freezed,
     Object? dir = freezed,
     Object? floor = freezed,
@@ -183,6 +194,10 @@ class __$DeviceCopyWithImpl<$Res> extends _$DeviceCopyWithImpl<$Res>
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
+              as String?,
+      appInfo: appInfo == freezed
+          ? _value.appInfo
+          : appInfo // ignore: cast_nullable_to_non_nullable
               as String?,
       mode: mode == freezed
           ? _value.mode
@@ -218,6 +233,7 @@ class _$_Device implements _Device {
   _$_Device(
       {this.id,
       this.name,
+      this.appInfo,
       @AppModeConverter() this.mode,
       @DirConverter() this.dir,
       this.floor,
@@ -232,6 +248,8 @@ class _$_Device implements _Device {
   final String? id;
   @override
   final String? name;
+  @override
+  final String? appInfo;
   @override
   @AppModeConverter()
   final AppMode? mode;
@@ -250,7 +268,7 @@ class _$_Device implements _Device {
 
   @override
   String toString() {
-    return 'Device(id: $id, name: $name, mode: $mode, dir: $dir, floor: $floor, isSave: $isSave, battery: $battery, created: $created)';
+    return 'Device(id: $id, name: $name, appInfo: $appInfo, mode: $mode, dir: $dir, floor: $floor, isSave: $isSave, battery: $battery, created: $created)';
   }
 
   @override
@@ -261,6 +279,9 @@ class _$_Device implements _Device {
                 const DeepCollectionEquality().equals(other.id, id)) &&
             (identical(other.name, name) ||
                 const DeepCollectionEquality().equals(other.name, name)) &&
+            (identical(other.appInfo, appInfo) ||
+                const DeepCollectionEquality()
+                    .equals(other.appInfo, appInfo)) &&
             (identical(other.mode, mode) ||
                 const DeepCollectionEquality().equals(other.mode, mode)) &&
             (identical(other.dir, dir) ||
@@ -281,6 +302,7 @@ class _$_Device implements _Device {
       runtimeType.hashCode ^
       const DeepCollectionEquality().hash(id) ^
       const DeepCollectionEquality().hash(name) ^
+      const DeepCollectionEquality().hash(appInfo) ^
       const DeepCollectionEquality().hash(mode) ^
       const DeepCollectionEquality().hash(dir) ^
       const DeepCollectionEquality().hash(floor) ^
@@ -303,6 +325,7 @@ abstract class _Device implements Device {
   factory _Device(
       {String? id,
       String? name,
+      String? appInfo,
       @AppModeConverter() AppMode? mode,
       @DirConverter() Dir? dir,
       int? floor,
@@ -316,6 +339,8 @@ abstract class _Device implements Device {
   String? get id => throw _privateConstructorUsedError;
   @override
   String? get name => throw _privateConstructorUsedError;
+  @override
+  String? get appInfo => throw _privateConstructorUsedError;
   @override
   @AppModeConverter()
   AppMode? get mode => throw _privateConstructorUsedError;

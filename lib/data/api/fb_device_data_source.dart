@@ -48,9 +48,7 @@ class FbDeviceDataSource {
     final deviceId = await getDeviceId();
 
     // デバイス情報を保存
-    await devicesCollection
-        .doc(deviceId)
-        .set(device.toJson(), SetOptions(merge: true));
+    await devicesCollection.doc(deviceId).set(device.toJson());
   }
 
   // センサから取得したBLEのデータを保存
@@ -61,6 +59,6 @@ class FbDeviceDataSource {
         .doc(deviceId)
         .collection('ble')
         .doc(docId)
-        .set(deviceData.toJson(), SetOptions(merge: true));
+        .set(deviceData.toJson());
   }
 }

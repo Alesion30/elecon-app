@@ -30,8 +30,6 @@ class FbElevatorDataSource {
   // エレベーターの状態を保存する
   Future<void> saveData(Elevator data, {required Dir dir}) async {
     final docId = dir.toString().split('.').last;
-    await elevatorsCollection
-        .doc(docId)
-        .set(data.toJson(), SetOptions(merge: true));
+    await elevatorsCollection.doc(docId).set(data.toJson());
   }
 }

@@ -54,8 +54,6 @@ class FbFloorDataSource {
       throw AppError(Exception('階数がありません'));
     }
 
-    await floorsCollection
-        .doc('$floor')
-        .set(data.toJson(), SetOptions(merge: true));
+    await floorsCollection.doc('$floor').set(data.toJson());
   }
 }
