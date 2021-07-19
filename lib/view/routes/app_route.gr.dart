@@ -6,7 +6,6 @@
 
 import 'package:auto_route/auto_route.dart' as _i1;
 import 'package:elecon/view/hall_mode/main_page.dart' as _i4;
-import 'package:elecon/view/sample/sample_page.dart' as _i6;
 import 'package:elecon/view/sensor_mode/main_page.dart' as _i5;
 import 'package:elecon/view/splash/main_page.dart' as _i3;
 import 'package:flutter/material.dart' as _i2;
@@ -31,11 +30,6 @@ class AppRouter extends _i1.RootStackRouter {
         routeData: routeData,
         builder: (_) {
           return _i5.ScanModeMainPage();
-        }),
-    SampleRoute.name: (routeData) => _i1.AdaptivePage<dynamic>(
-        routeData: routeData,
-        builder: (_) {
-          return _i6.SamplePage();
         })
   };
 
@@ -43,8 +37,7 @@ class AppRouter extends _i1.RootStackRouter {
   List<_i1.RouteConfig> get routes => [
         _i1.RouteConfig(SplashRoute.name, path: '/'),
         _i1.RouteConfig(HallModeMainRoute.name, path: '/hall-mode-main-page'),
-        _i1.RouteConfig(ScanModeMainRoute.name, path: '/scan-mode-main-page'),
-        _i1.RouteConfig(SampleRoute.name, path: '/sample-page')
+        _i1.RouteConfig(ScanModeMainRoute.name, path: '/scan-mode-main-page')
       ];
 }
 
@@ -64,10 +57,4 @@ class ScanModeMainRoute extends _i1.PageRouteInfo {
   const ScanModeMainRoute() : super(name, path: '/scan-mode-main-page');
 
   static const String name = 'ScanModeMainRoute';
-}
-
-class SampleRoute extends _i1.PageRouteInfo {
-  const SampleRoute() : super(name, path: '/sample-page');
-
-  static const String name = 'SampleRoute';
 }

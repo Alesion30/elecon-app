@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:elecon/view/hall_mode/main_page.dart';
 import 'package:elecon/view/splash/main_page.dart';
-import 'package:elecon/view/sample/sample_page.dart';
 import 'package:elecon/view/sensor_mode/main_page.dart';
 
 @AdaptiveAutoRouter(
@@ -16,9 +15,6 @@ import 'package:elecon/view/sensor_mode/main_page.dart';
     ),
     AutoRoute(
       page: ScanModeMainPage,
-    ),
-    AutoRoute(
-      page: SamplePage,
     ),
   ],
 )
