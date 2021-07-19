@@ -70,9 +70,9 @@ class BleViewModel extends ChangeNotifier {
     _bleSubscription = _repository.getDataRealtime().listen(
       (data) {
         _bles = data;
-        _stockBleData += data;
-
         if (_isSave) {
+          _stockBleData += data;
+
           // エレベーター情報を更新する（センサモードのみ）
           if (_constants.appMode == AppMode.sensor) {
             _elevatorRepository.saveData(count!);
