@@ -6,6 +6,7 @@ import 'package:elecon/data/service/device_service.dart';
 import 'package:elecon/data/service/elevator_service.dart';
 import 'package:elecon/data/service/floor_service.dart';
 import 'package:elecon/foundation/constants.dart';
+import 'package:elecon/view/view_model/floor_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elecon/foundation/extension/date_time.dart';
@@ -17,11 +18,16 @@ final bleViewModelProvider = ChangeNotifierProvider(
 class BleViewModel extends ChangeNotifier {
   BleViewModel(this._reader);
   final Reader _reader;
+
+  // リポジトリ
   late final BleService _repository = _reader(bleServiceProvider);
   late final DeviceService _deviceRepository = _reader(deviceServiceProvider);
   late final ElevatorService _elevatorRepository =
       _reader(elevatorServiceProvider);
   late final FloorService _floorRepository = _reader(floorServiceProvider);
+
+  // ViewModel
+  late final FloorViewModel _floorViewModel = _reader(floorViewModelProvider);
 
   // constants
   final _constants = Constants.instance;
@@ -80,7 +86,7 @@ class BleViewModel extends ChangeNotifier {
 
           // 混雑度情報をリセットする（ホールモードのみ）
           if (_constants.appMode == AppMode.hall) {
-            if (count == 0) {
+            if (count == 0 && _floorViewModel.currentFloor?.congestion != 0) {
               _floorRepository.setCongestion(0);
             }
           }
