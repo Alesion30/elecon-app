@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:elecon/data/model/ble.dart';
 import 'package:elecon/data/model/device.dart';
+import 'package:elecon/data/model/elevator.dart';
 import 'package:elecon/data/service/ble_service.dart';
 import 'package:elecon/data/service/device_service.dart';
 import 'package:elecon/data/service/elevator_service.dart';
@@ -54,7 +55,9 @@ class BleViewModel extends ChangeNotifier {
 
   // ストックデータ
   List<Ble> _stockBleData = [];
+  List<ElevatorCount> _stockElevatorData = [];
   String? _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
+  String? _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
 
   void init() {
     fetchDeviceDataRealtime();
@@ -71,17 +74,33 @@ class BleViewModel extends ChangeNotifier {
     );
   }
 
-  // BLEのデータを取得（1分に1回）
+  // BLEのデータをリアルタイムで取得
   void fetchBleDataRealtime() {
     _bleSubscription = _repository.getDataRealtime().listen(
       (data) {
+        final now = DateTime.now();
         _bles = data;
+
+        // 保存モード時
         if (_isSave) {
           _stockBleData += data;
 
           // エレベーター情報を更新する（センサモードのみ）
           if (_constants.appMode == AppMode.sensor) {
+            _stockElevatorData.add(
+              ElevatorCount(people: count, created: DateTime.now()),
+            );
             _elevatorRepository.saveData(count!);
+
+            // エレベーター情報のログを保存する（5分おきに）
+            if (now.formatYYYYMMddHHmm() != _lastElevatorSaveDate && now.minute % 5 == 0) {
+              _elevatorRepository.saveLog(_stockElevatorData).then((result) {
+                result.ifSuccess((_) {
+                  _stockElevatorData = [];
+                  _lastElevatorSaveDate = now.formatYYYYMMddHHmm();
+                });
+              });
+            }
           }
 
           // 混雑度情報をリセットする（ホールモードのみ）
@@ -92,7 +111,6 @@ class BleViewModel extends ChangeNotifier {
           }
 
           // センサの値を保存する（1分おきに）
-          final now = DateTime.now();
           if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
             final deviceBle = DeviceBle(
               data: _stockBleData,
@@ -106,7 +124,9 @@ class BleViewModel extends ChangeNotifier {
             });
           }
         } else {
+          // 初期化
           _stockBleData = [];
+          _stockElevatorData = [];
         }
 
         notifyListeners();

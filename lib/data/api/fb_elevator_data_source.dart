@@ -32,10 +32,15 @@ class FbElevatorDataSource {
   Future<void> saveData(Elevator data, {required Dir dir}) async {
     final docId = dir.toString().split('.').last;
     await elevatorsCollection.doc(docId).set(data.toJson());
-    // await elevatorsCollection
-    //     .doc(docId)
-    //     .collection('log')
-    //     .doc(DateTime.now().formatYYYYMMddHHmmss())
-    //     .set(data.toJson());
+  }
+
+  // エレベーターの状態のログを保存する
+  Future<void> saveLog(ElevatorLog data, {required Dir dir}) async {
+    final docId = dir.toString().split('.').last;
+    await elevatorsCollection
+        .doc(docId)
+        .collection('log')
+        .doc(DateTime.now().formatYYYYMMddHHmm())
+        .set(data.toJson());
   }
 }

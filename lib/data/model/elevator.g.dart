@@ -22,3 +22,31 @@ Map<String, dynamic> _$_$_ElevatorToJson(_$_Elevator instance) =>
       'dir': const DirConverter().toJson(instance.dir),
       'created': const TimeStampConverter().toJson(instance.created),
     };
+
+_$_ElevatorLog _$_$_ElevatorLogFromJson(Map<String, dynamic> json) {
+  return _$_ElevatorLog(
+    data: (json['data'] as List<dynamic>?)
+        ?.map((e) => ElevatorCount.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    created: const TimeStampConverter().fromJson(json['created'] as Timestamp?),
+  );
+}
+
+Map<String, dynamic> _$_$_ElevatorLogToJson(_$_ElevatorLog instance) =>
+    <String, dynamic>{
+      'data': instance.data?.map((e) => e.toJson()).toList(),
+      'created': const TimeStampConverter().toJson(instance.created),
+    };
+
+_$_ElevatorCount _$_$_ElevatorCountFromJson(Map<String, dynamic> json) {
+  return _$_ElevatorCount(
+    people: json['people'] as int?,
+    created: const TimeStampConverter().fromJson(json['created'] as Timestamp?),
+  );
+}
+
+Map<String, dynamic> _$_$_ElevatorCountToJson(_$_ElevatorCount instance) =>
+    <String, dynamic>{
+      'people': instance.people,
+      'created': const TimeStampConverter().toJson(instance.created),
+    };

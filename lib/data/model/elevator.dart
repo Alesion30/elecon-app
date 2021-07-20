@@ -21,3 +21,34 @@ class Elevator with _$Elevator {
 
   factory Elevator.fromJson(Map<String, dynamic> json) => _$ElevatorFromJson(json);
 }
+
+@freezed
+class ElevatorLog with _$ElevatorLog {
+  @JsonSerializable(explicitToJson: true)
+  factory ElevatorLog({
+    List<ElevatorCount>? data,
+    @TimeStampConverter() DateTime? created,
+  }) = _ElevatorLog;
+
+  factory ElevatorLog.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>?;
+    return ElevatorLog.fromJson(data!);
+  }
+
+  factory ElevatorLog.fromJson(Map<String, dynamic> json) => _$ElevatorLogFromJson(json);
+}
+
+@freezed
+class ElevatorCount with _$ElevatorCount {
+  factory ElevatorCount({
+    int? people,
+    @TimeStampConverter() DateTime? created,
+  }) = _ElevatorCount;
+
+  factory ElevatorCount.fromDocument(DocumentSnapshot doc) {
+    final data = doc.data() as Map<String, dynamic>?;
+    return ElevatorCount.fromJson(data!);
+  }
+
+  factory ElevatorCount.fromJson(Map<String, dynamic> json) => _$ElevatorCountFromJson(json);
+}

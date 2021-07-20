@@ -237,3 +237,353 @@ abstract class _Elevator implements Elevator {
   _$ElevatorCopyWith<_Elevator> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+ElevatorLog _$ElevatorLogFromJson(Map<String, dynamic> json) {
+  return _ElevatorLog.fromJson(json);
+}
+
+/// @nodoc
+class _$ElevatorLogTearOff {
+  const _$ElevatorLogTearOff();
+
+  _ElevatorLog call(
+      {List<ElevatorCount>? data, @TimeStampConverter() DateTime? created}) {
+    return _ElevatorLog(
+      data: data,
+      created: created,
+    );
+  }
+
+  ElevatorLog fromJson(Map<String, Object> json) {
+    return ElevatorLog.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $ElevatorLog = _$ElevatorLogTearOff();
+
+/// @nodoc
+mixin _$ElevatorLog {
+  List<ElevatorCount>? get data => throw _privateConstructorUsedError;
+  @TimeStampConverter()
+  DateTime? get created => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ElevatorLogCopyWith<ElevatorLog> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ElevatorLogCopyWith<$Res> {
+  factory $ElevatorLogCopyWith(
+          ElevatorLog value, $Res Function(ElevatorLog) then) =
+      _$ElevatorLogCopyWithImpl<$Res>;
+  $Res call(
+      {List<ElevatorCount>? data, @TimeStampConverter() DateTime? created});
+}
+
+/// @nodoc
+class _$ElevatorLogCopyWithImpl<$Res> implements $ElevatorLogCopyWith<$Res> {
+  _$ElevatorLogCopyWithImpl(this._value, this._then);
+
+  final ElevatorLog _value;
+  // ignore: unused_field
+  final $Res Function(ElevatorLog) _then;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? created = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<ElevatorCount>?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$ElevatorLogCopyWith<$Res>
+    implements $ElevatorLogCopyWith<$Res> {
+  factory _$ElevatorLogCopyWith(
+          _ElevatorLog value, $Res Function(_ElevatorLog) then) =
+      __$ElevatorLogCopyWithImpl<$Res>;
+  @override
+  $Res call(
+      {List<ElevatorCount>? data, @TimeStampConverter() DateTime? created});
+}
+
+/// @nodoc
+class __$ElevatorLogCopyWithImpl<$Res> extends _$ElevatorLogCopyWithImpl<$Res>
+    implements _$ElevatorLogCopyWith<$Res> {
+  __$ElevatorLogCopyWithImpl(
+      _ElevatorLog _value, $Res Function(_ElevatorLog) _then)
+      : super(_value, (v) => _then(v as _ElevatorLog));
+
+  @override
+  _ElevatorLog get _value => super._value as _ElevatorLog;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? created = freezed,
+  }) {
+    return _then(_ElevatorLog(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<ElevatorCount>?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_ElevatorLog implements _ElevatorLog {
+  _$_ElevatorLog({this.data, @TimeStampConverter() this.created});
+
+  factory _$_ElevatorLog.fromJson(Map<String, dynamic> json) =>
+      _$_$_ElevatorLogFromJson(json);
+
+  @override
+  final List<ElevatorCount>? data;
+  @override
+  @TimeStampConverter()
+  final DateTime? created;
+
+  @override
+  String toString() {
+    return 'ElevatorLog(data: $data, created: $created)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ElevatorLog &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality().equals(other.created, created)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(data) ^
+      const DeepCollectionEquality().hash(created);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ElevatorLogCopyWith<_ElevatorLog> get copyWith =>
+      __$ElevatorLogCopyWithImpl<_ElevatorLog>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_ElevatorLogToJson(this);
+  }
+}
+
+abstract class _ElevatorLog implements ElevatorLog {
+  factory _ElevatorLog(
+      {List<ElevatorCount>? data,
+      @TimeStampConverter() DateTime? created}) = _$_ElevatorLog;
+
+  factory _ElevatorLog.fromJson(Map<String, dynamic> json) =
+      _$_ElevatorLog.fromJson;
+
+  @override
+  List<ElevatorCount>? get data => throw _privateConstructorUsedError;
+  @override
+  @TimeStampConverter()
+  DateTime? get created => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$ElevatorLogCopyWith<_ElevatorLog> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+ElevatorCount _$ElevatorCountFromJson(Map<String, dynamic> json) {
+  return _ElevatorCount.fromJson(json);
+}
+
+/// @nodoc
+class _$ElevatorCountTearOff {
+  const _$ElevatorCountTearOff();
+
+  _ElevatorCount call({int? people, @TimeStampConverter() DateTime? created}) {
+    return _ElevatorCount(
+      people: people,
+      created: created,
+    );
+  }
+
+  ElevatorCount fromJson(Map<String, Object> json) {
+    return ElevatorCount.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $ElevatorCount = _$ElevatorCountTearOff();
+
+/// @nodoc
+mixin _$ElevatorCount {
+  int? get people => throw _privateConstructorUsedError;
+  @TimeStampConverter()
+  DateTime? get created => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $ElevatorCountCopyWith<ElevatorCount> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ElevatorCountCopyWith<$Res> {
+  factory $ElevatorCountCopyWith(
+          ElevatorCount value, $Res Function(ElevatorCount) then) =
+      _$ElevatorCountCopyWithImpl<$Res>;
+  $Res call({int? people, @TimeStampConverter() DateTime? created});
+}
+
+/// @nodoc
+class _$ElevatorCountCopyWithImpl<$Res>
+    implements $ElevatorCountCopyWith<$Res> {
+  _$ElevatorCountCopyWithImpl(this._value, this._then);
+
+  final ElevatorCount _value;
+  // ignore: unused_field
+  final $Res Function(ElevatorCount) _then;
+
+  @override
+  $Res call({
+    Object? people = freezed,
+    Object? created = freezed,
+  }) {
+    return _then(_value.copyWith(
+      people: people == freezed
+          ? _value.people
+          : people // ignore: cast_nullable_to_non_nullable
+              as int?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$ElevatorCountCopyWith<$Res>
+    implements $ElevatorCountCopyWith<$Res> {
+  factory _$ElevatorCountCopyWith(
+          _ElevatorCount value, $Res Function(_ElevatorCount) then) =
+      __$ElevatorCountCopyWithImpl<$Res>;
+  @override
+  $Res call({int? people, @TimeStampConverter() DateTime? created});
+}
+
+/// @nodoc
+class __$ElevatorCountCopyWithImpl<$Res>
+    extends _$ElevatorCountCopyWithImpl<$Res>
+    implements _$ElevatorCountCopyWith<$Res> {
+  __$ElevatorCountCopyWithImpl(
+      _ElevatorCount _value, $Res Function(_ElevatorCount) _then)
+      : super(_value, (v) => _then(v as _ElevatorCount));
+
+  @override
+  _ElevatorCount get _value => super._value as _ElevatorCount;
+
+  @override
+  $Res call({
+    Object? people = freezed,
+    Object? created = freezed,
+  }) {
+    return _then(_ElevatorCount(
+      people: people == freezed
+          ? _value.people
+          : people // ignore: cast_nullable_to_non_nullable
+              as int?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_ElevatorCount implements _ElevatorCount {
+  _$_ElevatorCount({this.people, @TimeStampConverter() this.created});
+
+  factory _$_ElevatorCount.fromJson(Map<String, dynamic> json) =>
+      _$_$_ElevatorCountFromJson(json);
+
+  @override
+  final int? people;
+  @override
+  @TimeStampConverter()
+  final DateTime? created;
+
+  @override
+  String toString() {
+    return 'ElevatorCount(people: $people, created: $created)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _ElevatorCount &&
+            (identical(other.people, people) ||
+                const DeepCollectionEquality().equals(other.people, people)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality().equals(other.created, created)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(people) ^
+      const DeepCollectionEquality().hash(created);
+
+  @JsonKey(ignore: true)
+  @override
+  _$ElevatorCountCopyWith<_ElevatorCount> get copyWith =>
+      __$ElevatorCountCopyWithImpl<_ElevatorCount>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_ElevatorCountToJson(this);
+  }
+}
+
+abstract class _ElevatorCount implements ElevatorCount {
+  factory _ElevatorCount(
+      {int? people,
+      @TimeStampConverter() DateTime? created}) = _$_ElevatorCount;
+
+  factory _ElevatorCount.fromJson(Map<String, dynamic> json) =
+      _$_ElevatorCount.fromJson;
+
+  @override
+  int? get people => throw _privateConstructorUsedError;
+  @override
+  @TimeStampConverter()
+  DateTime? get created => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$ElevatorCountCopyWith<_ElevatorCount> get copyWith =>
+      throw _privateConstructorUsedError;
+}

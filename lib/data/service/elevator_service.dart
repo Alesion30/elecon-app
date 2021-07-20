@@ -33,4 +33,14 @@ class ElevatorService {
       () async => _dataSource.saveData(data, dir: _constants.dir!),
     );
   }
+
+  Future<Result<void>> saveLog(List<ElevatorCount> data) async {
+    final log = ElevatorLog(
+      data: data,
+      created: DateTime.now(),
+    );
+    return Result.guardFuture(
+      () async => _dataSource.saveLog(log, dir: _constants.dir!),
+    );
+  }
 }
