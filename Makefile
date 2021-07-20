@@ -33,8 +33,26 @@ build-runner: # コード生成
 ios-build: # iosビルド
 	fvm flutter build ios
 
+
+################################################################
+# apk ビルド
+################################################################
 apk-build: # apkビルド
 	fvm flutter build apk
+
+apk-build-elevatorLeft: # エレベーター左
+	fvm flutter build apk --dart-define=APPTYPE=elevatorLeft
+
+apk-build-elevatorRight: # エレベーター右
+	fvm flutter build apk --dart-define=APPTYPE=elevatorRight
+
+apk-build-hall9F: # 9F
+	fvm flutter build apk --dart-define=APPTYPE=hall9F
+
+apk-build-hall1F: # 1F
+	fvm flutter build apk --dart-define=APPTYPE=hall1F
+
+################################################################
 
 devices: # デバイス一覧
 	fvm flutter devices

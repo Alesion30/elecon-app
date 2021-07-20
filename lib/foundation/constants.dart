@@ -1,4 +1,16 @@
+import 'package:enum_to_string/enum_to_string.dart';
 import 'package:flutter/material.dart';
+
+// 環境変数
+enum AppBuildType {
+  // エレベーター
+  elevatorLeft,
+  elevatorRight,
+
+  // エレベーターホール
+  hall9F,
+  hall1F,
+}
 
 enum AppMode {
   hall, // エレベーターホール
@@ -19,7 +31,25 @@ class Constants {
   });
 
   factory Constants.of() {
-    return Constants.hall9F();
+    final type = EnumToString.fromString(
+      AppBuildType.values,
+      const String.fromEnvironment('APPTYPE'),
+    );
+    if (type != null) {
+      switch (type) {
+        case AppBuildType.elevatorLeft:
+          return Constants.elevatorLeft();
+        case AppBuildType.elevatorRight:
+          return Constants.elevatorRight();
+        case AppBuildType.hall9F:
+          return Constants.hall9F();
+        case AppBuildType.hall1F:
+          return Constants.hall1F();
+      }
+    }
+
+    // デフォルト or デバッグ時
+    return Constants.elevatorLeft();
   }
 
   // エレベーター 左
