@@ -5,7 +5,6 @@ import 'package:elecon/view/view_model/device_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class SplashPage extends HookWidget {
   @override
@@ -16,20 +15,6 @@ class SplashPage extends HookWidget {
 
     Future<void> run() async {
       print('App Start!!');
-
-      // 権限要求
-      var status = await Permission.bluetooth.status;
-      if (status.isDenied ||
-          status.isRestricted ||
-          status.isPermanentlyDenied) {
-        status = await Permission.bluetooth.request();
-      }
-      if (status.isDenied ||
-          status.isRestricted ||
-          status.isPermanentlyDenied) {
-        await openAppSettings();
-        return;
-      }
 
       final result = await viewModel.saveBasicData();
       result.ifSuccess((_) async {
