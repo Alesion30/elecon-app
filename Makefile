@@ -30,9 +30,8 @@ gen-l10n: # 言語ファイル生成
 build-runner: # コード生成
 	fvm flutter pub run build_runner build --delete-conflicting-outputs
 
-ios-build: # iosビルド
-	fvm flutter build ios
-
+install: # インストール
+	fvm flutter install
 
 ################################################################
 # apk ビルド
@@ -54,11 +53,11 @@ apk-build-hall1F: # 1F
 
 ################################################################
 
+ios-build: # iosビルド
+	fvm flutter build ios
+
 devices: # デバイス一覧
 	fvm flutter devices
-
-install: # インストール
-	fvm flutter install
 
 ls-keystore-debug: # デバッグ環境のキーストア情報を表示
 	keytool -list -v -alias androiddebugkey -keystore ~/.android/debug.keystore
