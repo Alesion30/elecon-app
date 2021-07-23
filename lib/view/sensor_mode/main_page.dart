@@ -1,4 +1,5 @@
 import 'package:elecon/view/view_model/ble_view_model.dart';
+import 'package:elecon/view/view_model/pressure_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -7,11 +8,16 @@ class ScanModeMainPage extends HookWidget {
   @override
   Widget build(BuildContext context) {
     final bleViewModel = useProvider(bleViewModelProvider);
+    final pressureViewModel = useProvider(pressureViewModelProvider);
 
     // 初期化
     useEffect(() {
       bleViewModel.init();
-      return () => bleViewModel.cancel();
+      pressureViewModel.init();
+      return () {
+        bleViewModel.cancel();
+        pressureViewModel.cancel();
+      };
     }, []);
 
     return Scaffold(
@@ -26,6 +32,7 @@ class ScanModeMainPage extends HookWidget {
                 Text('アプリ情報: ${bleViewModel.device?.appInfo}'),
                 Text('デバイスID: ${bleViewModel.device?.id}'),
                 Text('カウント数: ${bleViewModel.count}'),
+                Text('気圧: ${pressureViewModel.pressure}[Pa]'),
                 Text('${bleViewModel.isSave ? '保存する' : '保存しない'}'),
               ],
             ),

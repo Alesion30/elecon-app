@@ -1,5 +1,6 @@
 import 'package:elecon/data/api/battery_data_source.dart';
 import 'package:elecon/data/api/fb_device_data_source.dart';
+import 'package:elecon/data/api/pressure_data_source.dart';
 import 'package:elecon/data/model/device.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:elecon/foundation/constants.dart';
@@ -15,6 +16,8 @@ class DeviceService {
   late final FbDeviceDataSource _dataSource = _reader(deviceDataSourceProvider);
   late final BatteryDataSource _batteryDataSource =
       _reader(batteryDataSourceProvider);
+  late final PressureDataSource _pressureDataSource =
+      _reader(pressureDataSourceProvider);
 
   // constants
   final _constants = Constants.instance;
@@ -23,10 +26,14 @@ class DeviceService {
     yield* _batteryDataSource.getBatteryLevelStream();
   }
 
-  Future<Result<void>> saveBatteryLevel(int? battery) async {
+  Future<Result<bool>> getPressureSensorAvailable() async {
     return Result.guardFuture(
-      () async => _dataSource.saveBatteryLevel(battery),
+      () async => _pressureDataSource.getSensorAvailable(),
     );
+  }
+
+  Stream<double?> getPressureStream() async* {
+    yield* _pressureDataSource.getPressureStream();
   }
 
   Future<Result<Device>> getBasicData() async {

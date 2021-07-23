@@ -61,7 +61,7 @@ class BleViewModel extends ChangeNotifier {
 
   void init() {
     fetchDeviceDataRealtime();
-    fetchBleDataRealtime();
+    getBleDataRealtime();
   }
 
   // デバイス情報を取得
@@ -75,7 +75,7 @@ class BleViewModel extends ChangeNotifier {
   }
 
   // BLEのデータをリアルタイムで取得
-  void fetchBleDataRealtime() {
+  void getBleDataRealtime() {
     _bleSubscription = _repository.getDataRealtime().listen(
       (data) {
         final now = DateTime.now();

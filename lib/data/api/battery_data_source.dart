@@ -10,7 +10,7 @@ class BatteryDataSource {
   // ignore: unused_field
   final Reader _reader;
 
-  late final platform = const MethodChannel('elecon.flutter.dev/battery');
+  late final platform = const MethodChannel('elecon.flutter.dev/android');
 
   Future<int?> getBatteryLevel() async {
     final battery = await platform.invokeMethod('getBatteryLevel') as int?;

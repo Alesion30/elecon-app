@@ -16,7 +16,7 @@ import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES
 
 class MainActivity: FlutterActivity() {
-  private val BATTERY_CHANNEL = "elecon.flutter.dev/battery"
+  private val BATTERY_CHANNEL = "elecon.flutter.dev/android"
 
   override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
     GeneratedPluginRegistrant.registerWith(flutterEngine);

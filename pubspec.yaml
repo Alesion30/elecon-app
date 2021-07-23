@@ -50,6 +50,9 @@ dependencies:
   # For Handling
   permission_handler: ^8.1.3
 
+  # For Sensor
+  environment_sensors: ^0.2.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
