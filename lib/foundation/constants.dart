@@ -49,7 +49,14 @@ class Constants {
     }
 
     // デフォルト or デバッグ時
-    return Constants.elevatorLeft();
+    return Constants.scanDebug();
+  }
+
+  // スキャンモード デバッグ
+  factory Constants.scanDebug() {
+    return const Constants(
+      appMode: AppMode.sensor,
+    );
   }
 
   // エレベーター 左
