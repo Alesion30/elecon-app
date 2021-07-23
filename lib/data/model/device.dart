@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elecon/data/model/ble.dart';
 import 'package:elecon/data/model/converter.dart';
+import 'package:elecon/data/model/sensor.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
@@ -38,4 +39,16 @@ class DeviceBle with _$DeviceBle {
 
   factory DeviceBle.fromJson(Map<String, dynamic> json) =>
       _$DeviceBleFromJson(json);
+}
+
+@freezed
+class DevicePressure with _$DevicePressure {
+  @JsonSerializable(explicitToJson: true)
+  factory DevicePressure({
+    List<Sensor>? data,
+    @TimeStampConverter() DateTime? created,
+  }) = _DevicePressure;
+
+  factory DevicePressure.fromJson(Map<String, dynamic> json) =>
+      _$DevicePressureFromJson(json);
 }

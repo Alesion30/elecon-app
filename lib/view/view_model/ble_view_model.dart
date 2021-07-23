@@ -30,7 +30,8 @@ class BleViewModel extends ChangeNotifier {
 
   // ViewModel
   late final FloorViewModel _floorViewModel = _reader(floorViewModelProvider);
-  late final DeviceViewModel _deviceViewModel = _reader(deviceViewModelProvider);
+  late final DeviceViewModel _deviceViewModel =
+      _reader(deviceViewModelProvider);
 
   // constants
   final _constants = Constants.instance;
@@ -77,7 +78,8 @@ class BleViewModel extends ChangeNotifier {
             _elevatorRepository.saveData(count!);
 
             // エレベーター情報のログを保存する（5分おきに）
-            if (now.formatYYYYMMddHHmm() != _lastElevatorSaveDate && now.minute % 5 == 0) {
+            if (now.formatYYYYMMddHHmm() != _lastElevatorSaveDate &&
+                now.minute % 5 == 0) {
               _elevatorRepository.saveLog(_stockElevatorData).then((result) {
                 result.ifSuccess((_) {
                   _stockElevatorData = [];

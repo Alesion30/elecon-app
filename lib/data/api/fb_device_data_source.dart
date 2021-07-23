@@ -52,13 +52,24 @@ class FbDeviceDataSource {
   }
 
   // センサから取得したBLEのデータを保存
-  Future<void> saveBleData(DeviceBle deviceData) async {
+  Future<void> saveBleData(DeviceBle data) async {
     final deviceId = await getDeviceId();
     final docId = DateTime.now().formatYYYYMMddHHmm();
     await devicesCollection
         .doc(deviceId)
         .collection('ble')
         .doc(docId)
-        .set(deviceData.toJson());
+        .set(data.toJson());
+  }
+
+  // センサから取得した気圧センサのデータを保存
+  Future<void> savePressureData(DevicePressure data) async {
+    final deviceId = await getDeviceId();
+    final docId = DateTime.now().formatYYYYMMddHHmm();
+    await devicesCollection
+        .doc(deviceId)
+        .collection('pressure')
+        .doc(docId)
+        .set(data.toJson());
   }
 }

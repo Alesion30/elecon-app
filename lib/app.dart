@@ -19,7 +19,9 @@ class App extends HookWidget {
 
     useEffect(() {
       print('App Start!!');
-      viewModel.saveBasicData();
+      viewModel.init();
+
+      return () => viewModel.cancel();
     }, []);
 
     return MaterialApp.router(

@@ -505,3 +505,179 @@ abstract class _DeviceBle implements DeviceBle {
   _$DeviceBleCopyWith<_DeviceBle> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+DevicePressure _$DevicePressureFromJson(Map<String, dynamic> json) {
+  return _DevicePressure.fromJson(json);
+}
+
+/// @nodoc
+class _$DevicePressureTearOff {
+  const _$DevicePressureTearOff();
+
+  _DevicePressure call(
+      {List<Sensor>? data, @TimeStampConverter() DateTime? created}) {
+    return _DevicePressure(
+      data: data,
+      created: created,
+    );
+  }
+
+  DevicePressure fromJson(Map<String, Object> json) {
+    return DevicePressure.fromJson(json);
+  }
+}
+
+/// @nodoc
+const $DevicePressure = _$DevicePressureTearOff();
+
+/// @nodoc
+mixin _$DevicePressure {
+  List<Sensor>? get data => throw _privateConstructorUsedError;
+  @TimeStampConverter()
+  DateTime? get created => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $DevicePressureCopyWith<DevicePressure> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $DevicePressureCopyWith<$Res> {
+  factory $DevicePressureCopyWith(
+          DevicePressure value, $Res Function(DevicePressure) then) =
+      _$DevicePressureCopyWithImpl<$Res>;
+  $Res call({List<Sensor>? data, @TimeStampConverter() DateTime? created});
+}
+
+/// @nodoc
+class _$DevicePressureCopyWithImpl<$Res>
+    implements $DevicePressureCopyWith<$Res> {
+  _$DevicePressureCopyWithImpl(this._value, this._then);
+
+  final DevicePressure _value;
+  // ignore: unused_field
+  final $Res Function(DevicePressure) _then;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? created = freezed,
+  }) {
+    return _then(_value.copyWith(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<Sensor>?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+abstract class _$DevicePressureCopyWith<$Res>
+    implements $DevicePressureCopyWith<$Res> {
+  factory _$DevicePressureCopyWith(
+          _DevicePressure value, $Res Function(_DevicePressure) then) =
+      __$DevicePressureCopyWithImpl<$Res>;
+  @override
+  $Res call({List<Sensor>? data, @TimeStampConverter() DateTime? created});
+}
+
+/// @nodoc
+class __$DevicePressureCopyWithImpl<$Res>
+    extends _$DevicePressureCopyWithImpl<$Res>
+    implements _$DevicePressureCopyWith<$Res> {
+  __$DevicePressureCopyWithImpl(
+      _DevicePressure _value, $Res Function(_DevicePressure) _then)
+      : super(_value, (v) => _then(v as _DevicePressure));
+
+  @override
+  _DevicePressure get _value => super._value as _DevicePressure;
+
+  @override
+  $Res call({
+    Object? data = freezed,
+    Object? created = freezed,
+  }) {
+    return _then(_DevicePressure(
+      data: data == freezed
+          ? _value.data
+          : data // ignore: cast_nullable_to_non_nullable
+              as List<Sensor>?,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+    ));
+  }
+}
+
+/// @nodoc
+
+@JsonSerializable(explicitToJson: true)
+class _$_DevicePressure implements _DevicePressure {
+  _$_DevicePressure({this.data, @TimeStampConverter() this.created});
+
+  factory _$_DevicePressure.fromJson(Map<String, dynamic> json) =>
+      _$_$_DevicePressureFromJson(json);
+
+  @override
+  final List<Sensor>? data;
+  @override
+  @TimeStampConverter()
+  final DateTime? created;
+
+  @override
+  String toString() {
+    return 'DevicePressure(data: $data, created: $created)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other is _DevicePressure &&
+            (identical(other.data, data) ||
+                const DeepCollectionEquality().equals(other.data, data)) &&
+            (identical(other.created, created) ||
+                const DeepCollectionEquality().equals(other.created, created)));
+  }
+
+  @override
+  int get hashCode =>
+      runtimeType.hashCode ^
+      const DeepCollectionEquality().hash(data) ^
+      const DeepCollectionEquality().hash(created);
+
+  @JsonKey(ignore: true)
+  @override
+  _$DevicePressureCopyWith<_DevicePressure> get copyWith =>
+      __$DevicePressureCopyWithImpl<_DevicePressure>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$_$_DevicePressureToJson(this);
+  }
+}
+
+abstract class _DevicePressure implements DevicePressure {
+  factory _DevicePressure(
+      {List<Sensor>? data,
+      @TimeStampConverter() DateTime? created}) = _$_DevicePressure;
+
+  factory _DevicePressure.fromJson(Map<String, dynamic> json) =
+      _$_DevicePressure.fromJson;
+
+  @override
+  List<Sensor>? get data => throw _privateConstructorUsedError;
+  @override
+  @TimeStampConverter()
+  DateTime? get created => throw _privateConstructorUsedError;
+  @override
+  @JsonKey(ignore: true)
+  _$DevicePressureCopyWith<_DevicePressure> get copyWith =>
+      throw _privateConstructorUsedError;
+}

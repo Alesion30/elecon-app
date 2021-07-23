@@ -2,6 +2,7 @@ import 'package:elecon/data/api/battery_data_source.dart';
 import 'package:elecon/data/api/fb_device_data_source.dart';
 import 'package:elecon/data/model/device.dart';
 import 'package:elecon/data/model/result.dart';
+import 'package:elecon/data/model/sensor.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/function/device_info.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -84,6 +85,16 @@ class DeviceService {
   Future<Result<void>> saveBleData(DeviceBle data) async {
     return Result.guardFuture(
       () async => _dataSource.saveBleData(data),
+    );
+  }
+
+  Future<Result<void>> savePressureData(List<Sensor> data) async {
+    final _data = DevicePressure(
+      data: data,
+      created: DateTime.now(),
+    );
+    return Result.guardFuture(
+      () async => _dataSource.savePressureData(_data),
     );
   }
 }

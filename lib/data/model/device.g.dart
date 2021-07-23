@@ -44,3 +44,18 @@ Map<String, dynamic> _$_$_DeviceBleToJson(_$_DeviceBle instance) =>
       'data': instance.data?.map((e) => e.toJson()).toList(),
       'created': const TimeStampConverter().toJson(instance.created),
     };
+
+_$_DevicePressure _$_$_DevicePressureFromJson(Map<String, dynamic> json) {
+  return _$_DevicePressure(
+    data: (json['data'] as List<dynamic>?)
+        ?.map((e) => Sensor.fromJson(e as Map<String, dynamic>))
+        .toList(),
+    created: const TimeStampConverter().fromJson(json['created'] as Timestamp?),
+  );
+}
+
+Map<String, dynamic> _$_$_DevicePressureToJson(_$_DevicePressure instance) =>
+    <String, dynamic>{
+      'data': instance.data?.map((e) => e.toJson()).toList(),
+      'created': const TimeStampConverter().toJson(instance.created),
+    };
