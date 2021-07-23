@@ -17,7 +17,6 @@ class Device with _$Device {
     @DirConverter() Dir? dir,
     int? floor,
     bool? isSave,
-    int? battery,
     @TimeStampConverter() DateTime? created,
   }) = _Device;
 

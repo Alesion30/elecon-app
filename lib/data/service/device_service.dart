@@ -71,14 +71,6 @@ class DeviceService {
       print(e);
     }
 
-    // バッテリ情報を取得
-    int? battery;
-    try {
-      battery = await _batteryDataSource.getBatteryLevel();
-    } catch (e) {
-      print(e);
-    }
-
     final device = Device(
       id: deviceId,
       name: deviceName,
@@ -87,7 +79,6 @@ class DeviceService {
       dir: dir,
       floor: floor,
       isSave: isSave,
-      battery: battery,
       created: DateTime.now(),
     );
 

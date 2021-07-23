@@ -28,7 +28,6 @@ class _$DeviceTearOff {
       @DirConverter() Dir? dir,
       int? floor,
       bool? isSave,
-      int? battery,
       @TimeStampConverter() DateTime? created}) {
     return _Device(
       id: id,
@@ -38,7 +37,6 @@ class _$DeviceTearOff {
       dir: dir,
       floor: floor,
       isSave: isSave,
-      battery: battery,
       created: created,
     );
   }
@@ -62,7 +60,6 @@ mixin _$Device {
   Dir? get dir => throw _privateConstructorUsedError;
   int? get floor => throw _privateConstructorUsedError;
   bool? get isSave => throw _privateConstructorUsedError;
-  int? get battery => throw _privateConstructorUsedError;
   @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;
 
@@ -83,7 +80,6 @@ abstract class $DeviceCopyWith<$Res> {
       @DirConverter() Dir? dir,
       int? floor,
       bool? isSave,
-      int? battery,
       @TimeStampConverter() DateTime? created});
 }
 
@@ -104,7 +100,6 @@ class _$DeviceCopyWithImpl<$Res> implements $DeviceCopyWith<$Res> {
     Object? dir = freezed,
     Object? floor = freezed,
     Object? isSave = freezed,
-    Object? battery = freezed,
     Object? created = freezed,
   }) {
     return _then(_value.copyWith(
@@ -136,10 +131,6 @@ class _$DeviceCopyWithImpl<$Res> implements $DeviceCopyWith<$Res> {
           ? _value.isSave
           : isSave // ignore: cast_nullable_to_non_nullable
               as bool?,
-      battery: battery == freezed
-          ? _value.battery
-          : battery // ignore: cast_nullable_to_non_nullable
-              as int?,
       created: created == freezed
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -161,7 +152,6 @@ abstract class _$DeviceCopyWith<$Res> implements $DeviceCopyWith<$Res> {
       @DirConverter() Dir? dir,
       int? floor,
       bool? isSave,
-      int? battery,
       @TimeStampConverter() DateTime? created});
 }
 
@@ -183,7 +173,6 @@ class __$DeviceCopyWithImpl<$Res> extends _$DeviceCopyWithImpl<$Res>
     Object? dir = freezed,
     Object? floor = freezed,
     Object? isSave = freezed,
-    Object? battery = freezed,
     Object? created = freezed,
   }) {
     return _then(_Device(
@@ -215,10 +204,6 @@ class __$DeviceCopyWithImpl<$Res> extends _$DeviceCopyWithImpl<$Res>
           ? _value.isSave
           : isSave // ignore: cast_nullable_to_non_nullable
               as bool?,
-      battery: battery == freezed
-          ? _value.battery
-          : battery // ignore: cast_nullable_to_non_nullable
-              as int?,
       created: created == freezed
           ? _value.created
           : created // ignore: cast_nullable_to_non_nullable
@@ -238,7 +223,6 @@ class _$_Device implements _Device {
       @DirConverter() this.dir,
       this.floor,
       this.isSave,
-      this.battery,
       @TimeStampConverter() this.created});
 
   factory _$_Device.fromJson(Map<String, dynamic> json) =>
@@ -261,14 +245,12 @@ class _$_Device implements _Device {
   @override
   final bool? isSave;
   @override
-  final int? battery;
-  @override
   @TimeStampConverter()
   final DateTime? created;
 
   @override
   String toString() {
-    return 'Device(id: $id, name: $name, appInfo: $appInfo, mode: $mode, dir: $dir, floor: $floor, isSave: $isSave, battery: $battery, created: $created)';
+    return 'Device(id: $id, name: $name, appInfo: $appInfo, mode: $mode, dir: $dir, floor: $floor, isSave: $isSave, created: $created)';
   }
 
   @override
@@ -290,9 +272,6 @@ class _$_Device implements _Device {
                 const DeepCollectionEquality().equals(other.floor, floor)) &&
             (identical(other.isSave, isSave) ||
                 const DeepCollectionEquality().equals(other.isSave, isSave)) &&
-            (identical(other.battery, battery) ||
-                const DeepCollectionEquality()
-                    .equals(other.battery, battery)) &&
             (identical(other.created, created) ||
                 const DeepCollectionEquality().equals(other.created, created)));
   }
@@ -307,7 +286,6 @@ class _$_Device implements _Device {
       const DeepCollectionEquality().hash(dir) ^
       const DeepCollectionEquality().hash(floor) ^
       const DeepCollectionEquality().hash(isSave) ^
-      const DeepCollectionEquality().hash(battery) ^
       const DeepCollectionEquality().hash(created);
 
   @JsonKey(ignore: true)
@@ -330,7 +308,6 @@ abstract class _Device implements Device {
       @DirConverter() Dir? dir,
       int? floor,
       bool? isSave,
-      int? battery,
       @TimeStampConverter() DateTime? created}) = _$_Device;
 
   factory _Device.fromJson(Map<String, dynamic> json) = _$_Device.fromJson;
@@ -351,8 +328,6 @@ abstract class _Device implements Device {
   int? get floor => throw _privateConstructorUsedError;
   @override
   bool? get isSave => throw _privateConstructorUsedError;
-  @override
-  int? get battery => throw _privateConstructorUsedError;
   @override
   @TimeStampConverter()
   DateTime? get created => throw _privateConstructorUsedError;

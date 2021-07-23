@@ -15,7 +15,6 @@ _$_Device _$_$_DeviceFromJson(Map<String, dynamic> json) {
     dir: const DirConverter().fromJson(json['dir'] as String?),
     floor: json['floor'] as int?,
     isSave: json['isSave'] as bool?,
-    battery: json['battery'] as int?,
     created: const TimeStampConverter().fromJson(json['created'] as Timestamp?),
   );
 }
@@ -28,7 +27,6 @@ Map<String, dynamic> _$_$_DeviceToJson(_$_Device instance) => <String, dynamic>{
       'dir': const DirConverter().toJson(instance.dir),
       'floor': instance.floor,
       'isSave': instance.isSave,
-      'battery': instance.battery,
       'created': const TimeStampConverter().toJson(instance.created),
     };
 
