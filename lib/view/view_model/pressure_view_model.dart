@@ -57,9 +57,8 @@ class PressureViewModel extends ChangeNotifier {
         if (_deviceViewModel.isSave) {
           final now = DateTime.now();
 
-          // 5秒に1回、配列に格納
-          if (now.formatYYYYMMddHHmmss() != _lastAddDate &&
-              now.second % 5 == 0) {
+          // 1秒に1回、配列に格納
+          if (now.formatYYYYMMddHHmmss() != _lastAddDate) {
             _stockPressureData.add(
               Sensor(value: data, created: DateTime.now()),
             );
@@ -67,8 +66,7 @@ class PressureViewModel extends ChangeNotifier {
           }
 
           // 1分に1回、DBに保存
-          if (now.formatYYYYMMddHHmm() != _lastSaveDate &&
-              now.minute % 1 == 0) {
+          if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
             _deviceRepository
                 .savePressureData(_stockPressureData)
                 .then((result) {
