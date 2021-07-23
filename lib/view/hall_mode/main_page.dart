@@ -3,6 +3,7 @@ import 'package:elecon/view/view_model/ble_view_model.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/view/common/button.dart';
 import 'package:elecon/view/common/elevator.dart';
+import 'package:elecon/view/view_model/device_view_model.dart';
 import 'package:elecon/view/view_model/elevator_view_model.dart';
 import 'package:elecon/view/view_model/floor_view_model.dart';
 import 'package:elecon/view/hook/use_theme.dart';
@@ -20,6 +21,7 @@ class HallModeMainPage extends HookWidget {
     final topFloor = 10;
 
     // ViewModel
+    final deviceViewModel = useProvider(deviceViewModelProvider);
     final bleViewModel = useProvider(bleViewModelProvider);
     final floorViewModel = useProvider(floorViewModelProvider);
     final elevatorViewModel = useProvider(elevatorViewModelProvider);
@@ -186,7 +188,7 @@ class HallModeMainPage extends HookWidget {
                   margin: const EdgeInsets.only(right: 2.0),
                   child: Icon(
                     Icons.save,
-                    color: bleViewModel.isSave
+                    color: deviceViewModel.isSave
                         ? theme.appColors.info
                         : theme.appColors.inactive,
                   ),

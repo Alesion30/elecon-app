@@ -7,6 +7,7 @@ import 'package:elecon/data/service/device_service.dart';
 import 'package:elecon/data/service/elevator_service.dart';
 import 'package:elecon/data/service/floor_service.dart';
 import 'package:elecon/foundation/constants.dart';
+import 'package:elecon/view/view_model/device_view_model.dart';
 import 'package:elecon/view/view_model/floor_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -29,23 +30,17 @@ class BleViewModel extends ChangeNotifier {
 
   // ViewModel
   late final FloorViewModel _floorViewModel = _reader(floorViewModelProvider);
+  late final DeviceViewModel _deviceViewModel = _reader(deviceViewModelProvider);
 
   // constants
   final _constants = Constants.instance;
 
   // stream
-  StreamSubscription<Device>? _deviceSubscription;
   StreamSubscription<List<Ble>>? _bleSubscription;
 
   // データ
   List<Ble>? _bles;
   List<Ble>? get bles => _bles;
-  Device? _device;
-  Device? get device => _device;
-
-  // 保存するかどうか
-  bool get _isSave => _device?.isSave ?? false;
-  bool get isSave => _isSave;
 
   // 信号数（rssiが-70以上）
   int? get count => _bles
@@ -60,18 +55,7 @@ class BleViewModel extends ChangeNotifier {
   String? _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
 
   void init() {
-    fetchDeviceDataRealtime();
     getBleDataRealtime();
-  }
-
-  // デバイス情報を取得
-  void fetchDeviceDataRealtime() {
-    _deviceSubscription = _deviceRepository.getBasicDataRealtime().listen(
-      (data) {
-        _device = data;
-        notifyListeners();
-      },
-    );
   }
 
   // BLEのデータをリアルタイムで取得
@@ -82,7 +66,7 @@ class BleViewModel extends ChangeNotifier {
         _bles = data;
 
         // 保存モード時
-        if (_isSave) {
+        if (_deviceViewModel.isSave) {
           _stockBleData += data;
 
           // エレベーター情報を更新する（センサモードのみ）
@@ -135,7 +119,6 @@ class BleViewModel extends ChangeNotifier {
   }
 
   void cancel() {
-    _deviceSubscription!.cancel();
     _bleSubscription!.cancel();
   }
 }
