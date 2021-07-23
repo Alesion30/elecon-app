@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:elecon/data/service/device_service.dart';
+import 'package:elecon/data/service/pressure_service.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -10,7 +10,7 @@ final pressureViewModelProvider = ChangeNotifierProvider(
 class PressureViewModel extends ChangeNotifier {
   PressureViewModel(this._reader);
   final Reader _reader;
-  late final DeviceService _repository = _reader(deviceServiceProvider);
+  late final PressureService _repository = _reader(pressureServiceProvider);
 
   double? get pressure => _pressure != null ? (_pressure! * 100).ceil() / 100 : null;
   double? _pressure;
@@ -39,6 +39,7 @@ class PressureViewModel extends ChangeNotifier {
     );
   }
 
+  // 気圧センサが利用可能かどうか
   Future<bool> getSensorAvailable() async {
     var isAvailable = false;
     final result = await _repository.getPressureSensorAvailable();
