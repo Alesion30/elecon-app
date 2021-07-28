@@ -1,0 +1,19 @@
+{
+    "files.exclude": {
+        ".dart_tool": true,
+        ".fvm": true,
+        ".idea": true,
+        "build": true,
+        "node_modules": true,
+        ".flutter-plugins": true,
+        ".flutter-plugins-dependencies": true,
+        ".metadata": true,
+        ".packages": true,
+        "elecon.iml": true,
+        "Dangerfile": true,
+        "Gemfile": true,
+        "l10n.yaml": true,
+        "package-lock.json": true,
+        "pubspec.lock": true,
+    },
+}
