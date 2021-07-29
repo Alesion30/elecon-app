@@ -28,6 +28,7 @@ class Constants {
     required this.appMode,
     this.dir,
     this.floor,
+    this.themeMode = ThemeMode.light,
   });
 
   factory Constants.of() {
@@ -56,6 +57,7 @@ class Constants {
   factory Constants.scanDebug() {
     return const Constants(
       appMode: AppMode.sensor,
+      themeMode: ThemeMode.dark,
     );
   }
 
@@ -64,6 +66,7 @@ class Constants {
     return const Constants(
       appMode: AppMode.sensor,
       dir: Dir.left,
+      themeMode: ThemeMode.dark,
     );
   }
 
@@ -72,6 +75,7 @@ class Constants {
     return const Constants(
       appMode: AppMode.sensor,
       dir: Dir.right,
+      themeMode: ThemeMode.dark,
     );
   }
 
@@ -96,6 +100,7 @@ class Constants {
   final AppMode appMode;
   final Dir? dir;
   final int? floor;
+  final ThemeMode themeMode;
 
   bool get isLandscape => appMode == AppMode.hall; // ホールモードの時だけ横向き
   // double? get brightness => appMode == AppMode.sensor ? 0.1 : 1.0; // センサモードの時は暗く

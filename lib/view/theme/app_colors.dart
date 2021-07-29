@@ -40,7 +40,23 @@ class AppColors {
   }
 
   factory AppColors.dark() {
-    return AppColors.light();
+    return const AppColors(
+      font: Color(0xffFFFFFF),
+      background: Color(0xff000000),
+      header: Color(0xffffffff),
+      accent: Color(0xffF9881F),
+      success: Color(0xff7dc579),
+      danger: Color(0xffEB7258),
+      info: Color(0xff79BCC5),
+      active: Color(0xff6496D1),
+      inactive: Color(0xffC6C6C6),
+      error: Color(0xffEB7258),
+
+      // カスタム
+      stateHigh: Color(0xffFFCDD2),
+      stateMiddle: Color(0xffFFF9C4),
+      stateLow: Color(0xffC8E6C9),
+    );
   }
 
   final Color font;

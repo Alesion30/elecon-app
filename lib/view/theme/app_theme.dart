@@ -1,12 +1,16 @@
+import 'package:elecon/foundation/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'app_colors.dart';
 import 'app_text_theme.dart';
 
+// 環境変数
+final constants = Constants.instance;
+
 final appThemeModeProvider =
     StateNotifierProvider<StateController<ThemeMode>, ThemeMode>(
-  (_) => StateController(ThemeMode.light),
+  (_) => StateController(constants.themeMode),
 );
 
 final appThemeProvider = Provider<AppTheme>(
