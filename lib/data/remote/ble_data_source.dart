@@ -12,19 +12,30 @@ class BleDataSource {
 
   late final FlutterBlue _flutterBlue = FlutterBlue.instance;
 
+  // スキャンを開始する（タイムアウト: 1分）
+  Future<void> startScan() => _flutterBlue.startScan(
+        timeout: const Duration(minutes: 1),
+        allowDuplicates: true,
+      );
+
+  // スキャンを終了する
+  Future<void> stopScan() => _flutterBlue.stopScan();
+
+  // スキャン中かどうかを取得する
+  Stream<bool> getIsScaning() async* {
+    yield* Stream.periodic(const Duration(seconds: 1), (_) async {
+      final isScanning = await _flutterBlue.isScanning.first;
+      return isScanning;
+    }).asyncMap((event) => event);
+  }
+
   // 接触確認アプリ「COCOA」のみのBLE信号を取得する
   Stream<List<ScanResult>> getCocoaStream({
-    int interval = 5,
     int minRssi = -1000,
   }) async* {
-    yield* Stream.periodic(Duration(seconds: interval), (_) async {
-      var results = <ScanResult>[];
-      await _flutterBlue.startScan(timeout: Duration(seconds: interval));
-      _flutterBlue.scanResults.listen((item) => results = item);
-      await _flutterBlue.stopScan();
-
+    yield* _flutterBlue.scanResults.asyncMap((scanResults) async {
       // 信号をフィルタリング
-      results = results.where((result) {
+      final filteredScanResult = scanResults.where((result) {
         // 接触確認アプリ「COCOA」 ServiceUUID
         // https://blog.google/documents/58/Contact_Tracing_-_Bluetooth_Specification_v1.1_RYGZbKW.pdf
         // ignore: non_constant_identifier_names
@@ -51,9 +62,9 @@ class BleDataSource {
       }).toList();
 
       // 信号強度順にソート
-      results.sort((a, b) => a.rssi < b.rssi ? 1 : -1);
+      filteredScanResult.sort((a, b) => a.rssi < b.rssi ? 1 : -1);
 
-      return results;
-    }).asyncMap((event) async => await event);
+      return filteredScanResult;
+    });
   }
 }

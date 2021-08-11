@@ -23,10 +23,12 @@ class BleViewModel extends ChangeNotifier {
 
   // リポジトリ
   late final BleRepository _repository = _reader(bleRepositoryProvider);
-  late final DeviceRepository _deviceRepository = _reader(deviceRepositoryProvider);
+  late final DeviceRepository _deviceRepository =
+      _reader(deviceRepositoryProvider);
   late final ElevatorRepository _elevatorRepository =
       _reader(elevatorRepositoryProvider);
-  late final FloorRepository _floorRepository = _reader(floorRepositoryProvider);
+  late final FloorRepository _floorRepository =
+      _reader(floorRepositoryProvider);
 
   // ViewModel
   late final FloorViewModel _floorViewModel = _reader(floorViewModelProvider);
@@ -52,15 +54,25 @@ class BleViewModel extends ChangeNotifier {
   // ストックデータ
   List<Ble> _stockBleData = [];
   List<ElevatorCount> _stockElevatorData = [];
-  String? _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
-  String? _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
+  String _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
+  String _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
+  String _lastStockData = DateTime.now().formatYYYYMMddHHmmss();
 
   void init() {
+    print('!!start ble scan!!');
+    _repository.startScan();
     getBleDataRealtime();
   }
 
   // BLEのデータをリアルタイムで取得
   void getBleDataRealtime() {
+    _repository.restartStream().listen((isScanning) {
+      if (!isScanning) {
+        print('!!restart ble scan!!');
+        _repository.startScan();
+      }
+    });
+
     _bleSubscription = _repository.getDataRealtime().listen(
       (data) {
         final now = DateTime.now();
@@ -68,14 +80,23 @@ class BleViewModel extends ChangeNotifier {
 
         // 保存モード時
         if (_deviceViewModel.isSave) {
-          _stockBleData += data;
+          // 配列にデータを格納する（1秒に1回）
+          if (now.formatYYYYMMddHHmmss() != _lastStockData) {
+            _stockBleData += data;
+            _lastStockData = now.formatYYYYMMddHHmmss();
+          }
 
           // エレベーター情報を更新する（センサモードのみ）
           if (_constants.appMode == AppMode.sensor) {
-            _stockElevatorData.add(
-              ElevatorCount(people: count, created: DateTime.now()),
-            );
-            _elevatorRepository.saveData(count!);
+            if (now.formatYYYYMMddHHmmss() != _lastStockData) {
+              _stockElevatorData.add(
+                ElevatorCount(
+                  people: count,
+                  created: DateTime.now(),
+                ),
+              );
+              _elevatorRepository.saveData(count!);
+            }
 
             // エレベーター情報のログを保存する（5分おきに）
             if (now.formatYYYYMMddHHmm() != _lastElevatorSaveDate &&

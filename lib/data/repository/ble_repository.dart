@@ -1,3 +1,4 @@
+import 'package:elecon/data/model/result.dart';
 import 'package:elecon/data/remote/ble_data_source.dart';
 import 'package:elecon/data/model/ble/ble.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -9,6 +10,22 @@ class BleRepository {
   final Reader _reader;
 
   late final BleDataSource _dataSource = _reader(bleDataSourceProvider);
+
+  Future<Result<void>> startScan() async {
+    return Result.guardFuture(
+      () async => _dataSource.startScan(),
+    );
+  }
+
+  Future<Result<void>> stopScan() async {
+    return Result.guardFuture(
+      () async => _dataSource.stopScan(),
+    );
+  }
+
+  Stream<bool> restartStream() async* {
+    yield* _dataSource.getIsScaning();
+  }
 
   Stream<List<Ble>> getDataRealtime() async* {
     final stream = _dataSource.getCocoaStream();
