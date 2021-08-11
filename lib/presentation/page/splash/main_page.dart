@@ -1,6 +1,6 @@
 import 'package:elecon/foundation/constants.dart';
-import 'package:elecon/view/hook/use_router.dart';
-import 'package:elecon/view/routes/app_route.gr.dart';
+import 'package:elecon/presentation/hook/use_router.dart';
+import 'package:elecon/presentation/routes/app_route.gr.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 

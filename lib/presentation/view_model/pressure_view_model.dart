@@ -2,7 +2,7 @@ import 'dart:async';
 import 'package:elecon/data/model/sensor/sensor.dart';
 import 'package:elecon/data/repository/device_repository.dart';
 import 'package:elecon/data/repository/pressure_repository.dart';
-import 'package:elecon/view/view_model/device_view_model.dart';
+import 'package:elecon/presentation/view_model/device_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 import 'package:elecon/foundation/extension/date_time.dart';
