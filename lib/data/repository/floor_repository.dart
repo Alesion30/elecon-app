@@ -4,10 +4,10 @@ import 'package:elecon/data/model/result.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final floorServiceProvider = Provider((ref) => FloorService(ref.read));
+final floorRepositoryProvider = Provider((ref) => FloorRepository(ref.read));
 
-class FloorService {
-  FloorService(this._reader);
+class FloorRepository {
+  FloorRepository(this._reader);
   final Reader _reader;
 
   late final FbFloorDataSource _dataSource = _reader(floorDataSourceProvider);

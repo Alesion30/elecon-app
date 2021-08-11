@@ -2,10 +2,10 @@ import 'dart:async';
 import 'package:elecon/data/model/ble/ble.dart';
 import 'package:elecon/data/model/device/device.dart';
 import 'package:elecon/data/model/elevator/elevator.dart';
-import 'package:elecon/data/service/ble_service.dart';
-import 'package:elecon/data/service/device_service.dart';
-import 'package:elecon/data/service/elevator_service.dart';
-import 'package:elecon/data/service/floor_service.dart';
+import 'package:elecon/data/repository/ble_repository.dart';
+import 'package:elecon/data/repository/device_repository.dart';
+import 'package:elecon/data/repository/elevator_repository.dart';
+import 'package:elecon/data/repository/floor_repository.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/view/view_model/device_view_model.dart';
 import 'package:elecon/view/view_model/floor_view_model.dart';
@@ -22,11 +22,11 @@ class BleViewModel extends ChangeNotifier {
   final Reader _reader;
 
   // リポジトリ
-  late final BleService _repository = _reader(bleServiceProvider);
-  late final DeviceService _deviceRepository = _reader(deviceServiceProvider);
-  late final ElevatorService _elevatorRepository =
-      _reader(elevatorServiceProvider);
-  late final FloorService _floorRepository = _reader(floorServiceProvider);
+  late final BleRepository _repository = _reader(bleRepositoryProvider);
+  late final DeviceRepository _deviceRepository = _reader(deviceRepositoryProvider);
+  late final ElevatorRepository _elevatorRepository =
+      _reader(elevatorRepositoryProvider);
+  late final FloorRepository _floorRepository = _reader(floorRepositoryProvider);
 
   // ViewModel
   late final FloorViewModel _floorViewModel = _reader(floorViewModelProvider);

@@ -2,10 +2,10 @@ import 'package:elecon/data/remote/ble_data_source.dart';
 import 'package:elecon/data/model/ble/ble.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final bleServiceProvider = Provider((ref) => BleService(ref.read));
+final bleRepositoryProvider = Provider((ref) => BleRepository(ref.read));
 
-class BleService {
-  BleService(this._reader);
+class BleRepository {
+  BleRepository(this._reader);
   final Reader _reader;
 
   late final BleDataSource _dataSource = _reader(bleDataSourceProvider);

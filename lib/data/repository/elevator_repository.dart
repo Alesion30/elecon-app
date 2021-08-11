@@ -5,10 +5,10 @@ import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/function/device_info.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final elevatorServiceProvider = Provider((ref) => ElevatorService(ref.read));
+final elevatorRepositoryProvider = Provider((ref) => ElevatorRepository(ref.read));
 
-class ElevatorService {
-  ElevatorService(this._reader);
+class ElevatorRepository {
+  ElevatorRepository(this._reader);
   final Reader _reader;
 
   late final FbElevatorDataSource _dataSource =

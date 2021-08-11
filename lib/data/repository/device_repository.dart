@@ -7,10 +7,10 @@ import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/function/device_info.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final deviceServiceProvider = Provider((ref) => DeviceService(ref.read));
+final deviceRepositoryProvider = Provider((ref) => DeviceRepository(ref.read));
 
-class DeviceService {
-  DeviceService(this._reader);
+class DeviceRepository {
+  DeviceRepository(this._reader);
   final Reader _reader;
 
   late final FbDeviceDataSource _dataSource = _reader(deviceDataSourceProvider);

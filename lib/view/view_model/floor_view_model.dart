@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:elecon/data/model/floor/floor.dart';
-import 'package:elecon/data/service/floor_service.dart';
+import 'package:elecon/data/repository/floor_repository.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/extension/iterable.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ final floorViewModelProvider = ChangeNotifierProvider(
 class FloorViewModel extends ChangeNotifier {
   FloorViewModel(this._reader);
   final Reader _reader;
-  late final FloorService _repository = _reader(floorServiceProvider);
+  late final FloorRepository _repository = _reader(floorRepositoryProvider);
 
   StreamSubscription<List<Floor>>? _subscription;
 

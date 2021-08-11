@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:elecon/data/model/sensor/sensor.dart';
-import 'package:elecon/data/service/device_service.dart';
-import 'package:elecon/data/service/pressure_service.dart';
+import 'package:elecon/data/repository/device_repository.dart';
+import 'package:elecon/data/repository/pressure_repository.dart';
 import 'package:elecon/view/view_model/device_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
@@ -16,8 +16,8 @@ class PressureViewModel extends ChangeNotifier {
   final Reader _reader;
 
   // リポジトリ
-  late final PressureService _repository = _reader(pressureServiceProvider);
-  late final DeviceService _deviceRepository = _reader(deviceServiceProvider);
+  late final PressureRepository _repository = _reader(pressureRepositoryProvider);
+  late final DeviceRepository _deviceRepository = _reader(deviceRepositoryProvider);
 
   // ViewModel
   late final DeviceViewModel _deviceViewModel =

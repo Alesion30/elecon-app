@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:elecon/data/model/elevator/elevator.dart';
-import 'package:elecon/data/service/elevator_service.dart';
+import 'package:elecon/data/repository/elevator_repository.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/extension/iterable.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +13,7 @@ final elevatorViewModelProvider = ChangeNotifierProvider(
 class ElevatorViewModel extends ChangeNotifier {
   ElevatorViewModel(this._reader);
   final Reader _reader;
-  late final ElevatorService _repository = _reader(elevatorServiceProvider);
+  late final ElevatorRepository _repository = _reader(elevatorRepositoryProvider);
 
   StreamSubscription<List<Elevator>>? _subscription;
 

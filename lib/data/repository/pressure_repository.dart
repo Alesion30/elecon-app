@@ -2,10 +2,10 @@ import 'package:elecon/data/remote/sensor_data_source.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final pressureServiceProvider = Provider((ref) => PressureService(ref.read));
+final pressureRepositoryProvider = Provider((ref) => PressureRepository(ref.read));
 
-class PressureService {
-  PressureService(this._reader);
+class PressureRepository {
+  PressureRepository(this._reader);
   final Reader _reader;
 
   late final SensorDataSource _dataStore = _reader(sensorDataSourceProvider);

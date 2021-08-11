@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:elecon/data/model/device/device.dart';
 import 'package:elecon/data/model/result.dart';
-import 'package:elecon/data/service/device_service.dart';
+import 'package:elecon/data/repository/device_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
@@ -12,7 +12,7 @@ final deviceViewModelProvider = ChangeNotifierProvider(
 class DeviceViewModel extends ChangeNotifier {
   DeviceViewModel(this._reader);
   final Reader _reader;
-  late final DeviceService _repository = _reader(deviceServiceProvider);
+  late final DeviceRepository _repository = _reader(deviceRepositoryProvider);
 
   // stream
   StreamSubscription<Device>? _deviceSubscription;
