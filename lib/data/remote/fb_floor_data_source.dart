@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elecon/data/app_error.dart';
-import 'package:elecon/data/model/floor.dart';
+import 'package:elecon/data/model/floor/floor.dart';
 import 'package:elecon/foundation/extension/date_time.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

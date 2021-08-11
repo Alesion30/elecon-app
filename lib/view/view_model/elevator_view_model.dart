@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:elecon/data/model/elevator.dart';
+import 'package:elecon/data/model/elevator/elevator.dart';
 import 'package:elecon/data/service/elevator_service.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/extension/iterable.dart';

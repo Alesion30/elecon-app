@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:elecon/data/model/device.dart';
+import 'package:elecon/data/model/device/device.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:elecon/data/service/device_service.dart';
 import 'package:flutter/material.dart';

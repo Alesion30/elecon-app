@@ -1,7 +1,7 @@
 import 'dart:async';
-import 'package:elecon/data/model/ble.dart';
-import 'package:elecon/data/model/device.dart';
-import 'package:elecon/data/model/elevator.dart';
+import 'package:elecon/data/model/ble/ble.dart';
+import 'package:elecon/data/model/device/device.dart';
+import 'package:elecon/data/model/elevator/elevator.dart';
 import 'package:elecon/data/service/ble_service.dart';
 import 'package:elecon/data/service/device_service.dart';
 import 'package:elecon/data/service/elevator_service.dart';

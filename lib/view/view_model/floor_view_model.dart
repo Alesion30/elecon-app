@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:elecon/data/model/floor.dart';
+import 'package:elecon/data/model/floor/floor.dart';
 import 'package:elecon/data/service/floor_service.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/extension/iterable.dart';

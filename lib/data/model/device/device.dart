@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elecon/data/model/ble.dart';
+import 'package:elecon/data/model/ble/ble.dart';
 import 'package:elecon/data/model/converter.dart';
-import 'package:elecon/data/model/sensor.dart';
+import 'package:elecon/data/model/sensor/sensor.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 

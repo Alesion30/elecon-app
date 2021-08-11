@@ -1,5 +1,5 @@
 import 'package:elecon/data/remote/fb_elevator_data_source.dart';
-import 'package:elecon/data/model/elevator.dart';
+import 'package:elecon/data/model/elevator/elevator.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/function/device_info.dart';

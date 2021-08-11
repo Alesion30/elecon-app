@@ -1,5 +1,5 @@
 import 'dart:async';
-import 'package:elecon/data/model/sensor.dart';
+import 'package:elecon/data/model/sensor/sensor.dart';
 import 'package:elecon/data/service/device_service.dart';
 import 'package:elecon/data/service/pressure_service.dart';
 import 'package:elecon/view/view_model/device_view_model.dart';
