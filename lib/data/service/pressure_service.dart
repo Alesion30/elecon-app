@@ -1,4 +1,4 @@
-import 'package:elecon/data/api/sensor_data_source.dart';
+import 'package:elecon/data/remote/sensor_data_source.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 

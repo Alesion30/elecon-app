@@ -1,5 +1,5 @@
-import 'package:elecon/data/api/battery_data_source.dart';
-import 'package:elecon/data/api/fb_device_data_source.dart';
+import 'package:elecon/data/remote/battery_data_source.dart';
+import 'package:elecon/data/remote/fb_device_data_source.dart';
 import 'package:elecon/data/model/device.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:elecon/data/model/sensor.dart';
