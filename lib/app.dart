@@ -28,6 +28,7 @@ class App extends HookWidget {
       theme: theme.data,
       darkTheme: AppTheme.dark().data,
       themeMode: themeMode,
+      debugShowCheckedModeBanner: false,
       supportedLocales: [
         const Locale('en', 'US'),
         const Locale('ja', 'JP'),
