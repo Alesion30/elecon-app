@@ -64,6 +64,7 @@ class BleViewModel extends ChangeNotifier {
   String _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
   String _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
   String _lastElevatorInfoSaveDate = DateTime.now().formatYYYYMMddHHmmss();
+  int? _lastElevatorCount;
   String _lastStockData = DateTime.now().formatYYYYMMddHHmmss();
 
   void init() {
@@ -72,19 +73,25 @@ class BleViewModel extends ChangeNotifier {
     getBleDataRealtime();
   }
 
-  // BLEのデータをリアルタイムで取得
   void getBleDataRealtime() {
+    _bleSubscription = _getBleSubscription();
     _repository.restartStream().listen((isScanning) {
       if (!isScanning) {
         print('!!restart ble scan!!');
+        _bleSubscription?.cancel();
         _repository.startScan();
+        _bleSubscription = _getBleSubscription();
       }
     });
+  }
 
-    _bleSubscription = _repository.getDataRealtime().listen(
+  // BLEのデータをリアルタイムで取得
+  StreamSubscription<List<Ble>> _getBleSubscription() {
+    return _repository.getDataRealtime().listen(
       (data) {
         final now = DateTime.now();
         _bles = data;
+        print(data);
 
         // 保存モード時
         if (_deviceViewModel.isSave) {
@@ -98,19 +105,30 @@ class BleViewModel extends ChangeNotifier {
           if (_constants.appMode == AppMode.sensor) {
             // エレベータの人数を更新（1秒おき）
             if (now.formatYYYYMMddHHmmss() != _lastElevatorInfoSaveDate) {
-              _stockElevatorData.add(
-                ElevatorCount(
-                  people: count,
-                  created: DateTime.now(),
-                ),
-              );
-              _elevatorRepository.saveData(count!);
+              // エレベーターのカウントを初期化（20秒おき）
+              if (now.second % 20 == 0) {
+                _lastElevatorCount = null;
+              }
+
+              // 最後とカウントが違う場合のみ更新
+              if (_lastElevatorCount != count) {
+                _stockElevatorData.add(
+                  ElevatorCount(
+                    people: count,
+                    created: DateTime.now(),
+                  ),
+                );
+                _elevatorRepository.saveData(count!);
+                _lastElevatorCount = count;
+              }
+
               _lastElevatorInfoSaveDate = now.formatYYYYMMddHHmmss();
             }
 
             // エレベーター情報のログを保存する（5分おきに）
             if (now.formatYYYYMMddHHmm() != _lastElevatorSaveDate &&
                 now.minute % 5 == 0) {
+              // ログをFirestoreに保存
               _elevatorRepository.saveLog(_stockElevatorData).then((result) {
                 result.ifSuccess((_) {
                   _stockElevatorData = [];
@@ -153,6 +171,6 @@ class BleViewModel extends ChangeNotifier {
   }
 
   void cancel() {
-    _bleSubscription!.cancel();
+    _bleSubscription?.cancel();
   }
 }

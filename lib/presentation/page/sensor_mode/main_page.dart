@@ -32,6 +32,7 @@ class ScanModeMainPage extends HookWidget {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          // mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(),
             Column(
@@ -51,7 +52,7 @@ class ScanModeMainPage extends HookWidget {
                 right: 10.0,
               ),
               child: Text(
-                'データ: ${bleViewModel.bles}',
+                'データ: ${bleViewModel.bles?.map((v) => 'id:${v.id},rssi:${v.rssi}').toList()}',
                 style: const TextStyle(fontSize: 8.0),
               ),
             ),
