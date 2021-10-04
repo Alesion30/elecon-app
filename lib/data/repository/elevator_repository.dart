@@ -1,11 +1,15 @@
-import 'package:elecon/data/remote/fb_elevator_data_source.dart';
-import 'package:elecon/data/model/elevator/elevator.dart';
-import 'package:elecon/data/model/result.dart';
-import 'package:elecon/foundation/constants.dart';
-import 'package:elecon/foundation/function/device_info.dart';
+// Package imports:
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
-final elevatorRepositoryProvider = Provider((ref) => ElevatorRepository(ref.read));
+// Project imports:
+import 'package:elecon/data/model/elevator/elevator.dart';
+import 'package:elecon/data/model/result.dart';
+import 'package:elecon/data/remote/fb_elevator_data_source.dart';
+import 'package:elecon/foundation/constants.dart';
+import 'package:elecon/foundation/function/device_info.dart';
+
+final elevatorRepositoryProvider =
+    Provider((ref) => ElevatorRepository(ref.read));
 
 class ElevatorRepository {
   ElevatorRepository(this._reader);

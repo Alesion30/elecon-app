@@ -1,6 +1,11 @@
-import 'package:elecon/gen/assets.gen.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:flutter_hooks/flutter_hooks.dart';
+
+// Project imports:
+import 'package:elecon/gen/assets.gen.dart';
 
 class Elevator extends HookWidget {
   Elevator(this.number);

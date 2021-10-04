@@ -1,5 +1,8 @@
-import 'package:enum_to_string/enum_to_string.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:enum_to_string/enum_to_string.dart';
 
 // 環境変数
 enum AppBuildType {

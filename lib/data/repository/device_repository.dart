@@ -1,11 +1,14 @@
-import 'package:elecon/data/remote/battery_data_source.dart';
-import 'package:elecon/data/remote/fb_device_data_source.dart';
+// Package imports:
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
 import 'package:elecon/data/model/device/device.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:elecon/data/model/sensor/sensor.dart';
+import 'package:elecon/data/remote/battery_data_source.dart';
+import 'package:elecon/data/remote/fb_device_data_source.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/foundation/function/device_info.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final deviceRepositoryProvider = Provider((ref) => DeviceRepository(ref.read));
 

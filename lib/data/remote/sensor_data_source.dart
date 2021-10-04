@@ -1,5 +1,6 @@
-import 'package:hooks_riverpod/hooks_riverpod.dart';
+// Package imports:
 import 'package:environment_sensors/environment_sensors.dart';
+import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 export 'package:environment_sensors/environment_sensors.dart';
 
@@ -19,8 +20,7 @@ class SensorDataSource {
   }
 
   Future<bool> getSensorAvailable(SensorType sensorType) async {
-    final isAvailable =
-        await environmentSensors.getSensorAvailable(sensorType);
+    final isAvailable = await environmentSensors.getSensorAvailable(sensorType);
     return isAvailable;
   }
 }

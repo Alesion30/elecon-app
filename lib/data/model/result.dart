@@ -1,5 +1,8 @@
-import 'package:elecon/data/app_error.dart';
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:elecon/data/app_error.dart';
 
 part 'result.freezed.dart';
 

@@ -1,6 +1,9 @@
+// Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elecon/data/model/converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:elecon/data/model/converter.dart';
 
 part 'floor.freezed.dart';
 part 'floor.g.dart';

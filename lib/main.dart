@@ -1,8 +1,13 @@
-import 'package:elecon/foundation/constants.dart';
-import 'package:firebase_core/firebase_core.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+
+// Package imports:
+import 'package:firebase_core/firebase_core.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
+import 'package:elecon/foundation/constants.dart';
 import 'app.dart';
 
 Future<void> main() async {

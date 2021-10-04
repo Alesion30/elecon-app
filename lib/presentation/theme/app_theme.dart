@@ -1,7 +1,12 @@
-import 'package:elecon/foundation/constants.dart';
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Package imports:
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
+import 'package:elecon/foundation/constants.dart';
 import 'app_colors.dart';
 import 'app_text_theme.dart';
 

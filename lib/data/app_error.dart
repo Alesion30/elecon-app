@@ -1,5 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
+// Flutter imports:
 import 'package:flutter/foundation.dart';
+
+// Package imports:
+import 'package:firebase_core/firebase_core.dart';
 
 enum AppErrorType {
   successful,

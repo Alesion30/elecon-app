@@ -1,9 +1,16 @@
+// Dart imports:
 import 'dart:async';
+
+// Flutter imports:
+import 'package:flutter/material.dart';
+
+// Package imports:
+import 'package:hooks_riverpod/hooks_riverpod.dart';
+
+// Project imports:
 import 'package:elecon/data/model/device/device.dart';
 import 'package:elecon/data/model/result.dart';
 import 'package:elecon/data/repository/device_repository.dart';
-import 'package:flutter/material.dart';
-import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 final deviceViewModelProvider = ChangeNotifierProvider(
   (ref) => DeviceViewModel(ref.read),

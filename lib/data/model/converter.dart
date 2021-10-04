@@ -1,7 +1,10 @@
+// Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elecon/foundation/constants.dart';
 import 'package:enum_to_string/enum_to_string.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:elecon/foundation/constants.dart';
 
 export 'package:cloud_firestore/cloud_firestore.dart';
 export 'package:elecon/foundation/constants.dart';

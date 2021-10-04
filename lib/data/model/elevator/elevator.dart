@@ -1,6 +1,9 @@
+// Package imports:
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:elecon/data/model/converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:elecon/data/model/converter.dart';
 
 part 'elevator.freezed.dart';
 part 'elevator.g.dart';
@@ -19,7 +22,8 @@ class Elevator with _$Elevator {
     return Elevator.fromJson(data!);
   }
 
-  factory Elevator.fromJson(Map<String, dynamic> json) => _$ElevatorFromJson(json);
+  factory Elevator.fromJson(Map<String, dynamic> json) =>
+      _$ElevatorFromJson(json);
 }
 
 @freezed
@@ -35,7 +39,8 @@ class ElevatorLog with _$ElevatorLog {
     return ElevatorLog.fromJson(data!);
   }
 
-  factory ElevatorLog.fromJson(Map<String, dynamic> json) => _$ElevatorLogFromJson(json);
+  factory ElevatorLog.fromJson(Map<String, dynamic> json) =>
+      _$ElevatorLogFromJson(json);
 }
 
 @freezed
@@ -50,5 +55,6 @@ class ElevatorCount with _$ElevatorCount {
     return ElevatorCount.fromJson(data!);
   }
 
-  factory ElevatorCount.fromJson(Map<String, dynamic> json) => _$ElevatorCountFromJson(json);
+  factory ElevatorCount.fromJson(Map<String, dynamic> json) =>
+      _$ElevatorCountFromJson(json);
 }

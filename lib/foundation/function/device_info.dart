@@ -1,5 +1,10 @@
+// Dart imports:
 import 'dart:io';
+
+// Flutter imports:
 import 'package:flutter/services.dart';
+
+// Package imports:
 import 'package:device_info/device_info.dart';
 
 // デバイスIDを取得する

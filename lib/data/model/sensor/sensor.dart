@@ -1,5 +1,8 @@
-import 'package:elecon/data/model/converter.dart';
+// Package imports:
 import 'package:freezed_annotation/freezed_annotation.dart';
+
+// Project imports:
+import 'package:elecon/data/model/converter.dart';
 
 part 'sensor.freezed.dart';
 part 'sensor.g.dart';
