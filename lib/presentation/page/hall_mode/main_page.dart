@@ -1,4 +1,5 @@
 import 'package:elecon/presentation/common/floor_table.dart';
+import 'package:elecon/presentation/hook/use_effect.dart';
 import 'package:elecon/presentation/view_model/ble_view_model.dart';
 import 'package:elecon/foundation/constants.dart';
 import 'package:elecon/presentation/common/button.dart';
@@ -27,7 +28,7 @@ class HallModeMainPage extends HookWidget {
     final elevatorViewModel = useProvider(elevatorViewModelProvider);
 
     // 初期化
-    useEffect(() {
+    useEffectSafety(() {
       bleViewModel.init();
       floorViewModel.fetchDataRealtime();
       elevatorViewModel.fetchDataRealtime();

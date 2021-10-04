@@ -1,4 +1,5 @@
 import 'package:elecon/foundation/constants.dart';
+import 'package:elecon/presentation/hook/use_effect.dart';
 import 'package:elecon/presentation/hook/use_router.dart';
 import 'package:elecon/presentation/routes/app_route.gr.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,7 @@ class SplashPage extends HookWidget {
     final router = useRouter();
     final appMode = Constants.instance.appMode;
 
-    useEffect(() {
+    useEffectSafety(() {
       if (appMode == AppMode.hall) {
         router.pushAndPopUntil(
           const HallModeMainRoute(),

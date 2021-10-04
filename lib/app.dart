@@ -1,3 +1,4 @@
+import 'package:elecon/presentation/hook/use_effect.dart';
 import 'package:elecon/presentation/hook/use_theme.dart';
 import 'package:elecon/presentation/routes/app_route.gr.dart';
 import 'package:elecon/presentation/view_model/device_view_model.dart';
@@ -17,7 +18,7 @@ class App extends HookWidget {
 
     final viewModel = useProvider(deviceViewModelProvider);
 
-    useEffect(() {
+    useEffectSafety(() {
       print('App Start!!');
       viewModel.init();
 

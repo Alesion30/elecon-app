@@ -1,3 +1,4 @@
+import 'package:elecon/presentation/hook/use_effect.dart';
 import 'package:elecon/presentation/view_model/ble_view_model.dart';
 import 'package:elecon/presentation/view_model/device_view_model.dart';
 import 'package:elecon/presentation/view_model/pressure_view_model.dart';
@@ -13,7 +14,7 @@ class ScanModeMainPage extends HookWidget {
     final pressureViewModel = useProvider(pressureViewModelProvider);
 
     // 初期化
-    useEffect(() {
+    useEffectSafety(() {
       bleViewModel.init();
       pressureViewModel.init();
       return () {
