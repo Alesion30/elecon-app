@@ -56,6 +56,7 @@ class BleViewModel extends ChangeNotifier {
   List<ElevatorCount> _stockElevatorData = [];
   String _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
   String _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
+  String _lastElevatorInfoSaveDate = DateTime.now().formatYYYYMMddHHmmss();
   String _lastStockData = DateTime.now().formatYYYYMMddHHmmss();
 
   void init() {
@@ -88,7 +89,8 @@ class BleViewModel extends ChangeNotifier {
 
           // エレベーター情報を更新する（センサモードのみ）
           if (_constants.appMode == AppMode.sensor) {
-            if (now.formatYYYYMMddHHmmss() != _lastStockData) {
+            // エレベータの人数を更新（1秒おき）
+            if (now.formatYYYYMMddHHmmss() != _lastElevatorInfoSaveDate) {
               _stockElevatorData.add(
                 ElevatorCount(
                   people: count,
@@ -96,6 +98,7 @@ class BleViewModel extends ChangeNotifier {
                 ),
               );
               _elevatorRepository.saveData(count!);
+              _lastElevatorInfoSaveDate = now.formatYYYYMMddHHmmss();
             }
 
             // エレベーター情報のログを保存する（5分おきに）
@@ -117,8 +120,9 @@ class BleViewModel extends ChangeNotifier {
             }
           }
 
-          // センサの値を保存する（1分おきに）
-          if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
+          // センサの値を保存する（5分おきに）
+          if (now.formatYYYYMMddHHmm() != _lastSaveDate &&
+              now.minute % 5 == 0) {
             final deviceBle = DeviceBle(
               data: _stockBleData,
               created: now,
