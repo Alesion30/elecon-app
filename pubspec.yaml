@@ -61,6 +61,9 @@ dev_dependencies:
   flutter_launcher_icons: ^0.9.0
   flutter_native_splash: ^1.1.8+4
 
+  # command: fvm flutter pub run import_sorter:main
+  import_sorter: ^4.6.0
+
   # command: flutter packages pub run build_runner build
   build_runner: ^2.0.6
 
