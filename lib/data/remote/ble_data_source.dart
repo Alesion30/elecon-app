@@ -13,9 +13,9 @@ class BleDataSource {
 
   late final FlutterBlue _flutterBlue = FlutterBlue.instance;
 
-  // スキャンを開始する（タイムアウト: 1分）
+  // スキャンを開始する（タイムアウト: 10分）
   Future<void> startScan() => _flutterBlue.startScan(
-        timeout: const Duration(minutes: 1),
+        timeout: const Duration(minutes: 10),
         allowDuplicates: true,
       );
 
@@ -24,7 +24,7 @@ class BleDataSource {
 
   // スキャン中かどうかを取得する
   Stream<bool> getIsScaning() async* {
-    yield* Stream.periodic(const Duration(seconds: 1), (_) async {
+    yield* Stream.periodic(const Duration(seconds: 10), (_) async {
       final isScanning = await _flutterBlue.isScanning.first;
       return isScanning;
     }).asyncMap((event) => event);

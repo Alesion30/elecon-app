@@ -31,7 +31,7 @@ class BleRepository {
   }
 
   Stream<List<Ble>> getDataRealtime() async* {
-    final stream = _dataSource.getCocoaStream();
+    final stream = _dataSource.getCocoaStream(minRssi: -80);
     yield* stream.asyncMap((scanResult) {
       return scanResult.map(
         (scanResult) {
