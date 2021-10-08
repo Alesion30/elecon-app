@@ -61,6 +61,7 @@ class BleViewModel extends ChangeNotifier {
   // ストックデータ
   List<Ble> _stockBleData = [];
   List<ElevatorCount> _stockElevatorData = [];
+  String _lastLogDate = DateTime.now().formatYYYYMMddHHmmss();
   String _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
   String _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
   String _lastElevatorInfoSaveDate = DateTime.now().formatYYYYMMddHHmmss();
@@ -90,80 +91,85 @@ class BleViewModel extends ChangeNotifier {
     return _repository.getDataRealtime().listen(
       (data) {
         final now = DateTime.now();
-        _bles = data;
 
-        // 保存モード時
-        if (_deviceViewModel.isSave) {
-          // 配列にデータを格納する（1秒に1回）
-          if (now.formatYYYYMMddHHmmss() != _lastStockData) {
-            _stockBleData += data;
-            _lastStockData = now.formatYYYYMMddHHmmss();
-          }
+        // 1秒に1回、更新
+        if (now.formatYYYYMMddHHmmss() != _lastLogDate) {
+          _bles = data;
+          _lastLogDate = now.formatYYYYMMddHHmmss();
 
-          // エレベーター情報を更新する（センサモードのみ）
-          if (_constants.appMode == AppMode.sensor) {
-            // エレベータの人数を更新（1秒おき）
-            if (now.formatYYYYMMddHHmmss() != _lastElevatorInfoSaveDate) {
-              // エレベーターのカウントを初期化（20秒おき）
-              if (now.second % 20 == 0) {
-                _lastElevatorCount = null;
-              }
-
-              // 最後とカウントが違う場合のみ更新
-              if (_lastElevatorCount != count) {
-                _stockElevatorData.add(
-                  ElevatorCount(
-                    people: count,
-                    created: DateTime.now(),
-                  ),
-                );
-                _elevatorRepository.saveData(count!);
-                _lastElevatorCount = count;
-              }
-
-              _lastElevatorInfoSaveDate = now.formatYYYYMMddHHmmss();
+          // 保存モード時
+          if (_deviceViewModel.isSave) {
+            // 配列にデータを格納する（1秒に1回）
+            if (now.formatYYYYMMddHHmmss() != _lastStockData) {
+              _stockBleData += data;
+              _lastStockData = now.formatYYYYMMddHHmmss();
             }
 
-            // エレベーター情報のログを保存する（5分おきに）
-            if (now.formatYYYYMMddHHmm() != _lastElevatorSaveDate &&
-                now.minute % 5 == 0) {
-              // ログをFirestoreに保存
-              _elevatorRepository.saveLog(_stockElevatorData).then((result) {
+            // エレベーター情報を更新する（センサモードのみ）
+            if (_constants.appMode == AppMode.sensor) {
+              // エレベータの人数を更新（1秒おき）
+              if (now.formatYYYYMMddHHmmss() != _lastElevatorInfoSaveDate) {
+                // エレベーターのカウントを初期化（20秒おき）
+                if (now.second % 20 == 0) {
+                  _lastElevatorCount = null;
+                }
+
+                // 最後とカウントが違う場合のみ更新
+                if (_lastElevatorCount != count) {
+                  _stockElevatorData.add(
+                    ElevatorCount(
+                      people: count,
+                      created: DateTime.now(),
+                    ),
+                  );
+                  _elevatorRepository.saveData(count!);
+                  _lastElevatorCount = count;
+                }
+
+                _lastElevatorInfoSaveDate = now.formatYYYYMMddHHmmss();
+              }
+
+              // エレベーター情報のログを保存する（5分おきに）
+              if (now.formatYYYYMMddHHmm() != _lastElevatorSaveDate &&
+                  now.minute % 5 == 0) {
+                // ログをFirestoreに保存
+                _elevatorRepository.saveLog(_stockElevatorData).then((result) {
+                  result.ifSuccess((_) {
+                    _stockElevatorData = [];
+                    _lastElevatorSaveDate = now.formatYYYYMMddHHmm();
+                  });
+                });
+              }
+            }
+
+            // 混雑度情報をリセットする（ホールモードのみ）
+            if (_constants.appMode == AppMode.hall) {
+              if (count == 0 && _floorViewModel.currentFloor?.congestion != 0) {
+                _floorRepository.setCongestion(0);
+              }
+            }
+
+            // センサの値を保存する（1分おきに）
+            if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
+              final deviceBle = DeviceBle(
+                data: _stockBleData,
+                created: now,
+              );
+              _deviceRepository.saveBleData(deviceBle).then((result) {
                 result.ifSuccess((_) {
-                  _stockElevatorData = [];
-                  _lastElevatorSaveDate = now.formatYYYYMMddHHmm();
+                  _stockBleData = [];
+                  _lastSaveDate = now.formatYYYYMMddHHmm();
                 });
               });
             }
+          } else {
+            // 初期化
+            _stockBleData = [];
+            _stockElevatorData = [];
           }
 
-          // 混雑度情報をリセットする（ホールモードのみ）
-          if (_constants.appMode == AppMode.hall) {
-            if (count == 0 && _floorViewModel.currentFloor?.congestion != 0) {
-              _floorRepository.setCongestion(0);
-            }
-          }
-
-          // センサの値を保存する（1分おきに）
-          if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
-            final deviceBle = DeviceBle(
-              data: _stockBleData,
-              created: now,
-            );
-            _deviceRepository.saveBleData(deviceBle).then((result) {
-              result.ifSuccess((_) {
-                _stockBleData = [];
-                _lastSaveDate = now.formatYYYYMMddHHmm();
-              });
-            });
-          }
-        } else {
-          // 初期化
-          _stockBleData = [];
-          _stockElevatorData = [];
+          notifyListeners();
         }
-
-        notifyListeners();
       },
     );
   }

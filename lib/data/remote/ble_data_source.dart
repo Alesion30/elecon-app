@@ -13,9 +13,9 @@ class BleDataSource {
 
   late final FlutterBlue _flutterBlue = FlutterBlue.instance;
 
-  // スキャンを開始する（タイムアウト: 10分）
+  // スキャンを開始する（タイムアウト: 5分）
   Future<void> startScan() => _flutterBlue.startScan(
-        timeout: const Duration(minutes: 10),
+        timeout: const Duration(minutes: 5),
         allowDuplicates: true,
       );
 
