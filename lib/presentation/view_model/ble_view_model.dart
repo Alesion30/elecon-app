@@ -61,6 +61,8 @@ class BleViewModel extends ChangeNotifier {
   // ストックデータ
   List<Ble> _stockBleData = [];
   List<ElevatorCount> _stockElevatorData = [];
+
+  // 時刻データ
   String _lastLogDate = DateTime.now().formatYYYYMMddHHmmss();
   String _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
   String _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
