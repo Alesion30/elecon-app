@@ -12,6 +12,7 @@ enum AppBuildType {
 
   // エレベーターホール
   hall9F,
+  hall3F,
   hall1F,
 }
 
@@ -47,6 +48,8 @@ class Constants {
           return Constants.elevatorRight();
         case AppBuildType.hall9F:
           return Constants.hall9F();
+        case AppBuildType.hall3F:
+          return Constants.hall3F();
         case AppBuildType.hall1F:
           return Constants.hall1F();
       }
@@ -87,6 +90,14 @@ class Constants {
     return const Constants(
       appMode: AppMode.hall,
       floor: 9,
+    );
+  }
+
+  // ホール3F
+  factory Constants.hall3F() {
+    return const Constants(
+      appMode: AppMode.hall,
+      floor: 3,
     );
   }
 

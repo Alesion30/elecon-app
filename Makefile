@@ -55,6 +55,9 @@ apk-build-elevatorRight: # エレベーター右
 apk-build-hall9F: # 9F
 	fvm flutter build apk --dart-define=APPTYPE=hall9F
 
+apk-build-hall3F: # 3F
+	fvm flutter build apk --dart-define=APPTYPE=hall3F
+
 apk-build-hall1F: # 1F
 	fvm flutter build apk --dart-define=APPTYPE=hall1F
 

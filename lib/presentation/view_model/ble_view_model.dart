@@ -151,8 +151,9 @@ class BleViewModel extends ChangeNotifier {
               }
             }
 
-            // センサの値を保存する（1分おきに）
-            if (now.formatYYYYMMddHHmm() != _lastSaveDate) {
+            // センサの値を保存する（5分おきに）
+            if (now.formatYYYYMMddHHmm() != _lastSaveDate &&
+                now.minute % 5 == 0) {
               final deviceBle = DeviceBle(
                 data: _stockBleData,
                 created: now,
