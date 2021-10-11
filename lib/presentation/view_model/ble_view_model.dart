@@ -66,7 +66,7 @@ class BleViewModel extends ChangeNotifier {
   String _lastLogDate = DateTime.now().formatYYYYMMddHHmmss();
   String _lastSaveDate = DateTime.now().formatYYYYMMddHHmm();
   String _lastElevatorSaveDate = DateTime.now().formatYYYYMMddHHmm();
-  String _lastElevatorInfoSaveDate = DateTime.now().formatYYYYMMddHHmmss();
+  DateTime _lastElevatorInfoSaveDate = DateTime.now();
   int? _lastElevatorCount;
   String _lastStockData = DateTime.now().formatYYYYMMddHHmmss();
 
@@ -109,26 +109,22 @@ class BleViewModel extends ChangeNotifier {
 
             // エレベーター情報を更新する（センサモードのみ）
             if (_constants.appMode == AppMode.sensor) {
-              // エレベータの人数を更新（1秒おき）
-              if (now.formatYYYYMMddHHmmss() != _lastElevatorInfoSaveDate) {
-                // エレベーターのカウントを初期化（20秒おき）
-                if (now.second % 20 == 0) {
-                  _lastElevatorCount = null;
-                }
+              // エレベーターのカウントを初期化（20秒以上更新されていない場合）
+              if (now.difference(_lastElevatorInfoSaveDate).inSeconds > 20) {
+                _lastElevatorCount = null;
+              }
 
-                // 最後とカウントが違う場合のみ更新
-                if (_lastElevatorCount != count) {
-                  _stockElevatorData.add(
-                    ElevatorCount(
-                      people: count,
-                      created: DateTime.now(),
-                    ),
-                  );
-                  _elevatorRepository.saveData(count!);
-                  _lastElevatorCount = count;
-                }
-
-                _lastElevatorInfoSaveDate = now.formatYYYYMMddHHmmss();
+              // 最後とカウントが違う場合のみ更新
+              if (_lastElevatorCount != count) {
+                _stockElevatorData.add(
+                  ElevatorCount(
+                    people: count,
+                    created: DateTime.now(),
+                  ),
+                );
+                _elevatorRepository.saveData(count!);
+                _lastElevatorCount = count;
+                _lastElevatorInfoSaveDate = now;
               }
 
               // エレベーター情報のログを保存する（5分おきに）
