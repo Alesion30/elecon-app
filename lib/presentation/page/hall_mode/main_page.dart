@@ -44,189 +44,239 @@ class HallModeMainPage extends HookWidget {
       };
     }, []);
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          Container(
-            constraints: const BoxConstraints.expand(),
-            margin: const EdgeInsets.symmetric(horizontal: 80.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                MainWrapperColumn(
-                  children: [
-                    Expanded(
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(
-                          vertical: 30.0,
-                          horizontal: 30.0,
-                        ),
-                        color: Colors.white,
-                        child: Column(
-                          children: [
-                            // エレベータ内 人数表示
-                            Expanded(
-                              child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Expanded(
-                                    child: Elevator(
-                                      elevatorViewModel.leftPeople,
-                                    ),
-                                  ),
-                                  const VerticalDivider(),
-                                  Expanded(
-                                    child: Elevator(
-                                      elevatorViewModel.rightPeople,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-
-                    // 混雑度を選択するボタン
-                    Container(
-                      height: 300.0,
-                      margin: const EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Column(
-                        children: [
-                          Container(
-                            margin: const EdgeInsets.only(
-                              top: 20.0,
-                              bottom: 10.0,
-                            ),
-                            child: Text(
-                              '${floor}Fの状態を以下の三つの選択肢から選んでください！',
-                              style: const TextStyle(
-                                fontSize: 20.0,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
+    if (deviceViewModel.isSave) {
+      return Scaffold(
+        body: Stack(
+          children: [
+            Container(
+              constraints: const BoxConstraints.expand(),
+              margin: const EdgeInsets.symmetric(horizontal: 80.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  MainWrapperColumn(
+                    children: [
+                      Expanded(
+                        child: Container(
+                          margin: const EdgeInsets.symmetric(
+                            vertical: 30.0,
+                            horizontal: 30.0,
                           ),
-                          Row(
+                          color: Colors.white,
+                          child: Column(
                             children: [
+                              // エレベータ内 人数表示
                               Expanded(
-                                child: SquareButton(
-                                  '混雑\n（6人以上）',
-                                  isPressed:
-                                      floorViewModel.currentFloor?.congestion ==
-                                          3,
-                                  onPressed: () {
-                                    final congestion =
-                                        floorViewModel.currentFloor?.congestion;
-                                    if (congestion != 3) {
-                                      floorViewModel.setCongestion(3);
-                                    } else {
-                                      floorViewModel.setCongestion(0);
-                                    }
-                                  },
-                                  height: 200,
-                                  color: theme.appColors.stateHigh,
-                                  margin: const EdgeInsets.all(10.0),
-                                ),
-                              ),
-                              Expanded(
-                                child: SquareButton(
-                                  'やや混雑\n（3人〜5人）',
-                                  isPressed:
-                                      floorViewModel.currentFloor?.congestion ==
-                                          2,
-                                  onPressed: () {
-                                    final congestion =
-                                        floorViewModel.currentFloor?.congestion;
-                                    if (congestion != 2) {
-                                      floorViewModel.setCongestion(2);
-                                    } else {
-                                      floorViewModel.setCongestion(0);
-                                    }
-                                  },
-                                  height: 200,
-                                  color: theme.appColors.stateMiddle,
-                                  margin: const EdgeInsets.all(10.0),
-                                ),
-                              ),
-                              Expanded(
-                                child: SquareButton(
-                                  '空いている\n（1人〜2人）',
-                                  isPressed:
-                                      floorViewModel.currentFloor?.congestion ==
-                                          1,
-                                  onPressed: () {
-                                    final congestion =
-                                        floorViewModel.currentFloor?.congestion;
-                                    if (congestion != 1) {
-                                      floorViewModel.setCongestion(1);
-                                    } else {
-                                      floorViewModel.setCongestion(0);
-                                    }
-                                  },
-                                  height: 200,
-                                  color: theme.appColors.stateLow,
-                                  margin: const EdgeInsets.all(10.0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Expanded(
+                                      child: Elevator(
+                                        elevatorViewModel.leftPeople,
+                                      ),
+                                    ),
+                                    const VerticalDivider(),
+                                    Expanded(
+                                      child: Elevator(
+                                        elevatorViewModel.rightPeople,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
                             ],
                           ),
-                        ],
+                        ),
                       ),
-                    ),
-                  ],
-                ),
 
-                // 各階の混雑度を表示
-                Container(
-                  width: 200.0,
-                  child: FloorDataTable(
-                    topFloor: topFloor,
-                    datas: floorViewModel.floors ?? [],
+                      // 混雑度を選択するボタン
+                      Container(
+                        height: 300.0,
+                        margin: const EdgeInsets.symmetric(horizontal: 20.0),
+                        child: Column(
+                          children: [
+                            Container(
+                              margin: const EdgeInsets.only(
+                                top: 20.0,
+                                bottom: 10.0,
+                              ),
+                              child: Text(
+                                '${floor}Fの状態を以下の三つの選択肢から選んでください！',
+                                style: const TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: SquareButton(
+                                    '混雑\n（6人以上）',
+                                    isPressed: floorViewModel
+                                            .currentFloor?.congestion ==
+                                        3,
+                                    onPressed: () {
+                                      final congestion = floorViewModel
+                                          .currentFloor?.congestion;
+                                      if (congestion != 3) {
+                                        floorViewModel.setCongestion(3);
+                                      } else {
+                                        floorViewModel.setCongestion(0);
+                                      }
+                                    },
+                                    height: 200,
+                                    color: theme.appColors.stateHigh,
+                                    margin: const EdgeInsets.all(10.0),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SquareButton(
+                                    'やや混雑\n（3人〜5人）',
+                                    isPressed: floorViewModel
+                                            .currentFloor?.congestion ==
+                                        2,
+                                    onPressed: () {
+                                      final congestion = floorViewModel
+                                          .currentFloor?.congestion;
+                                      if (congestion != 2) {
+                                        floorViewModel.setCongestion(2);
+                                      } else {
+                                        floorViewModel.setCongestion(0);
+                                      }
+                                    },
+                                    height: 200,
+                                    color: theme.appColors.stateMiddle,
+                                    margin: const EdgeInsets.all(10.0),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: SquareButton(
+                                    '空いている\n（1人〜2人）',
+                                    isPressed: floorViewModel
+                                            .currentFloor?.congestion ==
+                                        1,
+                                    onPressed: () {
+                                      final congestion = floorViewModel
+                                          .currentFloor?.congestion;
+                                      if (congestion != 1) {
+                                        floorViewModel.setCongestion(1);
+                                      } else {
+                                        floorViewModel.setCongestion(0);
+                                      }
+                                    },
+                                    height: 200,
+                                    color: theme.appColors.stateLow,
+                                    margin: const EdgeInsets.all(10.0),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
                   ),
-                ),
-              ],
-            ),
-          ),
 
-          // 階表示(左上)
-          Positioned(
-            left: 10,
-            top: 10,
-            child: FloatingActionButton(
-              onPressed: () {},
-              backgroundColor: theme.appColors.accent,
-              child: Text(
-                '${floor}F',
-                style: const TextStyle(
-                  fontSize: 26.0,
+                  // 各階の混雑度を表示
+                  Container(
+                    width: 200.0,
+                    child: FloorDataTable(
+                      topFloor: topFloor,
+                      datas: floorViewModel.floors ?? [],
+                    ),
+                  ),
+                ],
+              ),
+            ),
+
+            // 階表示(左上)
+            Positioned(
+              left: 10,
+              top: 10,
+              child: FloatingActionButton(
+                onPressed: () {},
+                backgroundColor: theme.appColors.accent,
+                child: Text(
+                  '${floor}F',
+                  style: const TextStyle(
+                    fontSize: 26.0,
+                  ),
                 ),
               ),
             ),
-          ),
 
-          // cocoaのカウント
-          Positioned(
-            right: 10,
-            bottom: 10,
-            child: Row(
-              children: [
-                Container(
-                  margin: const EdgeInsets.only(right: 2.0),
-                  child: Icon(
-                    Icons.save,
-                    color: deviceViewModel.isSave
-                        ? theme.appColors.info
-                        : theme.appColors.inactive,
+            // cocoaのカウント
+            Positioned(
+              right: 10,
+              bottom: 10,
+              child: Row(
+                children: [
+                  Container(
+                    margin: const EdgeInsets.only(right: 2.0),
+                    child: Icon(
+                      Icons.save,
+                      color: deviceViewModel.isSave
+                          ? theme.appColors.info
+                          : theme.appColors.inactive,
+                    ),
+                  ),
+                  Text('${bleViewModel.count ?? '未取得'}'),
+                ],
+              ),
+            ),
+          ],
+        ),
+      );
+    } else {
+      return Scaffold(
+        backgroundColor: Colors.black,
+        body: Stack(
+          children: [
+            Center(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: Text(
+                      'システム稼働時間外です',
+                      style: theme.textTheme.h60.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.all(5.0),
+                    child: Text(
+                      '稼働時間: 平日9時~18時',
+                      style: theme.textTheme.h30.copyWith(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            // 階表示(左上)
+            Positioned(
+              left: 10,
+              top: 10,
+              child: FloatingActionButton(
+                onPressed: () {},
+                backgroundColor: theme.appColors.accent,
+                child: Text(
+                  '${floor}F',
+                  style: const TextStyle(
+                    fontSize: 26.0,
                   ),
                 ),
-                Text('${bleViewModel.count ?? '未取得'}'),
-              ],
+              ),
             ),
-          ),
-        ],
-      ),
-    );
+          ],
+        ),
+      );
+    }
   }
 }
 
