@@ -115,8 +115,15 @@ class HallModeMainPage extends HookWidget {
                                   isPressed:
                                       floorViewModel.currentFloor?.congestion ==
                                           3,
-                                  onPressed: () =>
-                                      floorViewModel.setCongestion(3),
+                                  onPressed: () {
+                                    final congestion =
+                                        floorViewModel.currentFloor?.congestion;
+                                    if (congestion != 3) {
+                                      floorViewModel.setCongestion(3);
+                                    } else {
+                                      floorViewModel.setCongestion(0);
+                                    }
+                                  },
                                   height: 200,
                                   color: theme.appColors.stateHigh,
                                   margin: const EdgeInsets.all(10.0),
@@ -128,8 +135,15 @@ class HallModeMainPage extends HookWidget {
                                   isPressed:
                                       floorViewModel.currentFloor?.congestion ==
                                           2,
-                                  onPressed: () =>
-                                      floorViewModel.setCongestion(2),
+                                  onPressed: () {
+                                    final congestion =
+                                        floorViewModel.currentFloor?.congestion;
+                                    if (congestion != 2) {
+                                      floorViewModel.setCongestion(2);
+                                    } else {
+                                      floorViewModel.setCongestion(0);
+                                    }
+                                  },
                                   height: 200,
                                   color: theme.appColors.stateMiddle,
                                   margin: const EdgeInsets.all(10.0),
@@ -141,8 +155,15 @@ class HallModeMainPage extends HookWidget {
                                   isPressed:
                                       floorViewModel.currentFloor?.congestion ==
                                           1,
-                                  onPressed: () =>
-                                      floorViewModel.setCongestion(1),
+                                  onPressed: () {
+                                    final congestion =
+                                        floorViewModel.currentFloor?.congestion;
+                                    if (congestion != 1) {
+                                      floorViewModel.setCongestion(1);
+                                    } else {
+                                      floorViewModel.setCongestion(0);
+                                    }
+                                  },
                                   height: 200,
                                   color: theme.appColors.stateLow,
                                   margin: const EdgeInsets.all(10.0),
